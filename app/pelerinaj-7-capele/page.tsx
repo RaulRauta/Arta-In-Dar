@@ -58,6 +58,9 @@ export default function PilgrimagePage() {
         <div className="shell">
           <Reveal className="chapel-journal__header"><div><p className="eyebrow text-terracotta">Fila 02 · Cele șapte opriri</p><h2>Din capelă<br /><em>în capelă.</em></h2></div><p>Urmează linia punctată. Fiecare oprire păstrează o bucată din istoria locului; ultima păstrează ceea ce aducem noi pe drum.</p></Reveal>
           <div className="chapel-route">
+            <svg className="chapel-route__thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M25 7 C25 10 75 10 75 21 C75 25 25 25 25 36 C25 40 75 40 75 50 C75 55 25 55 25 64 C25 69 75 69 75 79 C75 84 25 84 25 93" />
+            </svg>
             {chapels.map((chapel,index)=><Reveal key={chapel.name} delay={Math.min(index*.04,.16)} className={`chapel-entry ${index%2 ? "chapel-entry--reverse" : ""}`}>
               <article>
                 <div className="chapel-entry__image"><Image src={chapel.image} alt={chapel.name} fill sizes="(max-width: 768px) 92vw, 38vw" className="object-cover" /><span>{chapel.number}</span></div>

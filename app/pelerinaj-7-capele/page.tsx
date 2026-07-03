@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/home/reveal";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { chapels, pilgrimageFacts, villages } from "@/lib/pilgrimage-data";
+import { sculptures } from "@/lib/sculpture-data";
 
 export const metadata: Metadata = {
   title: "Pelerinaj 7 Capele",
@@ -82,6 +83,23 @@ export default function PilgrimagePage() {
         <div className="shell grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-24">
           <Reveal><div className="rest-stamp"><span>Popas</span><strong>Sărata<br />Băi</strong><i>la mijlocul drumului</i></div></Reveal>
           <Reveal delay={.1}><p className="eyebrow text-terracotta">Fila 04 · Oaza pelerinului</p><h2 className="pilgrimage-heading">Un loc de odihnă între două capitole.</h2><p className="pilgrimage-copy">La mijlocul traseului se află stațiunea Sărata Băi, parte integrantă a pelerinajului — loc de popas, cazare, masă și tratament pentru călătorul obosit.</p><div className="pilgrimage-access"><span>Aeroportul Internațional „George Enescu”</span><strong>la mai puțin de 10 km de traseu</strong></div></Reveal>
+        </div>
+      </section>
+
+      <section className="sculpture-gallery" id="galerie-sculpturi">
+        <div className="shell">
+          <Reveal className="sculpture-gallery__heading">
+            <div><p className="eyebrow text-gold">Mini-galerie · 29 de lucrări</p><h2>Sculpturi și artiști<br /><em>pe traseu.</em></h2></div>
+            <p>O galerie în aer liber, ridicată din lemn, metal, imaginație și muncă împreună. Deschide fiecare fișă pentru povestea completă a lucrării.</p>
+          </Reveal>
+          <div className="sculpture-gallery__grid">
+            {sculptures.map((sculpture,index)=><Reveal key={`${sculpture.title}-${sculpture.artist}`} delay={Math.min((index%3)*.05,.1)}>
+              <article className="sculpture-card">
+                <div className="sculpture-card__image"><Image src={sculpture.image} alt={`${sculpture.title}, de ${sculpture.artist}`} fill sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 31vw" className="object-cover" /><span>{String(index+1).padStart(2,"0")}</span></div>
+                <div className="sculpture-card__caption"><p>{sculpture.artist}</p><h3>{sculpture.title}</h3><details><summary>Citește povestea <i>+</i></summary><div>{sculpture.description}</div></details></div>
+              </article>
+            </Reveal>)}
+          </div>
         </div>
       </section>
 

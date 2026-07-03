@@ -1,11 +1,11 @@
 export const navigation = [
-  { label: "Acasă", href: "/", art: "collage" },
-  { label: "Despre noi", href: "/despre-noi", art: "sculpture" },
-  { label: "Pelerinaj 7 Capele", href: "/pelerinaj-7-capele", art: "manuscript" },
-  { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar", art: "theatre" },
-  { label: "Documente", href: "/documente", art: "archive" },
-  { label: "Distincții", href: "/distinctii", art: "medallion" },
-  { label: "Contact", href: "/contact", art: "calligraphy" },
+  { label: "Acasă", href: "/", art: "collage", kicker: "Expoziție vie", story: "Fragmente de artă, oameni și locuri puse împreună." },
+  { label: "Despre noi", href: "/despre-noi", art: "sculpture", kicker: "Formă și materie", story: "O poveste cioplită în timp, gest cu gest." },
+  { label: "Pelerinaj 7 Capele", href: "/pelerinaj-7-capele", art: "manuscript", kicker: "Jurnal de călătorie", story: "Șapte opriri, un drum desenat de mână." },
+  { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar", art: "theatre", kicker: "Scena comunității", story: "Intră în lumină. Povestea are nevoie și de tine." },
+  { label: "Documente", href: "/documente", art: "archive", kicker: "Arhiva deschisă", story: "Urmele clare ale lucrurilor făcute cu rost." },
+  { label: "Distincții", href: "/distinctii", art: "medallion", kicker: "Semne de recunoaștere", story: "Momente care ne onorează și ne obligă să continuăm." },
+  { label: "Contact", href: "/contact", art: "calligraphy", kicker: "O scrisoare deschisă", story: "Orice proiect frumos începe cu un «bună»." },
 ] as const;
 
 export const featuredProjects = [

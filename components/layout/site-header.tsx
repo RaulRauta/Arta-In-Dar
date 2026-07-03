@@ -9,6 +9,7 @@ import { Logo } from "./logo";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [activeArt, setActiveArt] = useState<(typeof navigation)[number] | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -19,9 +20,9 @@ export function SiteHeader() {
     <header className="absolute inset-x-0 top-0 z-50 text-cream">
       <div className="shell flex h-24 items-center justify-between">
         <Logo light />
-        <nav aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
+        <nav onMouseLeave={() => setActiveArt(null)} aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className={`nav-link nav-link--${item.art} whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.08em] xl:text-[9px] xl:tracking-[0.1em] 2xl:text-[10px]`}>
+            <Link onMouseEnter={() => setActiveArt(item)} onFocus={() => setActiveArt(item)} key={item.href} href={item.href} className="nav-link whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.08em] xl:text-[9px] xl:tracking-[0.1em] 2xl:text-[10px]">
               <span>{item.label}</span>
             </Link>
           ))}
@@ -32,6 +33,14 @@ export function SiteHeader() {
           <span className="sr-only">Deschide meniul</span>
         </button>
       </div>
+      <AnimatePresence>
+        {activeArt && (
+          <motion.div key={activeArt.href} initial={{ opacity: 0, y: -8, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -6, scale: .98 }} transition={{ duration: .28, ease: [0.22, 1, 0.36, 1] }} className={`art-preview art-preview--${activeArt.art}`}>
+            <div className="art-preview__scene" aria-hidden="true"><span className="art-piece art-piece--one" /><span className="art-piece art-piece--two" /><span className="art-piece art-piece--three" /><span className="art-piece art-piece--four" /></div>
+            <div className="art-preview__copy"><span>{activeArt.kicker}</span><strong>{activeArt.label}</strong><p>{activeArt.story}</p></div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {open && (
           <motion.div

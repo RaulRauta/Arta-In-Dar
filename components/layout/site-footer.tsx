@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { navigation } from "@/lib/site-data";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { Logo } from "./logo";
@@ -9,7 +10,7 @@ export function SiteFooter() {
       <div className="absolute -right-24 -top-24 size-80 rounded-full border border-cream/10" />
       <div className="shell py-16 lg:py-24">
         <div className="grid gap-12 border-b border-cream/15 pb-16 lg:grid-cols-[1.3fr_.7fr_.7fr]">
-          <div><Logo light /><p className="mt-8 max-w-md text-lg leading-relaxed text-cream/65">Punem arta în mișcare și o lăsăm să ne apropie — de oameni, de locuri și de ceea ce merită păstrat.</p></div>
+          <div><Logo light /><div className="mt-7 flex items-center gap-5"><Image src="/images/logo-arta-in-dar-7-capele.png" alt="Siglele Arta în Dar și Pelerinaj 7 Capele" width={118} height={118} className="h-auto w-24 opacity-90" /><p className="max-w-sm text-lg leading-relaxed text-cream/65">Punem arta în mișcare și o lăsăm să ne apropie — de oameni, de locuri și de ceea ce merită păstrat.</p></div></div>
           <div><p className="eyebrow text-gold">Descoperă</p><div className="mt-5 grid gap-2">{navigation.slice(1).map((item) => <Link className="w-fit py-1 text-sm text-cream/70 transition-colors hover:text-cream" key={item.href} href={item.href}>{item.label}</Link>)}</div></div>
           <div><p className="eyebrow text-gold">Scrie-ne</p><a href="mailto:contact@artaindar.ro" className="mt-5 inline-flex items-center gap-2 border-b border-cream/30 pb-1">contact@artaindar.ro <ArrowUpRight className="size-4" /></a><div className="mt-8 flex gap-4 text-sm text-cream/65"><a href="#">Facebook</a><a href="#">Instagram</a></div></div>
         </div>

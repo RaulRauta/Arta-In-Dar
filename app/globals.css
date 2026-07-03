@@ -69,10 +69,10 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
 .archive-image { position:relative; min-height:28rem; overflow:hidden; background-repeat:no-repeat; background-color:#d7cbb9; box-shadow:1.2rem 1.2rem 0 rgba(201,162,77,.22); }
 .archive-image::after { content:"";position:absolute;inset:0;border:1px solid rgba(247,241,232,.32);box-shadow:inset 0 0 4rem rgba(45,36,31,.16);pointer-events:none; }
 .archive-image__corner { position:absolute;z-index:2;right:0;bottom:0;background:var(--gold);color:var(--ink);padding:.65rem .9rem;font-size:.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em; }
-.archive-image--portrait { min-height:38rem;background-image:url('/images/archive/primul-voluntar.png');background-size:auto 100%;background-position:82% center; }
-.archive-image--news { min-height:36rem;background-image:url('/images/archive/noutati-2025.png');background-size:auto 100%;background-position:84% center; }
-.archive-image--volunteer { min-height:32rem;background-image:url('/images/archive/munca-voluntara.png');background-size:auto 100%;background-position:84% center;box-shadow:-1.2rem 1.2rem 0 rgba(201,162,77,.28); }
-.archive-image--report { min-height:38rem;background-image:url('/images/archive/dare-de-seama.png');background-size:auto 100%;background-position:83% center; }
+.archive-image--portrait { min-height:38rem;background-image:url('/images/archive/gheorghe-jitaru.png');background-size:contain;background-position:center bottom;background-color:#6c7b60; }
+.archive-image--news { min-height:36rem;background-image:url('/images/archive/centrul-in-camp.png');background-size:cover;background-position:center; }
+.archive-image--volunteer { min-height:32rem;background-image:url('/images/archive/tricouri-voluntari.jpeg');background-size:cover;background-position:center;box-shadow:-1.2rem 1.2rem 0 rgba(201,162,77,.28); }
+.archive-image--report { min-height:38rem;background-image:url('/images/archive/basorelief-si-cartea-drumetului.png');background-size:cover;background-position:center; }
 @media(min-width:768px){.shell{width:min(100% - 4rem,1280px)}.gallery-grid{grid-template-columns:1.15fr .8fr 1fr .72fr;gap:1.25rem}.gallery-tile--2{margin-top:6rem}.gallery-tile--3{margin-top:0}.gallery-tile--4{margin-top:8rem}}
 @media(min-width:1024px){button.menu-trigger{display:none!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

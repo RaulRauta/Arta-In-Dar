@@ -9,31 +9,64 @@ import { Logo } from "./logo";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [open]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 text-cream">
       <div className="shell flex h-24 items-center justify-between">
         <Logo light />
-        <nav aria-label="Navigație principală" className="hidden items-center gap-6 xl:flex">
+        <nav aria-label="Navigație principală" className="hidden items-center gap-7 2xl:flex">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link text-xs font-semibold uppercase tracking-[0.12em]">
+            <Link key={item.href} href={item.href} className="nav-link text-[10px] font-semibold uppercase tracking-[0.12em]">
               {item.label}
             </Link>
           ))}
         </nav>
-        <Link href="/implica-te#doneaza" className="button-outline hidden lg:inline-flex xl:hidden 2xl:inline-flex">Donează</Link>
-        <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="mobile-menu" className="grid size-11 place-items-center rounded-full border border-cream/35 xl:hidden">
-          <span className="sr-only">Deschide meniul</span><MenuIcon className="size-6" />
+        <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="mobile-menu" className="menu-trigger group 2xl:hidden">
+          <span className="hidden text-[9px] font-bold uppercase tracking-[.25em] sm:block">Meniu</span>
+          <span className="menu-trigger__mark"><MenuIcon className="size-7 transition-transform duration-500 group-hover:rotate-6" /></span>
+          <span className="sr-only">Deschide meniul</span>
         </button>
       </div>
       <AnimatePresence>
         {open && (
-          <motion.div id="mobile-menu" initial={{ clipPath: "circle(0% at 90% 5%)" }} animate={{ clipPath: "circle(150% at 90% 5%)" }} exit={{ clipPath: "circle(0% at 90% 5%)" }} transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }} className="fixed inset-0 bg-ink p-6 text-cream">
-            <div className="mx-auto flex max-w-7xl items-center justify-between"><Logo light /><button onClick={() => setOpen(false)} className="grid size-11 place-items-center rounded-full border border-cream/30"><span className="sr-only">Închide meniul</span><CloseIcon className="size-6" /></button></div>
-            <nav className="mx-auto mt-14 flex max-w-7xl flex-col" aria-label="Navigație mobilă">
-              {navigation.map((item, index) => <motion.div key={item.href} initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 + index * 0.04 }}><Link onClick={() => setOpen(false)} href={item.href} className="block border-b border-cream/15 py-3 font-display text-[clamp(2rem,8vw,4.5rem)] leading-none">{item.label}</Link></motion.div>)}
+          <motion.div
+            id="mobile-menu"
+            initial={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
+            animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
+            transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 overflow-x-hidden overflow-y-auto bg-cream p-5 text-ink sm:p-8"
+          >
+            <div className="menu-orbit menu-orbit--one" />
+            <div className="menu-orbit menu-orbit--two" />
+            <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between">
+              <Logo />
+              <button onClick={() => setOpen(false)} className="menu-close group">
+                <span className="hidden text-[9px] font-bold uppercase tracking-[.25em] sm:block">Închide</span>
+                <span className="grid size-11 place-items-center rounded-full bg-ink text-cream transition-transform duration-500 group-hover:rotate-90"><CloseIcon className="size-5" /></span>
+                <span className="sr-only">Închide meniul</span>
+              </button>
+            </div>
+            <nav className="relative z-10 mx-auto mt-10 flex max-w-7xl flex-col sm:mt-14" aria-label="Navigație mobilă">
+              {navigation.map((item, index) => (
+                <motion.div key={item.href} initial={{ opacity: 0, x: 35 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + index * 0.055, duration: 0.5 }}>
+                  <Link onClick={() => setOpen(false)} href={item.href} className="menu-item group">
+                    <span className="menu-item__number">0{index + 1}</span>
+                    <span className="menu-item__label">{item.label}</span>
+                    <span className="menu-item__dot" />
+                  </Link>
+                </motion.div>
+              ))}
             </nav>
+            <div className="relative z-10 mx-auto mt-8 flex max-w-7xl items-center justify-between border-t border-ink/15 pt-5 text-[8px] font-bold uppercase tracking-[.18em] text-ink/50 sm:text-[9px]">
+              <span>Artă · Comunitate · Patrimoniu</span>
+              <span className="font-display text-xl font-normal normal-case italic text-terracotta sm:text-2xl">Arta ne unește.</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

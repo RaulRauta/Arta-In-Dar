@@ -1,10 +1,10 @@
 export const navigation = [
   { label: "Acasă", href: "/" },
   { label: "Despre noi", href: "/despre-noi" },
-  { label: "Proiecte", href: "/proiecte" },
   { label: "Pelerinaj 7 Capele", href: "/pelerinaj-7-capele" },
-  { label: "Galerie", href: "/galerie" },
-  { label: "Implică-te", href: "/implica-te" },
+  { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar" },
+  { label: "Documente", href: "/documente" },
+  { label: "Distincții", href: "/distinctii" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -22,7 +22,7 @@ export const featuredProjects = [
     category: "Artă · Comunitate",
     title: "Ateliere cu rost",
     description: "Întâlniri în care meșteșugul devine limbaj comun, iar fiecare gest lasă ceva în urmă.",
-    href: "/proiecte",
+    href: "/despre-noi",
     color: "olive",
   },
   {
@@ -30,7 +30,7 @@ export const featuredProjects = [
     category: "Voluntariat · Educație",
     title: "Oameni care dăruiesc",
     description: "Inițiative vii, construite împreună cu voluntari, artiști și comunități locale.",
-    href: "/proiecte",
+    href: "/doneaza-fii-voluntar",
     color: "gold",
   },
 ] as const;

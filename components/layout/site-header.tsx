@@ -19,14 +19,14 @@ export function SiteHeader() {
     <header className="absolute inset-x-0 top-0 z-50 text-cream">
       <div className="shell flex h-24 items-center justify-between">
         <Logo light />
-        <nav aria-label="Navigație principală" className="hidden items-center gap-7 2xl:flex">
+        <nav aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link text-[10px] font-semibold uppercase tracking-[0.12em]">
-              {item.label}
+            <Link key={item.href} href={item.href} className={`nav-link nav-link--${item.art} whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.08em] xl:text-[9px] xl:tracking-[0.1em] 2xl:text-[10px]`}>
+              <span>{item.label}</span>
             </Link>
           ))}
         </nav>
-        <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="mobile-menu" className="menu-trigger group 2xl:hidden">
+        <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="mobile-menu" className="menu-trigger group lg:hidden">
           <span className="hidden text-[9px] font-bold uppercase tracking-[.25em] sm:block">Meniu</span>
           <span className="menu-trigger__mark"><MenuIcon className="size-7 transition-transform duration-500 group-hover:rotate-6" /></span>
           <span className="sr-only">Deschide meniul</span>
@@ -55,7 +55,7 @@ export function SiteHeader() {
             <nav className="relative z-10 mx-auto mt-10 flex max-w-7xl flex-col sm:mt-14" aria-label="Navigație mobilă">
               {navigation.map((item, index) => (
                 <motion.div key={item.href} initial={{ opacity: 0, x: 35 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + index * 0.055, duration: 0.5 }}>
-                  <Link onClick={() => setOpen(false)} href={item.href} className="menu-item group">
+                  <Link onClick={() => setOpen(false)} href={item.href} className={`menu-item menu-item--${item.art} group`}>
                     <span className="menu-item__number">0{index + 1}</span>
                     <span className="menu-item__label">{item.label}</span>
                     <span className="menu-item__dot" />

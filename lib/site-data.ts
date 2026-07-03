@@ -1,11 +1,11 @@
 export const navigation = [
-  { label: "Acasă", href: "/" },
-  { label: "Despre noi", href: "/despre-noi" },
-  { label: "Pelerinaj 7 Capele", href: "/pelerinaj-7-capele" },
-  { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar" },
-  { label: "Documente", href: "/documente" },
-  { label: "Distincții", href: "/distinctii" },
-  { label: "Contact", href: "/contact" },
+  { label: "Acasă", href: "/", art: "collage" },
+  { label: "Despre noi", href: "/despre-noi", art: "sculpture" },
+  { label: "Pelerinaj 7 Capele", href: "/pelerinaj-7-capele", art: "manuscript" },
+  { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar", art: "theatre" },
+  { label: "Documente", href: "/documente", art: "archive" },
+  { label: "Distincții", href: "/distinctii", art: "medallion" },
+  { label: "Contact", href: "/contact", art: "calligraphy" },
 ] as const;
 
 export const featuredProjects = [

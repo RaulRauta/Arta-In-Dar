@@ -18,11 +18,7 @@ export function SiteHeader() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-50 text-cream">
-      <div className="shell hidden h-9 items-center justify-end gap-6 border-b border-cream/15 text-[8px] font-semibold uppercase tracking-[.16em] text-cream/60 lg:flex">
-        <a href="mailto:artaindar7@yahoo.com" className="transition-colors hover:text-gold">artaindar7@yahoo.com</a>
-        <a href="https://www.google.com/maps/place/Asociatia+Arta+in+dar/@46.4436299,26.9142995,815m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40b57300384db8c1:0x37b860914a37a19f!8m2!3d46.4436299!4d26.9142995!16s%2Fg%2F11x08kp4bm" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold">Nicolae Bălcescu · Bacău</a>
-      </div>
-      <div className="shell flex h-20 items-center justify-between lg:h-18">
+      <div className="shell flex h-24 items-center justify-between">
         <Logo light />
         <nav onMouseLeave={() => setActiveArt(null)} aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {navigation.map((item) => (

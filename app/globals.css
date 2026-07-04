@@ -77,6 +77,16 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
 @media(min-width:1024px){button.menu-trigger{display:none!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+::view-transition-group(page-content){animation-duration:.62s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(.page-shift){animation:260ms cubic-bezier(.4,0,1,1) both page-leave}
+::view-transition-new(.page-shift){animation:520ms cubic-bezier(.22,1,.36,1) 90ms both page-enter}
+::view-transition-group(site-header){z-index:120;animation:none}
+::view-transition-old(site-header){display:none}
+::view-transition-new(site-header){animation:none}
+@keyframes page-leave{to{opacity:0;filter:blur(3px);transform:translateY(-12px) scale(.992)}}
+@keyframes page-enter{from{opacity:0;filter:blur(5px);transform:translateY(20px) scale(.992)}to{opacity:1;filter:blur(0);transform:none}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(*),::view-transition-new(*),::view-transition-group(*){animation-duration:0s!important;animation-delay:0s!important}}
+
 /* DESPRE NOI — o pagină construită ca o sculptură în straturi. */
 .sculpture-page { --stone:#d9cbb4;--stone-deep:#95836c;--stone-dark:#382f29;background:var(--stone); isolation:isolate; }
 .sculpture-hero { position:relative;min-height:100svh;overflow:hidden;background:radial-gradient(circle at 72% 32%,#8f7d67 0,#665748 25%,#392f29 62%,#251f1b 100%);color:var(--cream); }

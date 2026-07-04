@@ -36,7 +36,7 @@ export function SculptureGallery() {
         <p>O galerie în aer liber, ridicată din lemn, metal, imaginație și muncă împreună. Selectează o lucrare pentru a-i deschide fișa, fără să pierzi locul în galerie.</p>
       </div>
       <div className="sculpture-gallery__grid">
-        {sculptures.map((sculpture,index)=><motion.button type="button" whileHover={{ y: -6 }} key={`${sculpture.title}-${sculpture.artist}`} className="sculpture-card sculpture-card--button" onClick={() => setActiveIndex(index)} aria-label={`Deschide fișa lucrării ${sculpture.title}`}>
+        {sculptures.map((sculpture,index)=><motion.button type="button" initial={{ opacity: 0, y: 28, rotate: index % 2 ? .35 : -.35 }} whileInView={{ opacity: 1, y: 0, rotate: 0 }} viewport={{ once: true, amount: .16 }} transition={{ duration: .62, delay: (index % 6) * .055, ease: [0.22,1,0.36,1] }} whileHover={{ y: -8, rotate: index % 2 ? .25 : -.25 }} whileTap={{ scale: .985 }} key={`${sculpture.title}-${sculpture.artist}`} className="sculpture-card sculpture-card--button" onClick={() => setActiveIndex(index)} aria-label={`Deschide fișa lucrării ${sculpture.title}`}>
           <div className="sculpture-card__image"><Image src={sculpture.image} alt={`${sculpture.title}, de ${sculpture.artist}`} fill sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 31vw" className="object-cover" /><span>{String(index+1).padStart(2,"0")}</span><i>Vezi fișa</i></div>
           <div className="sculpture-card__caption"><p>{sculpture.artist}</p><h3>{sculpture.title}</h3><span className="sculpture-card__open">Deschide povestea <b>↗</b></span></div>
         </motion.button>)}
@@ -52,10 +52,12 @@ export function SculptureGallery() {
             <strong>Galeria traseului</strong>
             <button type="button" onClick={() => setActiveIndex(null)} aria-label="Închide">×</button>
           </div>
-          <div className="sculpture-modal__content">
-            <div className="sculpture-modal__image"><Image src={active.image} alt={`${active.title}, de ${active.artist}`} fill sizes="(max-width: 900px) 92vw, 48vw" className="object-cover" /></div>
-            <div className="sculpture-modal__copy"><p>{active.artist}</p><h3 id="sculpture-modal-title">{active.title}</h3><div className="sculpture-modal__rule"><span /></div><p className="sculpture-modal__description">{active.description}</p></div>
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div key={activeIndex} className="sculpture-modal__content" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -18 }} transition={{ duration: .28, ease: [0.22,1,0.36,1] }}>
+              <div className="sculpture-modal__image"><Image src={active.image} alt={`${active.title}, de ${active.artist}`} fill sizes="(max-width: 900px) 92vw, 48vw" className="object-cover" /></div>
+              <div className="sculpture-modal__copy"><p>{active.artist}</p><h3 id="sculpture-modal-title">{active.title}</h3><div className="sculpture-modal__rule"><span /></div><p className="sculpture-modal__description">{active.description}</p></div>
+            </motion.div>
+          </AnimatePresence>
           <nav className="sculpture-modal__nav" aria-label="Navigare între sculpturi">
             <button type="button" onClick={() => changeSculpture(-1)}><span>←</span><small>Lucrarea precedentă</small></button>
             <i />

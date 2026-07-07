@@ -7,7 +7,7 @@ import { teamGroups } from "@/lib/team-data";
 
 export const metadata: Metadata = {
   title: "Despre noi",
-  description: "Cunoaște echipele și oamenii Asociației Arta în Dar: conducere, mentenanță, coordonatori de tabere, specialiști și media.",
+  description: "Cunoaște echipele și oamenii Asociației Arta în dar: conducere, mentenanță, coordonatori de tabere, specialiști și media.",
 };
 
 export default function AboutPage() {

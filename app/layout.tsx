@@ -10,10 +10,10 @@ const sans = Manrope({ variable: "--font-sans", subsets: ["latin", "latin-ext"],
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://artaindar.ro"),
-  title: { default: "Asociația Arta în Dar — Munca voluntară, arta la țară", template: "%s | Arta în Dar" },
-  description: "Asociația Arta în Dar aduce împreună arta, voluntariatul, patrimoniul local și comunitățile prin proiecte culturale vii.",
-  keywords: ["Arta în Dar", "asociație culturală", "voluntariat", "patrimoniu local", "turism cultural", "proiecte culturale"],
-  openGraph: { type: "website", locale: "ro_RO", siteName: "Arta în Dar", title: "Asociația Arta în Dar — Munca voluntară, arta la țară", description: "Artă, patrimoniu și oameni care construiesc împreună.", images: [{ url: "/images/hero-arta-in-dar.png", width: 1536, height: 1024, alt: "Comunitatea Arta în Dar creează împreună" }] },
+  title: { default: "Asociația Arta în dar — Munca voluntară, arta la țară", template: "%s | Arta în dar" },
+  description: "Asociația Arta în dar aduce împreună arta, voluntariatul, patrimoniul local și comunitățile prin proiecte culturale vii.",
+  keywords: ["Arta în dar", "asociație culturală", "voluntariat", "patrimoniu local", "turism cultural", "proiecte culturale"],
+  openGraph: { type: "website", locale: "ro_RO", siteName: "Arta în dar", title: "Asociația Arta în dar — Munca voluntară, arta la țară", description: "Artă, patrimoniu și oameni care construiesc împreună.", images: [{ url: "/images/hero-arta-in-dar.png", width: 1536, height: 1024, alt: "Comunitatea Arta în dar creează împreună" }] },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#2D241F" };

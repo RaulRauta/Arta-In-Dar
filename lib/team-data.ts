@@ -8,9 +8,9 @@ export const teamGroups: TeamGroup[] = [
     { name: "Cristina Cancel", role: "Secretar asociație", image: "/images/team/cristina-cancel.png" },
     { name: "Loredana Roca", role: "Președinte onorific", image: "/images/team/loredana-roca.png" },
   ]},
-  { id: "mentenanta", title: "Mentenanță traseu 7 Capele", material: "piatra", number: "II", members: [
-    { name: "Ben Jitaru", role: "Mentenanță traseu 7 Capele", image: "/images/team/ben-jitaru.png" },
-    { name: "Cristi Friciu", role: "Mentenanță traseu 7 Capele", image: "/images/team/cristi-friciu.png" },
+  { id: "mentenanta", title: "Mentenanță 7 Capele, muzeu în aer liber", material: "piatra", number: "II", members: [
+    { name: "Ben Jitaru", role: "Mentenanță 7 Capele, muzeu în aer liber", image: "/images/team/ben-jitaru.png" },
+    { name: "Cristi Friciu", role: "Mentenanță 7 Capele, muzeu în aer liber", image: "/images/team/cristi-friciu.png" },
     { name: "Irina Pătrașcu", role: "Amenajări spații verzi", image: "/images/team/irina-patrascu.png" },
     { name: "Gheorghe Jitaru", role: "Veteranul asociației", image: "/images/team/gheorghe-jitaru.png" },
   ]},

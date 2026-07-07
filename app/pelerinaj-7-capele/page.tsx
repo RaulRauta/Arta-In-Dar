@@ -7,20 +7,20 @@ import { SculptureGallery } from "@/components/pilgrimage/sculpture-gallery";
 import { chapels, pilgrimageFacts, villages } from "@/lib/pilgrimage-data";
 
 export const metadata: Metadata = {
-  title: "Pelerinaj 7 Capele",
-  description: "Descoperă traseul turistic pedestru Pelerinaj 7 Capele: 26 km prin Valea Siretului, șase capele istorice, artă contemporană și o a șaptea capelă imaterială.",
+  title: "7 Capele, muzeu în aer liber",
+  description: "Descoperă 7 Capele, muzeu în aer liber: 26 km prin Valea Siretului, șase capele istorice, artă contemporană și o a șaptea capelă imaterială.",
 };
 
 export default function PilgrimagePage() {
   return (
     <main className="pilgrimage-page">
       <section className="pilgrimage-hero">
-        <Image src="/images/pelerinaj/antet-7-capele.jpg" alt="Peisaj de pe traseul Pelerinaj 7 Capele" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/images/pelerinaj/antet-7-capele.jpg" alt="Peisaj de pe traseul 7 Capele, muzeu în aer liber" fill priority sizes="100vw" className="object-cover" />
         <div className="pilgrimage-hero__wash" />
         <div className="pilgrimage-compass" aria-hidden="true"><span>N</span><i /><b>7</b></div>
         <div className="shell pilgrimage-hero__content">
           <p className="eyebrow">Jurnal de drum · Valea Siretului</p>
-          <h1>Pelerinaj<br /><em>7 Capele</em></h1>
+          <h1>7 Capele<br /><em>muzeu în aer liber</em></h1>
           <p>Șase capele așezate pe dealuri. A șaptea nu se vede — se construiește între voi și noi, cu fiecare pas.</p>
           <a href="#traseu" className="pilgrimage-seal">Deschide jurnalul <span>↓</span></a>
         </div>
@@ -63,15 +63,15 @@ export default function PilgrimagePage() {
           </Reveal>
 
           <div className="location-gallery" aria-label="Galerie Unde sunt capelele">
-            <Reveal><figure className="location-gallery__large"><div><Image src="/images/pelerinaj/grup-7-capele.jpg" alt="Grup pe traseul Pelerinaj 7 Capele" fill sizes="(max-width: 768px) 92vw, 58vw" className="object-cover" /></div><figcaption><span>01</span> Valea Siretului · Județul Bacău</figcaption></figure></Reveal>
-            <Reveal delay={.08}><figure className="location-gallery__small"><div><Image src="/images/pelerinaj/unde-sunt-capelele.jpg" alt="Hartă și repere pentru traseul Pelerinaj 7 Capele" fill sizes="(max-width: 768px) 92vw, 34vw" className="object-cover" /></div><figcaption><span>02</span> Traseul complet marcat</figcaption></figure></Reveal>
+            <Reveal><figure className="location-gallery__large"><div><Image src="/images/pelerinaj/grup-7-capele.jpg" alt="Grup pe traseul 7 Capele, muzeu în aer liber" fill sizes="(max-width: 768px) 92vw, 58vw" className="object-cover" /></div><figcaption><span>01</span> Valea Siretului · Județul Bacău</figcaption></figure></Reveal>
+            <Reveal delay={.08}><figure className="location-gallery__small"><div><Image src="/images/pelerinaj/unde-sunt-capelele.jpg" alt="Hartă și repere pentru traseul 7 Capele, muzeu în aer liber" fill sizes="(max-width: 768px) 92vw, 34vw" className="object-cover" /></div><figcaption><span>02</span> Traseul complet marcat</figcaption></figure></Reveal>
           </div>
 
           <div className="location-notes">
-            <Reveal><article><span>I</span><h3>Un ansamblu unic</h3><p>Începând cu anul 1814, aici au fost construite șase capele care alcătuiesc un ansamblu unic în țară. Traseul turistic pedestru complet marcat care le unește — „Pelerinaj 7 Capele” — urmărește dezvoltarea economică și spirituală a zonei, atrăgând drumeți iubitori de natură, pelerini și oameni de artă prin turism cultural.</p><p>A șaptea capelă este una imaterială: capela „voi și noi”, un patrimoniu care nu înseamnă altceva decât spiritul nostru. Ideea celei de-a șaptea capele i-a aparținut sculptorului Cezar Blînda.</p></article></Reveal>
+            <Reveal><article><span>I</span><h3>Un ansamblu unic</h3><p>Începând cu anul 1814, aici au fost construite șase capele care alcătuiesc un ansamblu unic în țară. Traseul turistic pedestru complet marcat care le unește — „7 Capele, muzeu în aer liber” — urmărește dezvoltarea economică și spirituală a zonei, atrăgând drumeți iubitori de natură, pelerini și oameni de artă prin turism cultural.</p><p>A șaptea capelă este una imaterială: capela „voi și noi”, un patrimoniu care nu înseamnă altceva decât spiritul nostru. Ideea celei de-a șaptea capele i-a aparținut sculptorului Cezar Blînda.</p></article></Reveal>
             <Reveal delay={.05}><article><span>II</span><h3>Cum a fost făcut traseul</h3><p>Asociația, dorind legarea celor șase capele într-un traseu turistic, a rugat Via Bacovia să realizeze traseul, măsurătorile și, apoi, împreună, documentația necesară marcării lui până la omologare.</p><p>Traseul colinar de 26 km este marcat în stil clasic, dar cu inserții originale: grinzi din lemn ars, indicatoare din scândură cu text pirogravat clasic sau cu laser, iar săgeata obișnuită este înlocuită cu o talpă. Cercul albastru și roșu amintește culorile predominante odinioară în zonă.</p></article></Reveal>
             <Reveal delay={.1}><article><span>III</span><h3>Urma voluntarilor</h3><p>Talpa și cercul sunt pictate de voluntari, chiar dacă există șabloane. În fiecare stâlp, indicator de direcție sau orientare și în fiecare reper montat se regăsește artistul ascuns în fiecare voluntar.</p><p>Pentru turiștii în haine de oraș au fost marcate șapte trasee rurale, în lungime totală de 20,7 km. Acestea duc spre traseul colinar și fac joncțiunea cu drumul de pelerinaj Santiago Camino de România.</p></article></Reveal>
-            <Reveal delay={.15}><article><span>IV</span><h3>Artă pe drum</h3><p>Traseul colinar și cele rurale sunt marcate în prezent și prin 29 de sculpturi nonfigurative din lemn, de aproximativ 2,30 metri înălțime de la sol și circa 50 cm în diametru, realizate de studenți, profesori și sculptori din țară și din străinătate.</p><p>„Pelerinaj 7 Capele” se dorește o amprentă a prezentului prin voluntariat și artă contemporană, ca punte către monumentele religioase, etnosculptura, obiceiurile și tradițiile românești și ceangăiești. Aeroportul Internațional „George Enescu” se află la mai puțin de 10 km de traseu.</p></article></Reveal>
+            <Reveal delay={.15}><article><span>IV</span><h3>Artă pe drum</h3><p>Traseul colinar și cele rurale sunt marcate în prezent și prin 29 de sculpturi nonfigurative din lemn, de aproximativ 2,30 metri înălțime de la sol și circa 50 cm în diametru, realizate de studenți, profesori și sculptori din țară și din străinătate.</p><p>„7 Capele, muzeu în aer liber” se dorește o amprentă a prezentului prin voluntariat și artă contemporană, ca punte către monumentele religioase, etnosculptura, obiceiurile și tradițiile românești și ceangăiești. Aeroportul Internațional „George Enescu” se află la mai puțin de 10 km de traseu.</p></article></Reveal>
           </div>
         </div>
       </section>

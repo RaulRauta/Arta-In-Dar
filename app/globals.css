@@ -186,3 +186,21 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
 /* 7 Capele — traseu roșu mai gros, mai viu, ca desenat de mână. */
 .chapel-route__thread path{stroke-width:.72;stroke-dasharray:2.25 1.55;filter:drop-shadow(0 2px 0 rgba(255,255,255,.68)) drop-shadow(0 0 .2rem rgba(169,79,55,.18))}
 @media(max-width:1023px){.chapel-route__thread path{stroke-width:3.6;stroke-dasharray:9 7}}
+
+/* Mobile polish — păstrăm arta, dar nu lăsăm decorul să acopere informația. */
+@media(max-width:767px){
+  .contact-form-panel{margin-inline:.25rem;padding:1.45rem 1.15rem 1.8rem;box-shadow:.55rem .6rem 0 rgba(0,0,0,.16)}
+  .contact-form-panel::after{right:-4.2rem;top:.7rem;width:11rem;opacity:.07}
+  .contact-form-panel h2{font-size:clamp(3.05rem,14vw,4.7rem)}
+  .contact-envelope{padding:1.7rem;transform:rotate(.6deg)}
+  .contact-envelope::after{right:1.15rem;bottom:1.4rem;width:3.4rem;opacity:.78}
+  .contact-envelope strong{margin-top:5.2rem;font-size:clamp(2.25rem,11vw,3.15rem)}
+  .contact-envelope small{max-width:16.5rem;font-size:.82rem;line-height:1.55}
+  .contact-envelope i{right:4.2rem;bottom:3.35rem;width:5rem;opacity:.45}
+  .contact-side-notes{gap:.75rem}
+  .contact-side-notes article{padding:1.35rem 1.15rem}
+  .contact-side-notes a,.contact-side-notes p{font-size:clamp(1.45rem,8.4vw,2.15rem);line-height:1.08;overflow-wrap:anywhere}
+  .contact-side-notes small{font-size:.82rem}
+  .archive-cabinet__heading h2{max-width:21rem;font-size:clamp(3.05rem,14vw,4.65rem);line-height:.82}
+  .archive-cabinet__heading h2 em{font-size:.92em}
+}

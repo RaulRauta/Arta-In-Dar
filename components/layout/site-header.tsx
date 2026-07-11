@@ -22,7 +22,7 @@ export function SiteHeader() {
         <Logo light />
         <nav onMouseLeave={() => setActiveArt(null)} aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {navigation.map((item) => (
-            <Link onMouseEnter={() => setActiveArt(item)} onFocus={() => setActiveArt(item)} key={item.href} href={item.href} className="nav-link whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.08em] xl:text-[9px] xl:tracking-[0.1em] 2xl:text-[10px]">
+            <Link onMouseEnter={() => setActiveArt(item)} onFocus={() => setActiveArt(item)} onMouseDown={() => setActiveArt(null)} onClick={(event) => { setActiveArt(null); event.currentTarget.blur(); }} key={item.href} href={item.href} className="nav-link whitespace-nowrap text-[8px] font-semibold uppercase tracking-[0.08em] xl:text-[9px] xl:tracking-[0.1em] 2xl:text-[10px]">
               <span>{item.label}</span>
             </Link>
           ))}
@@ -64,7 +64,7 @@ export function SiteHeader() {
             <nav className="relative z-10 mx-auto mt-10 flex max-w-7xl flex-col sm:mt-14" aria-label="Navigație mobilă">
               {navigation.map((item, index) => (
                 <motion.div key={item.href} initial={{ opacity: 0, x: 35 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + index * 0.055, duration: 0.5 }}>
-                  <Link onClick={() => setOpen(false)} href={item.href} className={`menu-item menu-item--${item.art} group`}>
+                  <Link onClick={() => { setOpen(false); setActiveArt(null); }} href={item.href} className={`menu-item menu-item--${item.art} group`}>
                     <span className="menu-item__number">0{index + 1}</span>
                     <span className="menu-item__label">{item.label}</span>
                     <span className="menu-item__dot" />

@@ -14,8 +14,8 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
 .paper-noise,.canvas-section { background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.10'/%3E%3C/svg%3E"); }
 .canvas-section { background-color:#e9dfcf; background-blend-mode:multiply; }
 .eyebrow { font-size:.625rem; font-weight:800; text-transform:uppercase; letter-spacing:.28em; }
-.heading-lg { font-family:var(--font-display); font-size:clamp(2.9rem,5.2vw,5rem); line-height:.98; letter-spacing:-.035em; }
-.heading-xl { font-family:var(--font-display); font-size:clamp(3.4rem,7vw,6.7rem); line-height:.87; letter-spacing:-.045em; }
+.heading-lg { font-family:var(--font-display); font-size:clamp(2.9rem,5.2vw,5rem); line-height:1.08; letter-spacing:-.03em; }
+.heading-xl { font-family:var(--font-display); font-size:clamp(3.4rem,7vw,6.7rem); line-height:1.06; letter-spacing:-.035em; }
 .heading-lg em,.heading-xl em { color:var(--terracotta); font-weight:400; }
 .body-copy { font-size:.96rem; line-height:1.8; color:color-mix(in srgb,var(--ink) 68%,transparent); }
 .text-link { display:inline-flex; align-items:center; gap:.5rem; width:fit-content; border-bottom:1px solid color-mix(in srgb,currentColor 30%,transparent); padding-bottom:.3rem; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.15em; }
@@ -203,4 +203,302 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   .contact-side-notes small{font-size:.82rem}
   .archive-cabinet__heading h2{max-width:21rem;font-size:clamp(3.05rem,14vw,4.65rem);line-height:.82}
   .archive-cabinet__heading h2 em{font-size:.92em}
+}
+
+/* Text safety — titlurile rămân artistice, dar nu se mai calcă între ele. */
+:is(
+  .heading-lg,
+  .heading-xl,
+  .sculpture-title,
+  .team-stratum__heading h2,
+  .sculpture-cta h2,
+  .pilgrimage-hero__content h1,
+  .pilgrimage-heading,
+  .chapel-locations__heading h2,
+  .chapel-journal__header h2,
+  .chapel-entry__copy h3,
+  .sculpture-gallery__heading h2,
+  .sculpture-modal__copy h3,
+  .pilgrimage-cta h2,
+  .theatre-hero h1,
+  .theatre-poster h2,
+  .theatre-section-heading h2,
+  .theatre-donate h2,
+  .theatre-finale h2,
+  .theatre-program-card h3,
+  .documents-hero h1,
+  .archive-foundation h2,
+  .archive-cabinet h2,
+  .archive-cta h2,
+  .archive-document h3,
+  .archive-drawer h3,
+  .archive-file h4,
+  .distinctions-hero h1,
+  .distinctions-ledger h2,
+  .distinctions-finale h2,
+  .distinction-card__plate h2,
+  .contact-letter h1,
+  .contact-envelope strong,
+  .contact-form-panel h2,
+  .map-atelier h2,
+  .contact-social h2,
+  .contact-side-notes a,
+  .contact-side-notes p
+){
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+
+.archive-cabinet__heading h2{line-height:.92}
+
+@media(max-width:767px){
+  :is(
+    .heading-lg,
+    .heading-xl,
+    .sculpture-title,
+    .team-stratum__heading h2,
+    .sculpture-cta h2,
+    .pilgrimage-hero__content h1,
+    .pilgrimage-heading,
+    .chapel-locations__heading h2,
+    .chapel-journal__header h2,
+    .chapel-entry__copy h3,
+    .sculpture-gallery__heading h2,
+    .sculpture-modal__copy h3,
+    .pilgrimage-cta h2,
+    .theatre-hero h1,
+    .theatre-poster h2,
+    .theatre-section-heading h2,
+    .theatre-donate h2,
+    .theatre-finale h2,
+    .documents-hero h1,
+    .archive-foundation h2,
+    .archive-cabinet h2,
+    .archive-cta h2,
+    .archive-document h3,
+    .archive-drawer h3,
+    .distinctions-hero h1,
+    .distinctions-ledger h2,
+    .distinctions-finale h2,
+    .distinction-card__plate h2,
+    .contact-letter h1,
+    .contact-form-panel h2,
+    .map-atelier h2,
+    .contact-social h2
+  ){
+    line-height:.94;
+    letter-spacing:-.035em;
+  }
+
+  .archive-cabinet__heading h2{
+    max-width:22rem;
+    font-size:clamp(2.85rem,12.5vw,4.2rem);
+    line-height:.98;
+  }
+
+  .archive-cabinet__heading h2 em{
+    display:block;
+    margin-top:.12em;
+    font-size:.9em;
+    line-height:1;
+  }
+
+  .theatre-hero h1,
+  .pilgrimage-hero__content h1,
+  .documents-hero h1,
+  .distinctions-hero h1,
+  .contact-letter h1,
+  .sculpture-title{
+    line-height:.9;
+  }
+
+  .theatre-poster h2,
+  .theatre-section-heading h2,
+  .theatre-donate h2,
+  .theatre-finale h2,
+  .chapel-locations__heading h2,
+  .chapel-journal__header h2,
+  .sculpture-gallery__heading h2,
+  .pilgrimage-cta h2,
+  .distinctions-ledger h2,
+  .distinctions-finale h2{
+    font-size:clamp(3rem,13vw,4.9rem);
+  }
+}
+
+main :is(h1,h2,h3,h4){
+  line-height:1.04!important;
+  overflow-wrap:anywhere;
+  text-wrap:balance;
+}
+
+main :is(h1,h2,h3,h4) em,
+main :is(h1,h2,h3,h4) span{
+  line-height:inherit;
+}
+
+@media(max-width:767px){
+  main :is(h1,h2,h3,h4){
+    line-height:1.12!important;
+    letter-spacing:-.025em!important;
+  }
+
+  main h1{
+    font-size:clamp(3.5rem,16vw,6.2rem)!important;
+  }
+
+  main h2{
+    font-size:clamp(2.75rem,12.5vw,4.85rem)!important;
+  }
+
+  main h3{
+    font-size:clamp(1.85rem,8.5vw,3.05rem)!important;
+  }
+
+  main h4{
+    font-size:clamp(1.45rem,6.8vw,2.15rem)!important;
+    line-height:1.18!important;
+  }
+}
+
+@layer utilities{
+  main :where(h1,h2,h3,h4){
+    line-height:1.06!important;
+    overflow-wrap:anywhere;
+    text-wrap:balance;
+  }
+
+  @media(max-width:767px){
+    main :where(h1,h2,h3,h4){
+      line-height:1.14!important;
+      letter-spacing:-.025em!important;
+    }
+  }
+}
+
+/* Mobile centering — cadranele devin obiecte așezate pe mijlocul mesei, nu bucăți împinse în margini. */
+@media(max-width:767px){
+  .contact-hero__inner,
+  .contact-worktable__grid,
+  .map-atelier__grid,
+  .contact-social__inner{
+    justify-items:center;
+    text-align:left;
+  }
+
+  .contact-letter,
+  .contact-envelope,
+  .contact-form-panel,
+  .contact-side-notes,
+  .map-atelier__grid>div,
+  .map-frame,
+  .contact-social__inner>div{
+    width:min(100%,22.5rem);
+    margin-inline:auto;
+  }
+
+  .contact-letter{
+    text-align:left;
+  }
+
+  .contact-envelope,
+  .contact-form-panel,
+  .map-frame{
+    transform:none;
+    box-shadow:0 .8rem 2rem rgba(51,39,33,.14),0 .45rem 0 rgba(51,39,33,.08);
+  }
+
+  .contact-envelope{
+    min-height:21rem;
+    isolation:isolate;
+  }
+
+  .contact-envelope span,
+  .contact-envelope strong,
+  .contact-envelope small,
+  .contact-envelope i{
+    position:relative;
+    z-index:2;
+  }
+
+  .contact-envelope::before{
+    z-index:0;
+  }
+
+  .contact-envelope::after{
+    z-index:1;
+    right:.85rem;
+    bottom:.85rem;
+    width:2.75rem;
+    opacity:.42;
+    pointer-events:none;
+  }
+
+  .contact-side-notes article{
+    margin-inline:auto;
+    box-shadow:0 .8rem 1.6rem rgba(0,0,0,.08);
+  }
+
+  .contact-side-notes article:hover{
+    transform:translateY(-.2rem);
+  }
+
+  .contact-social__links{
+    width:100%;
+    justify-content:center;
+  }
+
+  .social-envelope{
+    max-width:21.5rem;
+    margin-inline:auto;
+  }
+
+  .archive-register,
+  .archive-document,
+  .archive-drawer,
+  .archive-file,
+  .distinction-card,
+  .theatre-program-card,
+  .donation-ticket,
+  .sculpted-portrait,
+  .sculpture-card,
+  .location-notes article,
+  .chapel-entry__image,
+  .pilgrimage-photo,
+  .theatre-costume__frame{
+    width:min(100%,22.5rem);
+    margin-inline:auto;
+  }
+
+  .archive-register,
+  .archive-document,
+  .distinction-card,
+  .theatre-program-card,
+  .theatre-costume__frame,
+  .chapel-entry__image,
+  .pilgrimage-photo{
+    transform:none;
+  }
+
+  .archive-document::after,
+  .distinction-card::before,
+  .contact-form-panel::after,
+  .pilgrimage-cta::before,
+  .sculpture-cta::before,
+  .distinctions-finale::before,
+  .contact-worktable::after{
+    pointer-events:none;
+    opacity:.08;
+  }
+
+  .archive-document>*,
+  .distinction-card>*,
+  .contact-form-panel>*,
+  .pilgrimage-cta .shell,
+  .sculpture-cta .shell,
+  .distinctions-finale__inner,
+  .contact-worktable__grid{
+    position:relative;
+    z-index:2;
+  }
 }

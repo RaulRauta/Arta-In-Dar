@@ -14,6 +14,17 @@ export default function ContactPage() {
     <main className="contact-page">
       <section className="contact-hero">
         <div className="ink-wash" aria-hidden="true" />
+        <div className="letter-desk-scene" aria-hidden="true">
+          <span className="desk-letter desk-letter--one" />
+          <span className="desk-letter desk-letter--two" />
+          <span className="desk-envelope desk-envelope--open" />
+          <span className="desk-envelope desk-envelope--half" />
+          <span className="inkwell">
+            <i />
+          </span>
+          <span className="spilled-ink" />
+          <span className="quill" />
+        </div>
         <div className="shell contact-hero__inner">
           <Reveal className="contact-letter">
             <p className="eyebrow">O scrisoare deschisă</p>
@@ -36,6 +47,12 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-worktable" aria-labelledby="contact-form-title">
+        <div className="worktable-props" aria-hidden="true">
+          <span className="worktable-props__sheet" />
+          <span className="worktable-props__envelope" />
+          <span className="worktable-props__ink" />
+          <span className="worktable-props__quill" />
+        </div>
         <div className="shell contact-worktable__grid">
           <Reveal className="contact-form-panel">
             <p className="eyebrow">Peniță și hârtie</p>

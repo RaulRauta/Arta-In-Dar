@@ -6,7 +6,7 @@ export const contactDetails = {
   mapsUrl:
     "https://www.google.com/maps/place/Asociatia+Arta+in+dar/@46.4436299,26.9142995,815m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40b57300384db8c1:0x37b860914a37a19f!8m2!3d46.4436299!4d26.9142995!16s%2Fg%2F11x08kp4bm",
   mapEmbed:
-    "https://www.google.com/maps?q=Asociatia%20Arta%20in%20dar%20Nicolae%20Balcescu%20Bacau&output=embed",
+    "https://maps.google.com/maps?z=18&t=m&q=46.4436299,26.9142995&output=embed",
   social: [
     {
       label: "Facebook",

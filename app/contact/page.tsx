@@ -120,8 +120,16 @@ export default function ContactPage() {
           </Reveal>
           <Reveal className="contact-social__links" delay={0.08}>
             {contactDetails.social.map((item) => (
-              <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                {item.label} <ArrowUpRight className="size-4" />
+              <a key={item.label} href={item.href} target="_blank" rel="noreferrer" className="social-envelope">
+                <span className="social-envelope__letter">
+                  <small>Deschide</small>
+                  <strong>{item.label}</strong>
+                </span>
+                <span className="social-envelope__front">
+                  <i />
+                  <b>{item.label}</b>
+                  <ArrowUpRight className="size-4" />
+                </span>
               </a>
             ))}
           </Reveal>

@@ -326,6 +326,230 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   }
 }
 
+/* Despre noi · carduri din Sanity și fișe sculptate în modal. */
+.team-stratum__description{
+  max-width:34rem;
+  margin-top:1rem;
+  font-size:.92rem;
+  line-height:1.75;
+  color:color-mix(in srgb,currentColor 62%,transparent);
+}
+
+.sculpted-portrait--button{
+  display:block;
+  width:100%;
+  cursor:pointer;
+  border:0;
+  text-align:left;
+  color:inherit;
+}
+
+.sculpted-portrait--button:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:5px;
+}
+
+.sculpted-portrait__placeholder{
+  display:grid;
+  width:100%;
+  height:100%;
+  place-items:center;
+  background:linear-gradient(145deg,#d9cbb7,#9f8d74);
+  font-family:var(--font-display);
+  font-size:clamp(5rem,14vw,9rem);
+  color:rgba(45,36,31,.34);
+  text-shadow:-1px -1px 1px rgba(255,255,255,.55),2px 3px 4px rgba(45,36,31,.18);
+}
+
+.sculpted-portrait__inscription small{
+  display:block;
+  margin-top:.7rem;
+  font-size:.72rem;
+  line-height:1.55;
+  color:rgba(45,36,31,.58);
+}
+
+.team-empty-state{
+  position:relative;
+  max-width:42rem;
+  margin-inline:auto;
+  border:1px solid rgba(45,36,31,.14);
+  background:linear-gradient(145deg,#eadfce,#c7b69c);
+  padding:3rem;
+  box-shadow:inset .8rem .8rem 1.4rem rgba(255,255,255,.28),inset -.9rem -.9rem 1.4rem rgba(69,54,44,.12),1rem 1.2rem 2rem rgba(77,62,50,.13);
+}
+
+.team-empty-state h2{
+  margin-top:1rem;
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:500;
+}
+
+.team-empty-state p:last-child{
+  max-width:31rem;
+  margin-top:1.2rem;
+  font-size:.95rem;
+  line-height:1.8;
+  color:rgba(45,36,31,.65);
+}
+
+.team-modal{
+  position:fixed;
+  z-index:110;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:1rem;
+}
+
+.team-modal__backdrop{
+  position:absolute;
+  inset:0;
+  cursor:zoom-out;
+  border:0;
+  background:rgba(23,18,15,.78);
+  backdrop-filter:blur(14px);
+}
+
+.team-modal__panel{
+  position:relative;
+  z-index:1;
+  display:grid;
+  width:min(62rem,96vw);
+  max-height:92svh;
+  overflow:auto;
+  background:#e5d7c0;
+  color:#2d241f;
+  box-shadow:0 2rem 6rem rgba(0,0,0,.46),inset .9rem .9rem 1.8rem rgba(255,255,255,.22),inset -.9rem -.9rem 1.8rem rgba(64,50,41,.13);
+}
+
+.team-modal__panel::before{
+  content:"";
+  position:absolute;
+  inset:.85rem;
+  border:1px solid rgba(45,36,31,.13);
+  pointer-events:none;
+}
+
+.team-modal__close{
+  position:absolute;
+  z-index:4;
+  top:1rem;
+  right:1rem;
+  display:grid;
+  width:2.5rem;
+  height:2.5rem;
+  cursor:pointer;
+  place-items:center;
+  border:1px solid rgba(45,36,31,.18);
+  border-radius:50%;
+  background:rgba(247,241,232,.74);
+  font-family:var(--font-display);
+  font-size:1.65rem;
+  line-height:1;
+}
+
+.team-modal__image{
+  position:relative;
+  min-height:22rem;
+  background:#b9a78e;
+}
+
+.team-modal__copy{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:3rem;
+}
+
+.team-modal__copy .eyebrow{
+  color:var(--terracotta);
+}
+
+.team-modal__copy h3{
+  margin-top:1rem;
+  font-family:var(--font-display);
+  font-size:clamp(3rem,6vw,5.6rem);
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+.team-modal__role{
+  margin-top:.8rem;
+  font-size:.68rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  color:rgba(45,36,31,.56);
+}
+
+.team-modal blockquote{
+  margin-top:2rem;
+  border-left:2px solid var(--terracotta);
+  padding-left:1.2rem;
+  font-family:var(--font-display);
+  font-size:clamp(1.45rem,3vw,2.15rem);
+  font-style:italic;
+  line-height:1.25;
+  color:#7b4b35;
+}
+
+.team-modal__bio{
+  display:grid;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.team-modal__bio p,
+.team-modal__bio-muted{
+  font-size:.96rem;
+  line-height:1.85;
+  color:rgba(45,36,31,.72);
+}
+
+.team-modal__bio-muted{
+  margin-top:2rem;
+  font-style:italic;
+}
+
+@media(min-width:800px){
+  .team-modal__panel{
+    grid-template-columns:.9fr 1.1fr;
+  }
+
+  .team-modal__image{
+    min-height:38rem;
+  }
+}
+
+@media(max-width:767px){
+  .team-empty-state{
+    width:min(100%,22.5rem);
+    padding:2rem 1.35rem;
+  }
+
+  .team-modal{
+    padding:.65rem;
+  }
+
+  .team-modal__panel{
+    width:min(100%,23rem);
+    max-height:94svh;
+  }
+
+  .team-modal__image{
+    min-height:18rem;
+  }
+
+  .team-modal__copy{
+    padding:2rem 1.35rem;
+  }
+}
+
 main :is(h1,h2,h3,h4){
   line-height:1.04!important;
   overflow-wrap:anywhere;

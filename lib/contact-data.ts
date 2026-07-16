@@ -1,5 +1,5 @@
 export const contactDetails = {
-  email: "asociatiaartaindar@yahoo.com",
+  email: "artaindar7@yahoo.com",
   alternateEmail: "artaindar7@yahoo.com",
   address: "Strada Alexandru Ioan Cuza 222, Nicolae Bălcescu, jud. Bacău, România",
   centerAddress: "Centrul „În câmp”, Str. Gării f.n., N. Bălcescu, jud. Bacău",

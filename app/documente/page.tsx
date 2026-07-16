@@ -120,7 +120,7 @@ export default function DocumentsPage() {
               Dacă ai nevoie de un document într-un anumit format sau vrei informații suplimentare,
               trimite-ne un mesaj și revenim cu clarificări.
             </p>
-            <a href="mailto:asociatiaartaindar@yahoo.com?subject=Documente%20Arta%20%C3%AEn%20dar">
+            <a href="mailto:artaindar7@yahoo.com?subject=Documente%20Arta%20%C3%AEn%20dar">
               Cere un document <ArrowUpRight className="size-5" />
             </a>
           </Reveal>

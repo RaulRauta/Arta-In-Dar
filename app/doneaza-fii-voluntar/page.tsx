@@ -36,7 +36,7 @@ export default function InvolvementPage() {
             <span className="theatre-poster__number">01</span>
             <h2>Un rol<br />care lasă<br /><em>urme.</em></h2>
             <p>Nu căutăm spectatori. Căutăm oameni care vor să pună umărul, să învețe, să creeze și să dea mai departe.</p>
-            <a className="theatre-underline-link" href="mailto:asociatiaartaindar@yahoo.com?subject=Vreau%20să%20devin%20voluntar">Scrie-ne pentru a intra în echipă <ArrowUpRight className="size-4" /></a>
+            <a className="theatre-underline-link" href="mailto:artaindar7@yahoo.com?subject=Vreau%20să%20devin%20voluntar">Scrie-ne pentru a intra în echipă <ArrowUpRight className="size-4" /></a>
           </Reveal>
           <Reveal className="theatre-costume" delay={.08}>
             <div className="theatre-costume__frame">
@@ -93,7 +93,7 @@ export default function InvolvementPage() {
       <section className="theatre-finale">
         <div className="shell theatre-finale__inner">
           <Reveal><p className="eyebrow">Final deschis</p><h2>Povestea continuă<br />cu <em>tine.</em></h2></Reveal>
-          <Reveal delay={.08}><p>Spune-ne ce știi să faci, ce ai vrea să înveți sau ce proiect ai vrea să susții.</p><a href="mailto:asociatiaartaindar@yahoo.com" className="theatre-finale__button">Începem o conversație <ArrowUpRight className="size-5" /></a></Reveal>
+          <Reveal delay={.08}><p>Spune-ne ce știi să faci, ce ai vrea să înveți sau ce proiect ai vrea să susții.</p><a href="mailto:artaindar7@yahoo.com" className="theatre-finale__button">Începem o conversație <ArrowUpRight className="size-5" /></a></Reveal>
         </div>
       </section>
     </main>

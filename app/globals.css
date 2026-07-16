@@ -3192,28 +3192,188 @@ main :is(h1,h2,h3,h4) span{
   }
 
   .news-structured{
-    gap:1.45rem;
+    width:100%;
+    gap:1.35rem;
+    overflow:hidden;
+  }
+
+  .news-structured__intro{
+    gap:.7rem;
   }
 
   .news-structured__intro h2{
-    font-size:clamp(2.2rem,13vw,3.8rem)!important;
+    max-width:100%;
+    font-size:clamp(2.05rem,12vw,3.65rem)!important;
+    line-height:.96;
+    overflow-wrap:break-word;
+    text-wrap:balance;
   }
 
-  .news-structured__images--threePhotosFiveRows,
+  .news-structured__intro p{
+    font-size:.98rem!important;
+    line-height:1.7!important;
+  }
+
+  .news-structured__images{
+    gap:.72rem;
+  }
+
+  .news-structured__images figure{
+    border-radius:.18rem;
+    box-shadow:.32rem .4rem 0 rgba(159,63,50,.12);
+  }
+
+  .news-structured__images img{
+    aspect-ratio:4/3;
+  }
+
+  .news-structured__images figcaption{
+    padding:.62rem .72rem;
+    font-size:.7rem!important;
+    line-height:1.4!important;
+  }
+
   .news-structured__images--beforeAfter,
-  .news-structured__images--imageTextImage,
-  .news-structured__images--photoReport{
+  .news-structured__images--imageTextImage{
     grid-template-columns:1fr;
   }
 
-  .news-structured__images--threePhotosFiveRows figure:first-child,
+  .news-structured__images--threePhotosFiveRows{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .news-structured__images--threePhotosFiveRows figure:first-child{
+    grid-column:1 / -1;
+    grid-row:auto;
+  }
+
+  .news-structured__images--threePhotosFiveRows figure:not(:first-child) img{
+    aspect-ratio:1/1;
+  }
+
+  .news-structured__images--photoReport{
+    display:flex;
+    grid-template-columns:none;
+    gap:.8rem;
+    margin-inline:-.15rem;
+    padding:.15rem .15rem .7rem;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-padding-inline:.15rem;
+    scroll-snap-type:x mandatory;
+    scrollbar-color:#9f3f32 rgba(247,241,232,.44);
+  }
+
+  .news-structured__images--photoReport figure{
+    flex:0 0 84%;
+    scroll-snap-align:start;
+  }
+
   .news-structured__images--photoReport figure:first-child{
     grid-column:auto;
     grid-row:auto;
   }
 
+  .news-structured__images--beforeAfter figure{
+    position:relative;
+  }
+
+  .news-structured__images--beforeAfter figure::before{
+    position:absolute;
+    top:.65rem;
+    left:.65rem;
+    z-index:1;
+    border:1px solid rgba(247,241,232,.56);
+    background:rgba(45,36,31,.72);
+    color:#f7f1e8;
+    padding:.34rem .55rem;
+    font-size:.62rem;
+    font-weight:850;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+
+  .news-structured__images--beforeAfter figure:first-child::before{
+    content:"Înainte";
+  }
+
+  .news-structured__images--beforeAfter figure:nth-child(2)::before{
+    content:"După";
+  }
+
+  .news-structured__rows{
+    gap:.7rem;
+  }
+
+  .news-structured__rows article{
+    padding:.9rem .92rem .98rem;
+    box-shadow:.24rem .32rem 0 rgba(45,36,31,.06);
+  }
+
+  .news-structured__rows article::before{
+    top:.72rem;
+    bottom:.72rem;
+  }
+
+  .news-structured__rows small{
+    font-size:.62rem;
+    letter-spacing:.13em;
+  }
+
+  .news-structured__rows h3{
+    font-size:clamp(1.42rem,8.4vw,2.15rem)!important;
+    line-height:1.04;
+    overflow-wrap:break-word;
+  }
+
+  .news-structured__rows p{
+    font-size:.94rem!important;
+    line-height:1.65!important;
+  }
+
   .news-structured__quote{
     padding:1.15rem;
+  }
+
+  .news-structured__quote blockquote{
+    font-size:clamp(1.75rem,10vw,3.05rem)!important;
+    line-height:1.06!important;
+    overflow-wrap:break-word;
+  }
+
+  .news-structured__cta{
+    width:100%;
+    justify-content:center;
+    border:1px solid rgba(159,63,50,.22);
+    background:#f7f1e8;
+    padding:.88rem 1rem;
+    text-align:center;
+    box-shadow:.22rem .28rem 0 rgba(159,63,50,.1);
+  }
+
+  .news-structured--shortAnnouncement .news-structured__intro,
+  .news-structured--quoteFeature .news-structured__intro{
+    border:1px solid rgba(45,36,31,.1);
+    background:rgba(247,241,232,.62);
+    padding:1rem;
+  }
+}
+
+@media(max-width:480px){
+  .news-structured__images--threePhotosFiveRows{
+    grid-template-columns:1fr;
+  }
+
+  .news-structured__images--threePhotosFiveRows figure:first-child{
+    grid-column:auto;
+  }
+
+  .news-structured__images--threePhotosFiveRows figure:not(:first-child) img{
+    aspect-ratio:4/3;
+  }
+
+  .news-structured__images--photoReport figure{
+    flex-basis:88%;
   }
 }
 

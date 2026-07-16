@@ -1,14 +1,43 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { DistinctionsGallery } from "@/components/distinctions/distinctions-gallery";
 import { Reveal } from "@/components/home/reveal";
-import { distinctions, distinctionStats } from "@/lib/distinctions-data";
+import {
+  getDistinctions,
+  getDistinctionsPageContent,
+} from "@/lib/distinctions";
 
-export const metadata: Metadata = {
-  title: "Distincții",
-  description: "Distincțiile și recunoașterile primite de Asociația Arta în dar pentru proiecte culturale, voluntariat și patrimoniu local.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent = await getDistinctionsPageContent();
 
-export default function DistinctionsPage() {
+  return {
+    title: pageContent.seoTitle,
+    description: pageContent.seoDescription,
+  };
+}
+
+export default async function DistinctionsPage() {
+  const [distinctions, pageContent] = await Promise.all([
+    getDistinctions(),
+    getDistinctionsPageContent(),
+  ]);
+  const years = new Set(distinctions.map((item) => item.year).filter(Boolean));
+
+  const distinctionStats = [
+    {
+      value: String(distinctions.length),
+      label:
+        distinctions.length === 1
+          ? "distincție documentată"
+          : "distincții documentate",
+    },
+    {
+      value: String(years.size),
+      label:
+        years.size === 1 ? "an de recunoaștere" : "ani de recunoaștere",
+    },
+    { value: "∞", label: "motive să continuăm" },
+  ];
+
   return (
     <main className="distinctions-page">
       <section className="distinctions-hero">
@@ -19,34 +48,34 @@ export default function DistinctionsPage() {
         </div>
         <div className="shell distinctions-hero__inner">
           <Reveal className="distinctions-hero__copy">
-            <p className="eyebrow">Semne de recunoaștere</p>
+            <p className="eyebrow">{pageContent.heroEyebrow}</p>
             <h1>
-              Distincții
-              <em> gravate în timp.</em>
+              {pageContent.heroTitle}
+              <em> {pageContent.heroAccent}</em>
             </h1>
-            <p>
-              Nu le tratăm ca pe trofee de vitrină. Le așezăm ca mărturii ale unei munci
-              făcute cu oameni, pentru locuri care merită privite cu mai multă grijă.
-            </p>
+            <p>{pageContent.heroDescription}</p>
           </Reveal>
           <Reveal className="hero-medallion" delay={0.08}>
             <span className="hero-medallion__ribbon" />
             <div className="hero-medallion__coin">
-              <small>Arta în dar</small>
-              <strong>2024—2025</strong>
+              <small>{pageContent.coinLabel}</small>
+              <strong>{pageContent.coinYears}</strong>
               <i />
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="distinctions-ledger" aria-labelledby="distinctions-ledger-title">
+      <section
+        className="distinctions-ledger"
+        aria-labelledby="distinctions-ledger-title"
+      >
         <div className="shell distinctions-ledger__inner">
           <Reveal>
-            <p className="eyebrow">Registru de onoare</p>
+            <p className="eyebrow">{pageContent.ledgerEyebrow}</p>
             <h2 id="distinctions-ledger-title">
-              Recunoaștere care nu închide povestea,
-              <em> o obligă să continue.</em>
+              {pageContent.ledgerTitle}
+              <em> {pageContent.ledgerAccent}</em>
             </h2>
           </Reveal>
           <div className="distinctions-stats">
@@ -62,42 +91,23 @@ export default function DistinctionsPage() {
         </div>
       </section>
 
-      <section className="distinctions-gallery" aria-label="Galeria distincțiilor">
-        <div className="shell distinctions-gallery__grid">
-          {distinctions.map((item, index) => (
-            <Reveal key={item.title} delay={index * 0.06}>
-              <article className={`distinction-card distinction-card--${item.tone}`}>
-                <div className="distinction-card__plate">
-                  <span>{item.year}</span>
-                  <h2>{item.title}</h2>
-                  <p>{item.category}</p>
-                </div>
-                <div className="distinction-card__image">
-                  <Image src={item.image} alt={item.title} fill sizes="(max-width: 768px) 92vw, 42vw" className="object-contain" />
-                </div>
-                <div className="distinction-card__copy">
-                  <p>{item.description}</p>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <DistinctionsGallery
+        distinctions={distinctions}
+        emptyTitle={pageContent.galleryEmptyTitle}
+        emptyDescription={pageContent.galleryEmptyDescription}
+      />
 
       <section className="distinctions-finale">
         <div className="shell distinctions-finale__inner">
           <Reveal>
-            <p className="eyebrow">Dincolo de medalie</p>
+            <p className="eyebrow">{pageContent.finaleEyebrow}</p>
             <h2>
-              Cea mai importantă distincție rămâne
-              <em> încrederea comunității.</em>
+              {pageContent.finaleTitle}
+              <em> {pageContent.finaleAccent}</em>
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p>
-              Fiecare recunoaștere spune că arta, voluntariatul și patrimoniul local pot deveni
-              un limbaj comun. De aici mergem mai departe.
-            </p>
+            <p>{pageContent.finaleDescription}</p>
           </Reveal>
         </div>
       </section>

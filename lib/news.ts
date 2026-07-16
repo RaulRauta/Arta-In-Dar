@@ -4,6 +4,17 @@ import { sanityClient } from "@/lib/sanity-client";
 
 export type NewsCardStyle = "score" | "poster" | "note" | "photo";
 
+export type NewsAuthor = {
+  id: string;
+  name: string;
+  slug?: string;
+  role?: string;
+  image?: string;
+  imageAlt?: string;
+  shortBio?: string;
+  isOfficial?: boolean;
+};
+
 export type NewsPostCard = {
   id: string;
   title: string;
@@ -15,6 +26,8 @@ export type NewsPostCard = {
   cardStyle: NewsCardStyle;
   cardImage?: string;
   cardImageAlt?: string;
+  author?: NewsAuthor;
+  coAuthors?: NewsAuthor[];
   featured?: boolean;
   order?: number;
 };
@@ -38,7 +51,7 @@ export type NewsPost = NewsPostCard & {
 };
 
 const newsListQuery = groq`
-  *[_type == "newsPost" && visible != false && defined(slug.current)] | order(featured desc, order asc, publishedAt desc) {
+  *[_type == "newsPost" && visible != false && defined(slug.current) && defined(publishedAt)] | order(featured desc, order asc, publishedAt desc) {
     "id": _id,
     title,
     "slug": slug.current,
@@ -50,12 +63,32 @@ const newsListQuery = groq`
     featured,
     order,
     "cardImage": cardImage.asset->url,
-    "cardImageAlt": coalesce(cardImage.alt, cardTitle, title)
+    "cardImageAlt": coalesce(cardImage.alt, cardTitle, title),
+    "author": author->{
+      "id": _id,
+      name,
+      "slug": slug.current,
+      role,
+      shortBio,
+      isOfficial,
+      "image": image.asset->url,
+      "imageAlt": coalesce(image.alt, name)
+    },
+    "coAuthors": coAuthors[]->{
+      "id": _id,
+      name,
+      "slug": slug.current,
+      role,
+      shortBio,
+      isOfficial,
+      "image": image.asset->url,
+      "imageAlt": coalesce(image.alt, name)
+    }
   }
 `;
 
 const newsPostQuery = groq`
-  *[_type == "newsPost" && visible != false && slug.current == $slug][0] {
+  *[_type == "newsPost" && visible != false && defined(publishedAt) && slug.current == $slug][0] {
     "id": _id,
     title,
     "slug": slug.current,
@@ -73,6 +106,26 @@ const newsPostQuery = groq`
     "cardImageAlt": coalesce(cardImage.alt, cardTitle, title),
     "heroImage": heroImage.asset->url,
     "heroImageAlt": coalesce(heroImage.alt, title),
+    "author": author->{
+      "id": _id,
+      name,
+      "slug": slug.current,
+      role,
+      shortBio,
+      isOfficial,
+      "image": image.asset->url,
+      "imageAlt": coalesce(image.alt, name)
+    },
+    "coAuthors": coAuthors[]->{
+      "id": _id,
+      name,
+      "slug": slug.current,
+      role,
+      shortBio,
+      isOfficial,
+      "image": image.asset->url,
+      "imageAlt": coalesce(image.alt, name)
+    },
     content[]{
       ...,
       _type == "image" => {
@@ -100,6 +153,8 @@ export async function getNewsPosts(): Promise<NewsPostCard[]> {
     return (posts || []).map((post) => ({
       ...post,
       cardStyle: post.cardStyle || "score",
+      author: post.author || officialNewsAuthor,
+      coAuthors: post.coAuthors || [],
     }));
   } catch (error) {
     console.warn("Sanity news fetch failed", error);
@@ -122,6 +177,8 @@ export async function getNewsPost(slug: string): Promise<NewsPost | null> {
     return {
       ...post,
       cardStyle: post.cardStyle || "score",
+      author: post.author || officialNewsAuthor,
+      coAuthors: post.coAuthors || [],
       content: post.content || [],
       gallery: post.gallery || [],
     };
@@ -130,6 +187,15 @@ export async function getNewsPost(slug: string): Promise<NewsPost | null> {
     return null;
   }
 }
+
+export const officialNewsAuthor: NewsAuthor = {
+  id: "official-arta-in-dar",
+  name: "Arta în dar",
+  role: "Voce oficială",
+  shortBio:
+    "Autorul oficial al asociației pentru comunicate, anunțuri și povești publicate în numele echipei.",
+  isOfficial: true,
+};
 
 export function formatNewsDate(date?: string) {
   if (!date) {

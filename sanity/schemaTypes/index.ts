@@ -1,4 +1,5 @@
 import { distinction } from "./distinction";
+import { newsAuthor } from "./newsAuthor";
 import { newsPost } from "./newsPost";
 import { pilgrimageArtwork } from "./pilgrimageArtwork";
 import { teamGroup } from "./teamGroup";
@@ -9,5 +10,6 @@ export const schemaTypes = [
   teamMember,
   pilgrimageArtwork,
   distinction,
+  newsAuthor,
   newsPost,
 ];

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "@/components/ui/icons";
-import { formatNewsDate, getNewsPost, type NewsPortableImage } from "@/lib/news";
+import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage } from "@/lib/news";
 
 type NewsPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -53,6 +53,69 @@ const portableTextComponents: PortableTextComponents = {
     },
   },
 };
+
+function AuthorAvatar({ author }: { author: NewsAuthor }) {
+  if (author.image) {
+    return <Image src={author.image} alt={author.imageAlt || author.name} width={96} height={96} />;
+  }
+
+  return <span aria-hidden="true">{author.name.charAt(0)}</span>;
+}
+
+function NewsAuthorCard({
+  author,
+  label,
+  lead,
+}: {
+  author: NewsAuthor;
+  label: string;
+  lead?: boolean;
+}) {
+  return (
+    <article className={`news-author-card${lead ? " news-author-card--lead" : ""}`}>
+      <div className="news-author-card__avatar">
+        <AuthorAvatar author={author} />
+      </div>
+      <div>
+        <p>{label}</p>
+        <h3>{author.name}</h3>
+        {author.role ? <small>{author.role}</small> : null}
+        {author.shortBio ? <span>{author.shortBio}</span> : null}
+      </div>
+    </article>
+  );
+}
+
+function NewsEnsemble({ author, coAuthors }: { author?: NewsAuthor; coAuthors?: NewsAuthor[] }) {
+  if (!author && !coAuthors?.length) {
+    return null;
+  }
+
+  const supportingAuthors = coAuthors || [];
+
+  return (
+    <section className="news-ensemble" aria-labelledby="news-ensemble-title">
+      <div className="shell news-ensemble__inner">
+        <div className="news-ensemble__intro">
+          <p className="eyebrow">Vocile articolului</p>
+          <h2 id="news-ensemble-title">Ansamblul articolului</h2>
+        </div>
+        <div className="news-ensemble__grid">
+          {author ? (
+            <NewsAuthorCard
+              author={author}
+              label={author.isOfficial ? "Voce oficială" : "Voce principală"}
+              lead
+            />
+          ) : null}
+          {supportingAuthors.map((coAuthor) => (
+            <NewsAuthorCard key={coAuthor.id} author={coAuthor} label="Acompaniament" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export async function generateMetadata({ params }: NewsPostPageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -116,6 +179,8 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
             </div>
           </div>
         </header>
+
+        <NewsEnsemble author={post.author} coAuthors={post.coAuthors} />
 
         <section className="news-article">
           <div className="shell news-article__sheet">

@@ -41,6 +41,20 @@ export const newsPost = defineType({
       initialValue: "Comunitate",
     }),
     defineField({
+      name: "author",
+      title: "Voce principală",
+      type: "reference",
+      to: [{ type: "newsAuthor" }],
+      description: "Autorul principal al articolului. Pentru articole oficiale, selectează Arta în dar.",
+    }),
+    defineField({
+      name: "coAuthors",
+      title: "Acompaniament",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "newsAuthor" }] }],
+      description: "Co-autori, fotografi, colaboratori sau oameni care au contribuit la articol.",
+    }),
+    defineField({
       name: "cardTitle",
       title: "Titlu card",
       type: "string",

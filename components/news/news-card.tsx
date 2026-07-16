@@ -32,6 +32,11 @@ export function NewsCard({ post, index }: NewsCardProps) {
         <small>{post.category || "Noutate"}</small>
         <small>{formatNewsDate(post.publishedAt)}</small>
       </span>
+      <span className="news-card__voice">
+        <small>{post.author?.isOfficial ? "Voce oficială" : "Voce principală"}</small>
+        <b>{post.author?.name || "Arta în dar"}</b>
+        {post.coAuthors?.length ? <em>+ acompaniament</em> : null}
+      </span>
       <strong>{post.cardTitle || post.title}</strong>
       {post.cardSummary ? <span className="news-card__summary">{post.cardSummary}</span> : null}
       <span className="news-card__open">

@@ -22,6 +22,15 @@ function Wireframe({ template }: { template: NewsPostTemplateGuide }) {
   );
 }
 
+function LegendItem({ tone, label, text }: { tone: "title" | "intro" | "image" | "row" | "quote" | "button"; label: string; text: string }) {
+  return (
+    <span className="post-template-legend-item">
+      <i className={`legend-dot legend-dot--${tone}`} />
+      <span><b>{label}:</b> {text}</span>
+    </span>
+  );
+}
+
 export function PostTemplateInput(props: StringInputProps) {
   const { onChange, value } = props;
 
@@ -38,13 +47,17 @@ export function PostTemplateInput(props: StringInputProps) {
         .post-template-meta{display:grid;gap:7px;border-top:1px solid rgba(45,36,31,.12);padding-top:10px}
         .post-template-meta span{display:block;color:rgba(45,36,31,.68);font-size:12px;line-height:1.45}
         .post-template-meta b{color:#9f3f32;font-weight:800}
+        .post-template-legend{display:grid;gap:6px;border:1px solid rgba(45,36,31,.1);border-radius:12px;background:rgba(255,248,236,.6);padding:9px}
+        .post-template-legend-item{display:grid!important;grid-template-columns:12px 1fr;gap:7px;align-items:start;color:rgba(45,36,31,.7)!important;font-size:12px!important;line-height:1.35!important}
+        .legend-dot{display:block;width:10px;height:10px;margin-top:3px;border-radius:999px;box-shadow:0 0 0 2px rgba(255,255,255,.72)}
+        .legend-dot--title{background:#5f6f52}.legend-dot--intro{background:#c9a24d}.legend-dot--image{background:#b86b45}.legend-dot--row{background:#4966ad}.legend-dot--quote{background:#8a5fb2}.legend-dot--button{background:#9f3f32}
         .post-template-wire{position:relative;display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:13px;gap:6px;min-height:132px;overflow:hidden;border:1px solid rgba(45,36,31,.12);border-radius:14px;background:radial-gradient(circle at 80% 12%,rgba(201,162,77,.22),transparent 72px),#f7f1e8;padding:12px}
         .post-template-wire span{border-radius:999px;background:rgba(45,36,31,.2)}
-        .post-template-wire .wire-img{border-radius:12px;background:linear-gradient(145deg,rgba(95,111,82,.42),rgba(184,107,69,.28))}
-        .post-template-wire .wire-title{grid-column:1/5;background:#2d241f}
-        .post-template-wire .wire-lead{grid-column:1/7;background:rgba(45,36,31,.16)}
-        .post-template-wire .wire-row{background:rgba(45,36,31,.14)}
-        .post-template-wire .wire-quote{border-radius:18px;background:rgba(201,162,77,.42)}
+        .post-template-wire .wire-img{border-radius:12px;background:linear-gradient(145deg,rgba(184,107,69,.76),rgba(184,107,69,.42))}
+        .post-template-wire .wire-title{grid-column:1/5;background:#5f6f52}
+        .post-template-wire .wire-lead{grid-column:1/7;background:#c9a24d}
+        .post-template-wire .wire-row{background:#4966ad}
+        .post-template-wire .wire-quote{border-radius:18px;background:#8a5fb2}
         .post-template-wire .wire-button{background:#9f3f32}
         .post-template-wire--free .wire-title{grid-column:1/6}.post-template-wire--free .wire-lead{grid-column:1/7}.post-template-wire--free .wire-row-a{grid-column:1/7}.post-template-wire--free .wire-img-a{grid-column:1/4;grid-row:4/8}.post-template-wire--free .wire-row-b{grid-column:4/7}.post-template-wire--free .wire-row-c{grid-column:4/7}.post-template-wire--free .wire-row-d{grid-column:1/7}
         .post-template-wire--three .wire-img-a{grid-column:1/5;grid-row:3/8}.post-template-wire--three .wire-img-b{grid-column:5/7;grid-row:3/5}.post-template-wire--three .wire-img-c{grid-column:5/7;grid-row:5/8}.post-template-wire--three .wire-row-a,.post-template-wire--three .wire-row-b,.post-template-wire--three .wire-row-c,.post-template-wire--three .wire-row-d,.post-template-wire--three .wire-row-e{grid-column:1/7}
@@ -73,11 +86,23 @@ export function PostTemplateInput(props: StringInputProps) {
                 <strong>{template.title}</strong>
                 <p>{template.description}</p>
               </div>
+              <div className="post-template-legend">
+                <LegendItem tone="title" label="Titlu" text="se completează la Titlu șablon / Titlu articol" />
+                <LegendItem tone="intro" label="Introducere" text="se completează la Introducere șablon" />
+                {template.id !== "free" ? <LegendItem tone="image" label="Imagine" text={template.imageHint} /> : null}
+                {["threePhotosFiveRows", "photoReport", "interview", "eventRecap", "beforeAfter", "travelJournal", "profileStory"].includes(template.id) ? (
+                  <LegendItem tone="row" label="Rânduri" text={template.textHint} />
+                ) : null}
+                {["quoteFeature", "profileStory"].includes(template.id) ? (
+                  <LegendItem tone="quote" label="Citat" text="se completează la Citat central și Autor citat" />
+                ) : null}
+                {["shortAnnouncement", "profileStory"].includes(template.id) ? (
+                  <LegendItem tone="button" label="Buton" text="se completează la Text buton și Link buton" />
+                ) : null}
+              </div>
               <div className="post-template-meta">
                 <span><b>Când îl folosești:</b> {template.bestFor}</span>
                 <span><b>Structură:</b> {template.structure}</span>
-                <span><b>Imagini:</b> {template.imageHint}</span>
-                <span><b>Text:</b> {template.textHint}</span>
               </div>
             </button>
           );

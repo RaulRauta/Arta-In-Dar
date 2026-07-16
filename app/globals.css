@@ -362,6 +362,33 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 .nav-link { position:relative; padding:.6rem .15rem; color:rgba(247,241,232,.76); transition:color .25s; }
 .nav-link::after { content:""; position:absolute; left:50%; bottom:.12rem; width:0; height:1px; background:var(--gold); transition:left .3s,width .3s; }
 .nav-link:hover,.nav-link:focus-visible { color:var(--cream); }.nav-link:hover::after,.nav-link:focus-visible::after { left:0;width:100%; }
+.site-header{
+  isolation:isolate;
+}
+
+.site-header::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0 0 auto;
+  height:6.8rem;
+  background:
+    linear-gradient(180deg,rgba(24,17,13,.78),rgba(24,17,13,.42) 56%,rgba(24,17,13,0));
+  pointer-events:none;
+}
+
+.site-header :is(.nav-link, .menu-trigger, .group){
+  text-shadow:0 .14rem .55rem rgba(0,0,0,.42);
+}
+
+.site-header .nav-link{
+  color:rgba(247,241,232,.9);
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus-visible{
+  color:#fff9ef;
+}
 .art-preview { position:absolute; z-index:60; top:4.35rem; right:max(1rem,calc((100vw - 1280px)/2)); display:grid; grid-template-columns:11rem 1fr; width:min(29rem,calc(100vw - 3rem)); min-height:10.5rem; overflow:hidden; border:1px solid rgba(247,241,232,.22); box-shadow:0 1.5rem 4rem rgba(24,17,13,.32); }
 .art-preview__scene { position:relative; min-height:10.5rem; overflow:hidden; }.art-preview__copy { display:flex; flex-direction:column; justify-content:center; padding:1.4rem 1.6rem; }
 .art-preview__copy>span { font-size:.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.24em;opacity:.6; }.art-preview__copy strong { margin-top:.45rem;font-family:var(--font-display);font-size:2rem;font-weight:500;line-height:.95; }.art-preview__copy p { margin-top:.65rem;max-width:14rem;font-size:.7rem;line-height:1.55;opacity:.68; }
@@ -2443,4 +2470,112 @@ main :is(h1,h2,h3,h4) span{
     position:relative;
     z-index:2;
   }
+}
+
+/* Final contrast safety · ultimele reguli din cascadă, ca textul static să rămână vizibil. */
+.site-header::before{
+  background:linear-gradient(180deg,rgba(24,17,13,.82),rgba(24,17,13,.46) 56%,rgba(24,17,13,0));
+}
+
+.site-header .nav-link{
+  color:rgba(255,249,239,.92);
+}
+
+:is(
+  .sculpture-manifest,
+  .flowcraft-collaborator,
+  .archive-foundation,
+  .archive-cta,
+  .distinctions-ledger,
+  .distinctions-finale,
+  .map-atelier,
+  .contact-social,
+  .news-featured,
+  .news-list,
+  .news-article
+) .eyebrow{
+  color:#8f4634;
+}
+
+:is(
+  .hero,
+  .sculpture-hero,
+  .pilgrimage-hero,
+  .pilgrimage-markers,
+  .sculpture-gallery,
+  .theatre-hero,
+  .theatre-volunteer,
+  .theatre-program,
+  .theatre-donate,
+  .theatre-finale,
+  .archive-cabinet,
+  .distinctions-hero,
+  .distinctions-gallery,
+  .contact-worktable,
+  .news-hero,
+  .news-post-hero
+) .eyebrow{
+  color:#e1bd66;
+}
+
+.contact-side-notes a,
+.contact-side-notes p{
+  color:#fff1dc;
+}
+
+.contact-side-notes small,
+.sculpture-gallery__heading>p,
+.pilgrimage-markers .pilgrimage-copy,
+.theatre-hero__manifest,
+.documents-hero__copy p:last-child,
+.distinctions-hero__copy p:last-child,
+.news-hero__copy>p:last-child,
+.news-post-hero__copy>p:last-child{
+  color:rgba(255,248,236,.82);
+}
+
+.news-card:not(.news-card--poster):not(.news-card--photo) .news-card__meta,
+.news-card:not(.news-card--poster):not(.news-card--photo) .news-card__summary{
+  color:rgba(45,36,31,.72);
+  opacity:1;
+}
+
+.news-card--poster .news-card__meta,
+.news-card--photo .news-card__meta,
+.news-card--poster .news-card__summary,
+.news-card--photo .news-card__summary{
+  color:rgba(247,241,232,.78);
+  opacity:1;
+}
+
+.news-card--poster .news-card__open,
+.news-card--photo .news-card__open{
+  color:#f0c86a;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+  color:rgba(51,39,33,.52);
+  opacity:1;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-reason-trigger,
+.contact-reason-menu button,
+.social-envelope__front,
+.social-envelope__letter,
+.flowcraft-collaborator__card,
+.team-empty-state,
+.news-empty,
+.archive-document,
+.archive-file,
+.distinction-stat,
+.contact-envelope,
+.contact-form-panel,
+.map-frame,
+.sculpture-modal__sheet,
+.distinction-modal__sheet,
+.team-modal__panel{
+  color:#2d241f;
 }

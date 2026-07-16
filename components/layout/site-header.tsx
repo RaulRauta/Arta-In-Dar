@@ -17,8 +17,8 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header style={{ viewTransitionName: "site-header" }} className="absolute inset-x-0 top-0 z-50 text-cream">
-      <div className="shell flex h-18 items-center justify-between">
+    <header style={{ viewTransitionName: "site-header" }} className="site-header absolute inset-x-0 top-0 z-50 text-cream">
+      <div className="shell relative z-10 flex h-18 items-center justify-between">
         <Logo light />
         <nav onMouseLeave={() => setActiveArt(null)} aria-label="Navigație principală" className="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-7">
           {navigation.map((item) => (

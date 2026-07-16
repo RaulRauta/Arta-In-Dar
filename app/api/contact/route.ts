@@ -92,29 +92,34 @@ export async function POST(request: Request) {
 
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
-  const safePhone = escapeHtml(phone || "—");
+  const safePhone = escapeHtml(phone || "-");
   const safeReason = escapeHtml(reason || "Contact site");
   const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
   try {
     const result = await transporter.sendMail({
-      from: `"Arta în dar · formular site" <${process.env.SMTP_USER}>`,
+      from: `"Arta in dar" <${process.env.SMTP_USER}>`,
+      sender: process.env.SMTP_USER,
       to: CONTACT_TO,
       replyTo: email,
-      subject: `Mesaj site Arta în dar · ${reason || "Contact"}`,
+      subject: `Mesaj site Arta in dar - ${reason || "Contact"}`,
+      envelope: {
+        from: process.env.SMTP_USER,
+        to: CONTACT_TO,
+      },
       text: [
-        "Mesaj nou primit din formularul site-ului Arta în dar.",
+        "Mesaj nou primit din formularul site-ului Arta in dar.",
         "",
         `Nume: ${name}`,
         `Email: ${email}`,
-        `Telefon: ${phone || "—"}`,
+        `Telefon: ${phone || "-"}`,
         `Motiv: ${reason || "Contact site"}`,
         "",
         message,
       ].join("\n"),
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#2D241F">
-          <h2 style="margin:0 0 16px">Mesaj nou din formularul Arta în dar</h2>
+          <h2 style="margin:0 0 16px">Mesaj nou din formularul Arta in dar</h2>
           <p><strong>Nume:</strong> ${safeName}</p>
           <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Telefon:</strong> ${safePhone}</p>

@@ -2135,6 +2135,19 @@ main :is(h1,h2,h3,h4) span{
   box-shadow:1rem 1.15rem 0 rgba(45,36,31,.08),0 1.5rem 4rem rgba(45,36,31,.12);
 }
 
+@media(min-width:1024px){
+  .news-article__sheet{
+    max-width:min(100%,74rem);
+  }
+
+  .news-article__sheet > p,
+  .news-article__sheet > ul,
+  .news-article__sheet > ol,
+  .news-article__sheet > blockquote{
+    max-width:62rem;
+  }
+}
+
 .news-article__sheet::before{
   content:"";
   position:absolute;

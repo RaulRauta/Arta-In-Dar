@@ -9,11 +9,15 @@ type FormState = "idle" | "sending" | "success" | "fallback" | "error";
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
-  const [formSnapshot, setFormSnapshot] = useState<Record<string, string> | null>(null);
+  const [formSnapshot, setFormSnapshot] = useState<Record<string, string> | null>(
+    null,
+  );
 
   const mailtoHref = useMemo(() => {
     const data = formSnapshot ?? {};
-    const subject = encodeURIComponent(`Mesaj site Arta în dar${data.reason ? ` · ${data.reason}` : ""}`);
+    const subject = encodeURIComponent(
+      `Mesaj site Arta în dar${data.reason ? ` · ${data.reason}` : ""}`,
+    );
     const body = encodeURIComponent(
       [
         `Nume: ${data.name ?? ""}`,
@@ -28,11 +32,19 @@ export function ContactForm() {
     return `mailto:${contactDetails.email}?subject=${subject}&body=${body}`;
   }, [formSnapshot]);
 
+  function handlePhoneInput(event: React.FormEvent<HTMLInputElement>) {
+    const input = event.currentTarget;
+    input.value = input.value.replace(/[^\d+\s().-]/g, "");
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const snapshot = Object.fromEntries(formData.entries()) as Record<string, string>;
+    const snapshot = Object.fromEntries(formData.entries()) as Record<
+      string,
+      string
+    >;
     setFormSnapshot(snapshot);
     setState("sending");
     setMessage("");
@@ -42,7 +54,11 @@ export function ContactForm() {
         method: "POST",
         body: formData,
       });
-      const payload = (await response.json()) as { ok?: boolean; fallback?: boolean; message?: string };
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        fallback?: boolean;
+        message?: string;
+      };
 
       if (response.ok && payload.ok) {
         setState(payload.fallback ? "fallback" : "success");
@@ -52,30 +68,62 @@ export function ContactForm() {
       }
 
       setState("error");
-      setMessage(payload.message ?? "Mesajul nu a putut fi trimis. Încearcă prin email direct.");
+      setMessage(
+        payload.message ??
+          "Mesajul nu a putut fi trimis. Încearcă prin email direct.",
+      );
     } catch {
       setState("fallback");
-      setMessage("Conexiunea a ezitat. Poți trimite același mesaj prin email direct.");
+      setMessage(
+        "Conexiunea a ezitat. Poți trimite același mesaj prin email direct.",
+      );
     }
   }
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
-      <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="contact-form__honeypot" />
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="contact-form__honeypot"
+      />
 
       <label>
         <span>Nume</span>
-        <input name="name" type="text" required minLength={2} placeholder="Cum te numești?" />
+        <input
+          name="name"
+          type="text"
+          required
+          minLength={2}
+          placeholder="Cum te numești?"
+        />
       </label>
 
       <div className="contact-form__row">
         <label>
           <span>Email</span>
-          <input name="email" type="email" required placeholder="email@exemplu.ro" />
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="email@exemplu.ro"
+          />
         </label>
         <label>
           <span>Telefon</span>
-          <input name="phone" type="tel" placeholder="Opțional" />
+          <input
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            pattern="[0-9+().\s-]*"
+            maxLength={24}
+            onInput={handlePhoneInput}
+            placeholder="Opțional"
+          />
         </label>
       </div>
 
@@ -92,11 +140,18 @@ export function ContactForm() {
 
       <label>
         <span>Mesaj</span>
-        <textarea name="message" required minLength={12} rows={6} placeholder="Scrie-ne ce ai în minte..." />
+        <textarea
+          name="message"
+          required
+          minLength={12}
+          rows={6}
+          placeholder="Scrie-ne ce ai în minte..."
+        />
       </label>
 
       <button type="submit" disabled={state === "sending"}>
-        {state === "sending" ? "Se așază cerneala..." : "Trimite mesajul"} <ArrowUpRight className="size-4" />
+        {state === "sending" ? "Se așază cerneala..." : "Trimite mesajul"}{" "}
+        <ArrowUpRight className="size-4" />
       </button>
 
       {message ? (

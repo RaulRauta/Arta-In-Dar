@@ -16,6 +16,10 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function isPhone(value: string) {
+  return !value || /^[0-9+().\s-]+$/.test(value);
+}
+
 function getTransporter() {
   const user = envValue("SMTP_USER");
   const pass = envValue("SMTP_PASS").replace(/\s+/g, "");
@@ -57,6 +61,16 @@ export async function POST(request: Request) {
         ok: false,
         message:
           "Completează numele, un email valid și un mesaj de cel puțin 12 caractere.",
+      },
+      { status: 400 },
+    );
+  }
+
+  if (!isPhone(phone)) {
+    return Response.json(
+      {
+        ok: false,
+        message: "Telefonul poate conține doar cifre și semne de telefon.",
       },
       { status: 400 },
     );

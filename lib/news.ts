@@ -84,10 +84,32 @@ export type NewsTemplateBlock = {
   linkHref?: string;
 };
 
+export type NewsPostTemplate =
+  | "free"
+  | "threePhotosFiveRows"
+  | "photoReport"
+  | "shortAnnouncement"
+  | "interview"
+  | "eventRecap"
+  | "beforeAfter"
+  | "travelJournal"
+  | "profileStory"
+  | "quoteFeature";
+
 export type NewsPost = NewsPostCard & {
   lead?: string;
   heroImage?: string;
   heroImageAlt?: string;
+  postTemplate?: NewsPostTemplate;
+  templateEyebrow?: string;
+  templateTitle?: string;
+  templateIntro?: string;
+  templateImages?: NewsPortableImage[];
+  templateRows?: NewsTemplateItem[];
+  templateQuote?: string;
+  templateQuoteAuthor?: string;
+  templateCtaLabel?: string;
+  templateCtaHref?: string;
   content?: Array<PortableTextBlock | NewsPortableImage | NewsTemplateBlock>;
   gallery?: NewsPortableImage[];
   ctaLabel?: string;
@@ -144,6 +166,14 @@ const newsPostQuery = groq`
     featured,
     order,
     lead,
+    postTemplate,
+    templateEyebrow,
+    templateTitle,
+    templateIntro,
+    templateQuote,
+    templateQuoteAuthor,
+    templateCtaLabel,
+    templateCtaHref,
     ctaLabel,
     ctaHref,
     "cardImage": cardImage.asset->url,
@@ -170,6 +200,12 @@ const newsPostQuery = groq`
       "image": image.asset->url,
       "imageAlt": coalesce(image.alt, name)
     },
+    templateImages[]{
+      ...,
+      "url": asset->url,
+      "alt": coalesce(alt, caption, "Imagine articol")
+    },
+    templateRows[],
     content[]{
       ...,
       _type == "image" => {
@@ -239,6 +275,9 @@ export async function getNewsPost(slug: string): Promise<NewsPost | null> {
       cardStyle: post.cardStyle || "score",
       author: post.author || officialNewsAuthor,
       coAuthors: post.coAuthors || [],
+      postTemplate: post.postTemplate || "free",
+      templateImages: post.templateImages || [],
+      templateRows: post.templateRows || [],
       content: post.content || [],
       gallery: post.gallery || [],
     };

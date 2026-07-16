@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type React from "react";
 import { ArrowUpRight } from "@/components/ui/icons";
-import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage, type NewsTemplateBlock } from "@/lib/news";
+import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage, type NewsPost, type NewsTemplateBlock } from "@/lib/news";
 
 type NewsPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -186,6 +186,101 @@ function NewsTemplateBlockView({ block }: { block: NewsTemplateBlock }) {
   );
 }
 
+function StructuredPostImages({ images, template }: { images?: NewsPortableImage[]; template?: string }) {
+  const usableImages = (images || []).filter((image) => image.url);
+
+  if (!usableImages.length) {
+    return null;
+  }
+
+  const limitedImages =
+    template === "threePhotosFiveRows" ? usableImages.slice(0, 3) :
+    template === "beforeAfter" ? usableImages.slice(0, 2) :
+    usableImages;
+
+  return (
+    <div className={`news-structured__images news-structured__images--${template || "free"}`}>
+      {limitedImages.map((image, index) => (
+        <figure key={image._key || `${image.url}-${index}`}>
+          <Image src={image.url || ""} alt={image.alt || ""} width={1000} height={760} />
+          {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function StructuredRows({ rows, template }: { rows?: NewsTemplateBlock["items"]; template?: string }) {
+  const usableRows = (rows || []).filter((row) => row.title || row.text || row.label);
+
+  if (!usableRows.length) {
+    return null;
+  }
+
+  const limitedRows = template === "threePhotosFiveRows" ? usableRows.slice(0, 5) : usableRows;
+
+  return (
+    <div className={`news-structured__rows news-structured__rows--${template || "free"}`}>
+      {limitedRows.map((row, index) => (
+        <article key={row._key || `${row.title}-${index}`}>
+          <small>{row.label || String(index + 1).padStart(2, "0")}</small>
+          {row.title ? <h3>{row.title}</h3> : null}
+          {row.text ? <p>{row.text}</p> : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function TemplateCta({ href, label }: { href?: string; label?: string }) {
+  if (!href || !label) {
+    return null;
+  }
+
+  if (href.startsWith("http")) {
+    return (
+      <a className="news-structured__cta" href={href} target="_blank" rel="noreferrer">
+        {label} <ArrowUpRight className="size-4" />
+      </a>
+    );
+  }
+
+  return (
+    <Link className="news-structured__cta" href={href}>
+      {label} <ArrowUpRight className="size-4" />
+    </Link>
+  );
+}
+
+function NewsStructuredPost({ post }: { post: NewsPost }) {
+  const template = post.postTemplate || "free";
+
+  if (template === "free") {
+    return null;
+  }
+
+  return (
+    <section className={`news-structured news-structured--${template}`}>
+      <div className="news-structured__intro">
+        {post.templateEyebrow ? <p className="news-template__eyebrow">{post.templateEyebrow}</p> : null}
+        <h2>{post.templateTitle || post.title}</h2>
+        {post.templateIntro ? <TextLines text={post.templateIntro} /> : null}
+      </div>
+
+      {post.templateQuote ? (
+        <figure className="news-structured__quote">
+          <blockquote>{post.templateQuote}</blockquote>
+          {post.templateQuoteAuthor ? <figcaption>{post.templateQuoteAuthor}</figcaption> : null}
+        </figure>
+      ) : null}
+
+      <StructuredPostImages images={post.templateImages} template={template} />
+      <StructuredRows rows={post.templateRows} template={template} />
+      <TemplateCta href={post.templateCtaHref} label={post.templateCtaLabel} />
+    </section>
+  );
+}
+
 function AuthorAvatar({ author }: { author: NewsAuthor }) {
   if (author.image) {
     return <Image src={author.image} alt={author.imageAlt || author.name} width={96} height={96} />;
@@ -316,7 +411,9 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
 
         <section className="news-article">
           <div className="shell news-article__sheet">
-            {post.content?.length ? (
+            {post.postTemplate && post.postTemplate !== "free" ? (
+              <NewsStructuredPost post={post} />
+            ) : post.content?.length ? (
               <PortableText value={post.content} components={portableTextComponents} />
             ) : (
               <p>

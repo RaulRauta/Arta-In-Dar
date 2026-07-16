@@ -2491,6 +2491,174 @@ main :is(h1,h2,h3,h4) span{
   color:#f0c86a!important;
 }
 
+.news-structured{
+  display:grid;
+  gap:2rem;
+}
+
+.news-structured__intro{
+  display:grid;
+  gap:.9rem;
+}
+
+.news-structured__intro h2{
+  margin:0!important;
+  color:#2d241f;
+  font-family:var(--font-display);
+  font-size:clamp(2.6rem,7vw,6rem)!important;
+  font-weight:500;
+  letter-spacing:-.055em;
+  line-height:.92;
+}
+
+.news-structured__intro p{
+  margin:0!important;
+}
+
+.news-structured__images{
+  display:grid;
+  gap:1rem;
+}
+
+.news-structured__images figure{
+  margin:0!important;
+  overflow:hidden;
+  background:#2d241f;
+  box-shadow:.55rem .65rem 0 rgba(159,63,50,.12);
+}
+
+.news-structured__images img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  height:auto;
+  object-fit:cover;
+}
+
+.news-structured__images figcaption{
+  margin:0!important;
+  padding:.7rem .85rem;
+  background:#2d241f;
+  color:rgba(247,241,232,.76)!important;
+  font-size:.75rem!important;
+  line-height:1.45!important;
+}
+
+.news-structured__images--threePhotosFiveRows{
+  grid-template-columns:1.15fr .85fr;
+}
+
+.news-structured__images--threePhotosFiveRows figure:first-child{
+  grid-row:span 2;
+}
+
+.news-structured__images--beforeAfter,
+.news-structured__images--imageTextImage{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.news-structured__images--photoReport{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+.news-structured__images--photoReport figure:first-child{
+  grid-column:span 2;
+}
+
+.news-structured__rows{
+  display:grid;
+  gap:.9rem;
+}
+
+.news-structured__rows article{
+  position:relative;
+  border:1px solid rgba(45,36,31,.12);
+  background:rgba(247,241,232,.62);
+  padding:1rem 1.1rem 1.1rem;
+  box-shadow:.35rem .45rem 0 rgba(45,36,31,.06);
+}
+
+.news-structured__rows article::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.85rem;
+  bottom:.85rem;
+  width:2px;
+  background:#9f3f32;
+}
+
+.news-structured__rows small{
+  display:block;
+  color:#9f3f32;
+  font-size:.68rem;
+  font-weight:850;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.news-structured__rows h3{
+  margin:.25rem 0 0!important;
+  color:#2d241f;
+  font-family:var(--font-display);
+  font-size:clamp(1.55rem,3vw,2.4rem)!important;
+  font-weight:500;
+  letter-spacing:-.04em;
+  line-height:1.03;
+}
+
+.news-structured__rows p{
+  margin:.45rem 0 0!important;
+  color:rgba(45,36,31,.74)!important;
+  font-size:.98rem!important;
+  line-height:1.75!important;
+}
+
+.news-structured__quote{
+  margin:0!important;
+  border-left:0!important;
+  background:
+    radial-gradient(circle at 90% 20%,rgba(201,162,77,.18),transparent 10rem),
+    #f7f1e8;
+  padding:1.6rem;
+  box-shadow:.5rem .6rem 0 rgba(159,63,50,.1);
+}
+
+.news-structured__quote blockquote{
+  margin:0!important;
+  border:0!important;
+  padding:0!important;
+  color:#6f372c!important;
+  font-family:var(--font-display);
+  font-size:clamp(2rem,5vw,4.4rem)!important;
+  font-style:italic;
+  letter-spacing:-.045em;
+  line-height:1.02!important;
+}
+
+.news-structured__quote figcaption{
+  margin-top:1rem;
+  color:rgba(45,36,31,.6);
+  font-size:.75rem;
+  font-weight:850;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.news-structured__cta{
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  align-items:center;
+  gap:.55rem;
+  color:#9f3f32!important;
+  font-size:.75rem;
+  font-weight:850;
+  letter-spacing:.14em;
+  text-decoration:none!important;
+  text-transform:uppercase;
+}
+
 @media(min-width:860px){
   .news-hero__inner,
   .news-post-hero__inner{
@@ -3021,6 +3189,31 @@ main :is(h1,h2,h3,h4) span{
 
   .news-template__images--strip{
     grid-auto-columns:minmax(11rem,82%);
+  }
+
+  .news-structured{
+    gap:1.45rem;
+  }
+
+  .news-structured__intro h2{
+    font-size:clamp(2.2rem,13vw,3.8rem)!important;
+  }
+
+  .news-structured__images--threePhotosFiveRows,
+  .news-structured__images--beforeAfter,
+  .news-structured__images--imageTextImage,
+  .news-structured__images--photoReport{
+    grid-template-columns:1fr;
+  }
+
+  .news-structured__images--threePhotosFiveRows figure:first-child,
+  .news-structured__images--photoReport figure:first-child{
+    grid-column:auto;
+    grid-row:auto;
+  }
+
+  .news-structured__quote{
+    padding:1.15rem;
   }
 }
 

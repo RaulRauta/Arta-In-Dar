@@ -17,7 +17,8 @@ function isEmail(value: string) {
 }
 
 function isPhone(value: string) {
-  return !value || /^[0-9+().\s-]+$/.test(value);
+  const compact = value.replace(/[\s().-]/g, "");
+  return !compact || /^(0[237][0-9]{8}|\+40[237][0-9]{8})$/.test(compact);
 }
 
 function getTransporter() {
@@ -70,7 +71,8 @@ export async function POST(request: Request) {
     return Response.json(
       {
         ok: false,
-        message: "Telefonul poate conține doar cifre și semne de telefon.",
+        message:
+          "Introdu un număr de telefon valid: 07XXXXXXXX, 02XXXXXXXX, 03XXXXXXXX sau +407XXXXXXXX.",
       },
       { status: 400 },
     );

@@ -119,10 +119,11 @@ export function ContactForm() {
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            pattern="[0-9+().\s-]*"
-            maxLength={24}
+            pattern="(?:0[237][0-9]{8}|\+40[237][0-9]{8})"
+            title="Introdu un număr românesc valid: 07XXXXXXXX, 02XXXXXXXX, 03XXXXXXXX sau +407XXXXXXXX."
+            maxLength={12}
             onInput={handlePhoneInput}
-            placeholder="Opțional"
+            placeholder="07XXXXXXXX"
           />
         </label>
       </div>

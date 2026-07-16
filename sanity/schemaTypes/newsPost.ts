@@ -162,6 +162,7 @@ export const newsPost = defineType({
             defineField({ name: "caption", title: "Legendă", type: "string" }),
           ],
         },
+        { type: "newsTemplateBlock" },
       ],
     }),
     defineField({

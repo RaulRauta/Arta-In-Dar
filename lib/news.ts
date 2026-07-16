@@ -40,11 +40,44 @@ export type NewsPortableImage = {
   caption?: string;
 };
 
+export type NewsTemplateItem = {
+  _key?: string;
+  label?: string;
+  title?: string;
+  text?: string;
+};
+
+export type NewsTemplateBlock = {
+  _type: "newsTemplateBlock";
+  _key?: string;
+  preset?:
+    | "introImage"
+    | "galleryStory"
+    | "imageTextImage"
+    | "journal"
+    | "quoteContext"
+    | "announcement"
+    | "photoReport"
+    | "qa"
+    | "landmarks"
+    | "closingCta";
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+  secondaryText?: string;
+  quote?: string;
+  quoteAuthor?: string;
+  images?: NewsPortableImage[];
+  items?: NewsTemplateItem[];
+  linkLabel?: string;
+  linkHref?: string;
+};
+
 export type NewsPost = NewsPostCard & {
   lead?: string;
   heroImage?: string;
   heroImageAlt?: string;
-  content?: Array<PortableTextBlock | NewsPortableImage>;
+  content?: Array<PortableTextBlock | NewsPortableImage | NewsTemplateBlock>;
   gallery?: NewsPortableImage[];
   ctaLabel?: string;
   ctaHref?: string;
@@ -132,6 +165,14 @@ const newsPostQuery = groq`
         ...,
         "url": asset->url,
         "alt": coalesce(alt, ^.title)
+      },
+      _type == "newsTemplateBlock" => {
+        ...,
+        images[]{
+          ...,
+          "url": asset->url,
+          "alt": coalesce(alt, caption, "Imagine articol")
+        }
       }
     },
     gallery[]{

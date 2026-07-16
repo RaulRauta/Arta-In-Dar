@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type React from "react";
 import { ArrowUpRight } from "@/components/ui/icons";
-import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage } from "@/lib/news";
+import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage, type NewsTemplateBlock } from "@/lib/news";
 
 type NewsPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -51,8 +52,114 @@ const portableTextComponents: PortableTextComponents = {
         </figure>
       );
     },
+    newsTemplateBlock: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
   },
 };
+
+function TextLines({ text }: { text?: string }) {
+  if (!text) {
+    return null;
+  }
+
+  return (
+    <>
+      {text.split(/\n+/).map((line) => (
+        <p key={line}>{line}</p>
+      ))}
+    </>
+  );
+}
+
+function TemplateLink({ href, children }: { href?: string; children?: React.ReactNode }) {
+  if (!href || !children) {
+    return null;
+  }
+
+  if (href.startsWith("http")) {
+    return (
+      <a className="news-template__link" href={href} target="_blank" rel="noreferrer">
+        {children} <ArrowUpRight className="size-4" />
+      </a>
+    );
+  }
+
+  return (
+    <Link className="news-template__link" href={href}>
+      {children} <ArrowUpRight className="size-4" />
+    </Link>
+  );
+}
+
+function TemplateImages({ images, variant = "grid" }: { images?: NewsPortableImage[]; variant?: "grid" | "duo" | "strip" | "single" }) {
+  const usableImages = (images || []).filter((image) => image.url);
+
+  if (!usableImages.length) {
+    return null;
+  }
+
+  return (
+    <div className={`news-template__images news-template__images--${variant}`}>
+      {usableImages.map((image, index) => (
+        <figure key={image._key || `${image.url}-${index}`}>
+          <Image src={image.url || ""} alt={image.alt || ""} width={900} height={720} />
+          {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function TemplateItems({ items, ordered = false }: { items?: NewsTemplateBlock["items"]; ordered?: boolean }) {
+  const usableItems = (items || []).filter((item) => item.title || item.text || item.label);
+
+  if (!usableItems.length) {
+    return null;
+  }
+
+  return (
+    <div className={`news-template__items${ordered ? " news-template__items--ordered" : ""}`}>
+      {usableItems.map((item, index) => (
+        <article key={item._key || `${item.title}-${index}`}>
+          <small>{item.label || String(index + 1).padStart(2, "0")}</small>
+          {item.title ? <h4>{item.title}</h4> : null}
+          {item.text ? <p>{item.text}</p> : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function NewsTemplateBlockView({ block }: { block: NewsTemplateBlock }) {
+  const preset = block.preset || "introImage";
+
+  return (
+    <section className={`news-template news-template--${preset}`}>
+      <div className="news-template__copy">
+        {block.eyebrow ? <p className="news-template__eyebrow">{block.eyebrow}</p> : null}
+        {block.title ? <h3>{block.title}</h3> : null}
+
+        {preset === "quoteContext" ? (
+          <>
+            {block.quote ? <blockquote>{block.quote}</blockquote> : null}
+            {block.quoteAuthor ? <cite>{block.quoteAuthor}</cite> : null}
+          </>
+        ) : (
+          <TextLines text={block.text} />
+        )}
+
+        {block.secondaryText ? <TextLines text={block.secondaryText} /> : null}
+        <TemplateItems items={block.items} ordered={preset === "journal"} />
+        <TemplateLink href={block.linkHref}>{block.linkLabel}</TemplateLink>
+      </div>
+
+      {preset === "introImage" ? <TemplateImages images={block.images?.slice(0, 1)} variant="single" /> : null}
+      {preset === "galleryStory" ? <TemplateImages images={block.images} variant="grid" /> : null}
+      {preset === "imageTextImage" ? <TemplateImages images={block.images?.slice(0, 2)} variant="duo" /> : null}
+      {preset === "photoReport" ? <TemplateImages images={block.images} variant="strip" /> : null}
+      {preset === "closingCta" ? <TemplateImages images={block.images?.slice(0, 1)} variant="single" /> : null}
+    </section>
+  );
+}
 
 function AuthorAvatar({ author }: { author: NewsAuthor }) {
   if (author.image) {

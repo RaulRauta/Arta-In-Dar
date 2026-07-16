@@ -9,6 +9,14 @@ type SculptureGalleryProps = {
   artworks: PilgrimageArtwork[];
 };
 
+type ArtworkGallerySectionProps = {
+  artworks: PilgrimageArtwork[];
+  title: string;
+  eyebrow: string;
+  description: string;
+  emptyTitle: string;
+};
+
 function artworkTypeLabel(type: PilgrimageArtwork["type"]) {
   return type === "basorelief" ? "Basorelief" : "Sculptură";
 }
@@ -23,7 +31,13 @@ function ArtworkPlaceholder() {
   );
 }
 
-export function SculptureGallery({ artworks }: SculptureGalleryProps) {
+function ArtworkGallerySection({
+  artworks,
+  title,
+  eyebrow,
+  description,
+  emptyTitle,
+}: ArtworkGallerySectionProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
   const active = activeIndex === null ? null : artworks[activeIndex];
@@ -68,24 +82,17 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
   };
 
   return (
-    <section className="sculpture-gallery" id="galerie-sculpturi">
-      <div className="shell">
+    <div className="sculpture-gallery__section">
         <div className="sculpture-gallery__heading">
           <div>
-            <p className="eyebrow text-gold">
-              Mini-galerie · sculpturi și basoreliefuri
-            </p>
+            <p className="eyebrow text-gold">{eyebrow}</p>
             <h2>
-              Lucrări și artiști
+              {title}
               <br />
               <em>pe traseu.</em>
             </h2>
           </div>
-          <p>
-            O galerie în aer liber, ridicată din lemn, metal, imaginație și
-            muncă împreună. Selectează o lucrare pentru a-i deschide fișa, fără
-            să pierzi locul în galerie.
-          </p>
+          <p>{description}</p>
         </div>
 
         {artworksCount > 0 ? (
@@ -138,10 +145,10 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
         ) : (
           <div className="sculpture-gallery__empty">
             <p className="eyebrow text-terracotta">În pregătire</p>
-            <h3>Galeria va fi completată din Sanity.</h3>
+            <h3>{emptyTitle}</h3>
             <p>
-              Sculpturile și basoreliefurile vor apărea aici imediat ce sunt
-              adăugate în panoul de administrare.
+              Lucrările vor apărea aici imediat ce sunt adăugate în panoul de
+              administrare.
             </p>
           </div>
         )}
@@ -156,7 +163,6 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
             </button>
           </div>
         )}
-      </div>
 
       <AnimatePresence>
         {active && activeIndex !== null && (
@@ -261,6 +267,33 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+export function SculptureGallery({ artworks }: SculptureGalleryProps) {
+  const sculptures = artworks.filter((artwork) => artwork.type !== "basorelief");
+  const basoreliefs = artworks.filter((artwork) => artwork.type === "basorelief");
+
+  return (
+    <section className="sculpture-gallery" id="galerie-sculpturi">
+      <div className="shell sculpture-gallery__stack">
+        <ArtworkGallerySection
+          artworks={sculptures}
+          eyebrow="Mini-galerie · sculpturi"
+          title="Sculpturi și artiști"
+          description="Lucrările sculpturale așezate pe traseu transformă drumul într-o galerie în aer liber. Selectează o sculptură pentru a-i deschide fișa, fără să pierzi locul în galerie."
+          emptyTitle="Galeria de sculpturi va fi completată din Sanity."
+        />
+
+        <ArtworkGallerySection
+          artworks={basoreliefs}
+          eyebrow="Mini-galerie · basoreliefuri"
+          title="Basoreliefuri și autori"
+          description="Basoreliefurile păstrează memoria locului în suprafețe lucrate, povești și semne vizuale. Selectează un basorelief pentru a-i deschide fișa."
+          emptyTitle="Galeria de basoreliefuri va fi completată din Sanity."
+        />
+      </div>
     </section>
   );
 }

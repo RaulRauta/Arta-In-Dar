@@ -468,6 +468,16 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   margin-top:1rem;
 }
 
+.sculpture-gallery__stack{
+  display:grid;
+  gap:clamp(5rem,9vw,8rem);
+}
+
+.sculpture-gallery__section + .sculpture-gallery__section{
+  border-top:1px solid rgba(234,220,196,.13);
+  padding-top:clamp(4rem,8vw,7rem);
+}
+
 .sculpture-gallery__more{
   display:flex;
   justify-content:center;

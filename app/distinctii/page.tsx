@@ -1,25 +1,16 @@
 import type { Metadata } from "next";
 import { DistinctionsGallery } from "@/components/distinctions/distinctions-gallery";
 import { Reveal } from "@/components/home/reveal";
-import {
-  getDistinctions,
-  getDistinctionsPageContent,
-} from "@/lib/distinctions";
+import { getDistinctions } from "@/lib/distinctions";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const pageContent = await getDistinctionsPageContent();
-
-  return {
-    title: pageContent.seoTitle,
-    description: pageContent.seoDescription,
-  };
-}
+export const metadata: Metadata = {
+  title: "Distincții",
+  description:
+    "Distincțiile și recunoașterile primite de Asociația Arta în dar pentru proiecte culturale, voluntariat și patrimoniu local.",
+};
 
 export default async function DistinctionsPage() {
-  const [distinctions, pageContent] = await Promise.all([
-    getDistinctions(),
-    getDistinctionsPageContent(),
-  ]);
+  const distinctions = await getDistinctions();
   const years = new Set(distinctions.map((item) => item.year).filter(Boolean));
 
   const distinctionStats = [
@@ -48,18 +39,22 @@ export default async function DistinctionsPage() {
         </div>
         <div className="shell distinctions-hero__inner">
           <Reveal className="distinctions-hero__copy">
-            <p className="eyebrow">{pageContent.heroEyebrow}</p>
+            <p className="eyebrow">Semne de recunoaștere</p>
             <h1>
-              {pageContent.heroTitle}
-              <em> {pageContent.heroAccent}</em>
+              Distincții
+              <em> gravate în timp.</em>
             </h1>
-            <p>{pageContent.heroDescription}</p>
+            <p>
+              Nu le tratăm ca pe trofee de vitrină. Le așezăm ca mărturii ale
+              unei munci făcute cu oameni, pentru locuri care merită privite cu
+              mai multă grijă.
+            </p>
           </Reveal>
           <Reveal className="hero-medallion" delay={0.08}>
             <span className="hero-medallion__ribbon" />
             <div className="hero-medallion__coin">
-              <small>{pageContent.coinLabel}</small>
-              <strong>{pageContent.coinYears}</strong>
+              <small>Arta în dar</small>
+              <strong>2024—2026</strong>
               <i />
             </div>
           </Reveal>
@@ -72,10 +67,10 @@ export default async function DistinctionsPage() {
       >
         <div className="shell distinctions-ledger__inner">
           <Reveal>
-            <p className="eyebrow">{pageContent.ledgerEyebrow}</p>
+            <p className="eyebrow">Registru de onoare</p>
             <h2 id="distinctions-ledger-title">
-              {pageContent.ledgerTitle}
-              <em> {pageContent.ledgerAccent}</em>
+              Recunoaștere care nu închide povestea,
+              <em> o obligă să continue.</em>
             </h2>
           </Reveal>
           <div className="distinctions-stats">
@@ -93,21 +88,24 @@ export default async function DistinctionsPage() {
 
       <DistinctionsGallery
         distinctions={distinctions}
-        emptyTitle={pageContent.galleryEmptyTitle}
-        emptyDescription={pageContent.galleryEmptyDescription}
+        emptyTitle="Distincțiile vor fi adăugate din Sanity."
+        emptyDescription="Când vei adăuga prima distincție în panoul de administrare, ea va apărea automat aici."
       />
 
       <section className="distinctions-finale">
         <div className="shell distinctions-finale__inner">
           <Reveal>
-            <p className="eyebrow">{pageContent.finaleEyebrow}</p>
+            <p className="eyebrow">Dincolo de medalie</p>
             <h2>
-              {pageContent.finaleTitle}
-              <em> {pageContent.finaleAccent}</em>
+              Cea mai importantă distincție rămâne
+              <em> încrederea comunității.</em>
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p>{pageContent.finaleDescription}</p>
+            <p>
+              Fiecare recunoaștere spune că arta, voluntariatul și patrimoniul
+              local pot deveni un limbaj comun. De aici mergem mai departe.
+            </p>
           </Reveal>
         </div>
       </section>

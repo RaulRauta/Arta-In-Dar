@@ -48,7 +48,18 @@ export type NewsTemplateItem = {
 };
 
 export type NewsTemplateBlock = {
-  _type: "newsTemplateBlock";
+  _type:
+    | "newsTemplateBlock"
+    | "newsTemplateIntroImage"
+    | "newsTemplateGalleryStory"
+    | "newsTemplateImageTextImage"
+    | "newsTemplateJournal"
+    | "newsTemplateQuoteContext"
+    | "newsTemplateAnnouncement"
+    | "newsTemplatePhotoReport"
+    | "newsTemplateQa"
+    | "newsTemplateLandmarks"
+    | "newsTemplateClosingCta";
   _key?: string;
   preset?:
     | "introImage"
@@ -167,6 +178,14 @@ const newsPostQuery = groq`
         "alt": coalesce(alt, ^.title)
       },
       _type == "newsTemplateBlock" => {
+        ...,
+        images[]{
+          ...,
+          "url": asset->url,
+          "alt": coalesce(alt, caption, "Imagine articol")
+        }
+      },
+      _type in ["newsTemplateIntroImage", "newsTemplateGalleryStory", "newsTemplateImageTextImage", "newsTemplateJournal", "newsTemplateQuoteContext", "newsTemplateAnnouncement", "newsTemplatePhotoReport", "newsTemplateQa", "newsTemplateLandmarks", "newsTemplateClosingCta"] => {
         ...,
         images[]{
           ...,

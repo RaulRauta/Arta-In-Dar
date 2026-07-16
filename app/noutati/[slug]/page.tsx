@@ -53,6 +53,16 @@ const portableTextComponents: PortableTextComponents = {
       );
     },
     newsTemplateBlock: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateIntroImage: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateGalleryStory: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateImageTextImage: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateJournal: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateQuoteContext: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateAnnouncement: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplatePhotoReport: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateQa: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateLandmarks: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
+    newsTemplateClosingCta: ({ value }) => <NewsTemplateBlockView block={value as NewsTemplateBlock} />,
   },
 };
 
@@ -130,7 +140,22 @@ function TemplateItems({ items, ordered = false }: { items?: NewsTemplateBlock["
 }
 
 function NewsTemplateBlockView({ block }: { block: NewsTemplateBlock }) {
-  const preset = block.preset || "introImage";
+  const presetByType: Partial<Record<NewsTemplateBlock["_type"], NonNullable<NewsTemplateBlock["preset"]>>> = {
+    newsTemplateIntroImage: "introImage",
+    newsTemplateGalleryStory: "galleryStory",
+    newsTemplateImageTextImage: "imageTextImage",
+    newsTemplateJournal: "journal",
+    newsTemplateQuoteContext: "quoteContext",
+    newsTemplateAnnouncement: "announcement",
+    newsTemplatePhotoReport: "photoReport",
+    newsTemplateQa: "qa",
+    newsTemplateLandmarks: "landmarks",
+    newsTemplateClosingCta: "closingCta",
+  };
+  const preset =
+    block.preset ||
+    presetByType[block._type] ||
+    "introImage";
 
   return (
     <section className={`news-template news-template--${preset}`}>

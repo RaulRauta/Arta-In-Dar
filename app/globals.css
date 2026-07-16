@@ -8,6 +8,50 @@ body { margin:0; background:var(--cream); color:var(--ink); font-family:var(--fo
 ::selection { background:var(--gold); color:var(--ink); }
 a,button { -webkit-tap-highlight-color:transparent; }
 a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
+
+.studio-shell{
+  min-height:100vh;
+  background:#0f172a;
+  color:#f8fafc;
+}
+
+.studio-shell,
+.studio-shell *{
+  scroll-behavior:auto !important;
+}
+
+.studio-shell::view-transition-old(*),
+.studio-shell::view-transition-new(*),
+.studio-shell::view-transition-group(*){
+  animation:none !important;
+}
+
+.sanity-admin{
+  min-height:100vh;
+  height:100vh;
+  overflow:auto;
+  scrollbar-width:thin;
+  scrollbar-color:#34d399 #0f172a;
+}
+
+.sanity-admin::-webkit-scrollbar{
+  width:.7rem;
+  height:.7rem;
+}
+
+.sanity-admin::-webkit-scrollbar-track{
+  background:#0f172a;
+}
+
+.sanity-admin::-webkit-scrollbar-thumb{
+  border:2px solid #0f172a;
+  border-radius:999px;
+  background:linear-gradient(180deg,#34d399,#22d3ee);
+}
+
+.sanity-admin::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,#6ee7b7,#67e8f9);
+}
 .skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; background:var(--cream); color:var(--ink); padding:.75rem 1rem; transition:top .2s; }
 .skip-link:focus { top:1rem; }
 .shell { width:min(100% - 2rem, 1280px); margin-inline:auto; }

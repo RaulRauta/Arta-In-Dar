@@ -4,6 +4,9 @@ import { NextStudio } from "next-sanity/studio";
 import config from "@/sanity.config";
 
 export function SanityStudio() {
-  return <NextStudio config={config} />;
+  return (
+    <div className="sanity-admin">
+      <NextStudio config={config} />
+    </div>
+  );
 }
-

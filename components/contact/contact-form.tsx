@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { contactDetails, contactReasons } from "@/lib/contact-data";
 
@@ -8,7 +8,9 @@ type FormState = "idle" | "sending" | "success" | "fallback" | "error";
 
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
+  const [isActive, setIsActive] = useState(false);
   const [message, setMessage] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
   const [formSnapshot, setFormSnapshot] = useState<Record<string, string> | null>(
     null,
   );
@@ -36,6 +38,20 @@ export function ContactForm() {
     const input = event.currentTarget;
     input.value = input.value.replace(/[^\d+\s().-]/g, "");
   }
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (!formRef.current?.contains(event.target as Node)) {
+        setIsActive(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -81,7 +97,13 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      ref={formRef}
+      className={`contact-form${isActive ? " contact-form--active" : ""}`}
+      onFocus={() => setIsActive(true)}
+      onPointerDown={() => setIsActive(true)}
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         name="company"

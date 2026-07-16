@@ -24,7 +24,7 @@ function ArchiveImage({
 
 export function HomePage() {
   return (
-    <main>
+    <main className="home-page">
       <section className="hero relative flex min-h-[760px] items-end overflow-hidden bg-ink text-cream lg:min-h-screen">
         <Image
           src="/images/hero-arta-in-dar.png"

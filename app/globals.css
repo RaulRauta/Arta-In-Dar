@@ -9,6 +9,48 @@ body { margin:0; background:var(--cream); color:var(--ink); font-family:var(--fo
 a,button { -webkit-tap-highlight-color:transparent; }
 a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
 
+html{
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold) var(--cream);
+}
+
+body::-webkit-scrollbar{
+  width:.78rem;
+}
+
+body::-webkit-scrollbar-track{
+  background:var(--cream);
+}
+
+body::-webkit-scrollbar-thumb{
+  border:2px solid var(--cream);
+  border-radius:999px;
+  background:linear-gradient(180deg,var(--gold),var(--terracotta));
+}
+
+html:has(.home-page){scrollbar-color:#b86b45 #f7f1e8}
+html:has(.sculpture-page){scrollbar-color:#95836c #d9cbb4}
+html:has(.pilgrimage-page){scrollbar-color:#a94f37 #f3e9d8}
+html:has(.theatre-page){scrollbar-color:#d2a84f #160f10}
+html:has(.documents-page){scrollbar-color:#a24b36 #eadfce}
+html:has(.distinctions-page){scrollbar-color:#d2aa55 #17130f}
+html:has(.contact-page){scrollbar-color:#ad4936 #f3e7d4}
+
+body:has(.home-page)::-webkit-scrollbar-track{background:#f7f1e8}
+body:has(.home-page)::-webkit-scrollbar-thumb{border-color:#f7f1e8;background:linear-gradient(180deg,#c9a24d,#b86b45)}
+body:has(.sculpture-page)::-webkit-scrollbar-track{background:#d9cbb4}
+body:has(.sculpture-page)::-webkit-scrollbar-thumb{border-color:#d9cbb4;background:linear-gradient(180deg,#95836c,#382f29)}
+body:has(.pilgrimage-page)::-webkit-scrollbar-track{background:#f3e9d8}
+body:has(.pilgrimage-page)::-webkit-scrollbar-thumb{border-color:#f3e9d8;background:linear-gradient(180deg,#a94f37,#40362d)}
+body:has(.theatre-page)::-webkit-scrollbar-track{background:#160f10}
+body:has(.theatre-page)::-webkit-scrollbar-thumb{border-color:#160f10;background:linear-gradient(180deg,#d2a84f,#792f2b)}
+body:has(.documents-page)::-webkit-scrollbar-track{background:#eadfce}
+body:has(.documents-page)::-webkit-scrollbar-thumb{border-color:#eadfce;background:linear-gradient(180deg,#a24b36,#4a5d84)}
+body:has(.distinctions-page)::-webkit-scrollbar-track{background:#17130f}
+body:has(.distinctions-page)::-webkit-scrollbar-thumb{border-color:#17130f;background:linear-gradient(180deg,#f3d986,#a45f3f)}
+body:has(.contact-page)::-webkit-scrollbar-track{background:#f3e7d4}
+body:has(.contact-page)::-webkit-scrollbar-thumb{border-color:#f3e7d4;background:linear-gradient(180deg,#ad4936,#332721)}
+
 .studio-shell{
   width:100%;
   min-height:100vh;
@@ -98,6 +140,50 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   .sanity-admin :where(input, textarea, select){
     font-size:16px;
   }
+}
+
+/* Contact form activation — hârtia se apropie când scrii, se retrage când ieși din ea. */
+.contact-form-panel{
+  transition:
+    transform .48s cubic-bezier(.22,1,.36,1),
+    box-shadow .48s cubic-bezier(.22,1,.36,1),
+    background-color .48s ease;
+}
+
+.contact-form-panel:has(.contact-form--active){
+  background-color:#f2dfc1;
+  box-shadow:
+    1.25rem 1.35rem 0 rgba(0,0,0,.18),
+    0 2rem 5rem rgba(0,0,0,.22),
+    inset 0 0 0 1px rgba(173,73,54,.16);
+  transform:translateY(-.45rem) rotate(-.25deg);
+}
+
+.contact-form-panel:has(.contact-form--active)::after{
+  opacity:.18;
+  transform:rotate(132deg) translateX(-.4rem);
+}
+
+.contact-form{
+  transition:transform .48s cubic-bezier(.22,1,.36,1);
+}
+
+.contact-form--active{
+  transform:translateY(-.2rem);
+}
+
+.contact-form--active label span{
+  color:rgba(173,73,54,.78);
+}
+
+.contact-form--active input,
+.contact-form--active select,
+.contact-form--active textarea{
+  background:rgba(255,249,239,.55);
+}
+
+.contact-form--active button{
+  box-shadow:0 .8rem 1.8rem rgba(51,39,33,.2);
 }
 .skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; background:var(--cream); color:var(--ink); padding:.75rem 1rem; transition:top .2s; }
 .skip-link:focus { top:1rem; }

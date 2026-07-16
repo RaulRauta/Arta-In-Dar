@@ -5,13 +5,16 @@ import { Reveal } from "@/components/home/reveal";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { SculptureGallery } from "@/components/pilgrimage/sculpture-gallery";
 import { chapels, pilgrimageFacts, villages } from "@/lib/pilgrimage-data";
+import { getPilgrimageArtworks } from "@/lib/pilgrimage-artworks";
 
 export const metadata: Metadata = {
   title: "7 Capele, muzeu în aer liber",
   description: "Descoperă 7 Capele, muzeu în aer liber: 26 km prin Valea Siretului, șase capele istorice, artă contemporană și o a șaptea capelă imaterială.",
 };
 
-export default function PilgrimagePage() {
+export default async function PilgrimagePage() {
+  const artworks = await getPilgrimageArtworks();
+
   return (
     <main className="pilgrimage-page">
       <section className="pilgrimage-hero">
@@ -107,7 +110,7 @@ export default function PilgrimagePage() {
         </div>
       </section>
 
-      <SculptureGallery />
+      <SculptureGallery artworks={artworks} />
 
       <section className="pilgrimage-cta"><div className="shell"><Reveal className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow">Ultima filă rămâne nescrisă</p><h2>Drumul începe<br /><em>cu primul pas.</em></h2></div><div className="flex flex-wrap gap-3"><Link href="/contact" className="button-dark">Planifică o vizită <ArrowUpRight className="size-4" /></Link><Link href="/doneaza-fii-voluntar" className="pilgrimage-link">Ajută-ne să păstrăm traseul</Link></div></Reveal></div></section>
     </main>

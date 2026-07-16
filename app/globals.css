@@ -2579,3 +2579,84 @@ main :is(h1,h2,h3,h4) span{
 .team-modal__panel{
   color:#2d241f;
 }
+
+/* Documente · politica de confidențialitate */
+.archive-privacy{
+  position:relative;
+  overflow:hidden;
+  padding-block:7rem;
+  background:#d9cbb5;
+  color:#302821;
+}
+
+.archive-privacy::before{
+  content:"";
+  position:absolute;
+  left:-8rem;
+  bottom:-10rem;
+  width:28rem;
+  aspect-ratio:1;
+  border:1px dashed rgba(162,75,54,.22);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.archive-privacy__inner{
+  position:relative;
+  display:grid;
+  gap:3rem;
+  align-items:start;
+  border:1px solid rgba(48,40,33,.14);
+  background:rgba(247,239,225,.5);
+  padding:clamp(2rem,5vw,4rem);
+  box-shadow:.9rem 1rem 0 rgba(95,88,77,.12);
+}
+
+.archive-privacy h2{
+  margin-top:1rem;
+  font-family:var(--font-display);
+  font-size:clamp(3rem,6vw,5.8rem);
+  font-weight:500;
+  line-height:.9;
+  letter-spacing:-.045em;
+}
+
+.archive-privacy p{
+  max-width:42rem;
+  font-size:1rem;
+  line-height:1.85;
+  color:rgba(48,40,33,.72);
+}
+
+.archive-privacy p+p{
+  margin-top:1rem;
+}
+
+.archive-privacy a{
+  color:#a24b36;
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:.25rem;
+}
+
+@media(min-width:768px){
+  .archive-privacy__inner{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:767px){
+  .archive-privacy{
+    padding-block:5.5rem;
+  }
+
+  .archive-privacy__inner{
+    width:min(100%,22.5rem);
+    margin-inline:auto;
+    padding:1.4rem;
+  }
+
+  .archive-privacy h2{
+    font-size:clamp(3.2rem,14vw,5rem)!important;
+  }
+}

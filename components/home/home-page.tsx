@@ -40,7 +40,7 @@ export function HomePage() {
           <div className="max-w-4xl">
             <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.32em] text-gold">
               <span className="h-px w-10 bg-gold" />
-              Asociație culturală · România
+              Artă · voluntariat · patrimoniu
             </p>
             <h1 className="font-display text-[clamp(4.3rem,11vw,10.8rem)] leading-[1.04] tracking-[-.04em]">
               Arta

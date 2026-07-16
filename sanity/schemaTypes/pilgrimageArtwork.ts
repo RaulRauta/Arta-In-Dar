@@ -42,6 +42,7 @@ export const pilgrimageArtwork = defineType({
           title: "Text alternativ",
           type: "string",
           description: "Descriere scurtă pentru accesibilitate.",
+          validation: (rule) => rule.required().warning("Recomandat pentru accesibilitate."),
         }),
       ],
     }),

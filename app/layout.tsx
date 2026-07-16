@@ -16,7 +16,7 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://artaindar.ro"),
+  metadataBase: new URL("https://asociatiaartaindar.ro"),
   title: {
     default: "Asociația Arta în dar — Munca voluntară, arta la țară",
     template: "%s | Arta în dar",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Asociația Arta în dar aduce împreună arta, voluntariatul, patrimoniul local și comunitățile prin proiecte culturale vii.",
   keywords: [
     "Arta în dar",
-    "asociație culturală",
+    "Arta în dar",
     "voluntariat",
     "patrimoniu local",
     "turism cultural",

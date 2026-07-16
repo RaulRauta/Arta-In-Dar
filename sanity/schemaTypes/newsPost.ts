@@ -73,7 +73,14 @@ export const newsPost = defineType({
       title: "Imagine card",
       type: "image",
       options: { hotspot: true },
-      fields: [defineField({ name: "alt", title: "Text alternativ", type: "string" })],
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Text alternativ",
+          type: "string",
+          validation: (Rule) => Rule.required().warning("Recomandat pentru accesibilitate și SEO."),
+        }),
+      ],
     }),
     defineField({
       name: "lead",
@@ -87,7 +94,14 @@ export const newsPost = defineType({
       title: "Imagine principală articol",
       type: "image",
       options: { hotspot: true },
-      fields: [defineField({ name: "alt", title: "Text alternativ", type: "string" })],
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Text alternativ",
+          type: "string",
+          validation: (Rule) => Rule.required().warning("Recomandat pentru accesibilitate și SEO."),
+        }),
+      ],
     }),
     defineField({
       name: "content",
@@ -125,7 +139,12 @@ export const newsPost = defineType({
           type: "image",
           options: { hotspot: true },
           fields: [
-            defineField({ name: "alt", title: "Text alternativ", type: "string" }),
+            defineField({
+              name: "alt",
+              title: "Text alternativ",
+              type: "string",
+              validation: (Rule) => Rule.required().warning("Recomandat pentru accesibilitate și SEO."),
+            }),
             defineField({ name: "caption", title: "Legendă", type: "string" }),
           ],
         },
@@ -140,7 +159,12 @@ export const newsPost = defineType({
           type: "image",
           options: { hotspot: true },
           fields: [
-            defineField({ name: "alt", title: "Text alternativ", type: "string" }),
+            defineField({
+              name: "alt",
+              title: "Text alternativ",
+              type: "string",
+              validation: (Rule) => Rule.required().warning("Recomandat pentru accesibilitate și SEO."),
+            }),
             defineField({ name: "caption", title: "Legendă", type: "string" }),
           ],
         },

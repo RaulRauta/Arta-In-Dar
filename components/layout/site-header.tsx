@@ -74,7 +74,7 @@ export function SiteHeader() {
             </nav>
             <div className="relative z-10 mx-auto mt-8 flex max-w-7xl items-center justify-between border-t border-ink/15 pt-5 text-[8px] font-bold uppercase tracking-[.18em] text-ink/50 sm:text-[9px]">
               <span>Artă · Comunitate · Patrimoniu</span>
-              <span className="font-display text-xl font-normal normal-case italic text-terracotta sm:text-2xl">Arta ne unește.</span>
+              <span className="font-display text-xl font-normal normal-case italic text-terracotta sm:text-2xl">Arta unește.</span>
             </div>
           </motion.div>
         )}

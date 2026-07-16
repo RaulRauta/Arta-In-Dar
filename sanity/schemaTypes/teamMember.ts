@@ -35,6 +35,7 @@ export const teamMember = defineType({
           title: "Text alternativ",
           type: "string",
           description: "Descriere scurtă pentru accesibilitate.",
+          validation: (rule) => rule.required().warning("Recomandat pentru accesibilitate."),
         }),
       ],
     }),
@@ -79,4 +80,3 @@ export const teamMember = defineType({
     },
   },
 });
-

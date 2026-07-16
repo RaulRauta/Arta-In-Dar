@@ -9,7 +9,7 @@ export function Logo({ light = false }: { light?: boolean }) {
       </span>
       <span className="leading-none">
         <span className="block font-display text-xl">Arta în dar</span>
-        <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.26em] opacity-65">Asociație culturală</span>
+        <span className="mt-1 block text-[8px] font-semibold uppercase tracking-[0.26em] opacity-65">Artă · voluntariat · patrimoniu</span>
       </span>
     </Link>
   );

@@ -126,6 +126,26 @@ export default function DocumentsPage() {
           </Reveal>
         </div>
       </section>
+
+      <section className="archive-privacy" id="politica-de-confidentialitate" aria-labelledby="privacy-title">
+        <div className="shell archive-privacy__inner">
+          <Reveal>
+            <p className="eyebrow">Politica de confidențialitate</p>
+            <h2 id="privacy-title">Datele trimise rămân tratate cu grijă.</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p>
+              Formularul de contact colectează doar datele necesare pentru a putea răspunde mesajului:
+              nume, email, telefon opțional, motivul mesajului și conținutul transmis. Datele sunt
+              folosite exclusiv pentru comunicarea cu Asociația Arta în dar.
+            </p>
+            <p>
+              Pentru întrebări despre datele transmise prin site, ne poți scrie la{" "}
+              <a href="mailto:artaindar7@yahoo.com">artaindar7@yahoo.com</a>.
+            </p>
+          </Reveal>
+        </div>
+      </section>
     </main>
   );
 }

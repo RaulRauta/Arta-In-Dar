@@ -1,4 +1,6 @@
 import { defineField, defineType } from "sanity";
+import { PostTemplateInput } from "../components/post-template-input";
+import { newsPostTemplateOptions } from "../news-post-templates";
 
 export const newsPost = defineType({
   name: "newsPost",
@@ -124,19 +126,10 @@ export const newsPost = defineType({
       description:
         "Alege un format prestabilit pentru articol. Când alegi un tip, completezi câmpurile structurate de mai jos, nu construiești manual articolul din blocuri.",
       options: {
-        layout: "radio",
-        list: [
-          { title: "Liber · text și imagini manual", value: "free" },
-          { title: "3 poze · 5 rânduri de poveste", value: "threePhotosFiveRows" },
-          { title: "Reportaj foto · galerie mare + notițe", value: "photoReport" },
-          { title: "Anunț scurt · mesaj + buton", value: "shortAnnouncement" },
-          { title: "Interviu · întrebare și răspuns", value: "interview" },
-          { title: "Eveniment · recapitulare pe momente", value: "eventRecap" },
-          { title: "Înainte / după · două imagini + explicații", value: "beforeAfter" },
-          { title: "Jurnal de drum · pași cronologici", value: "travelJournal" },
-          { title: "Poveste de partener / voluntar", value: "profileStory" },
-          { title: "Citat central · context + imagine", value: "quoteFeature" },
-        ],
+        list: newsPostTemplateOptions,
+      },
+      components: {
+        input: PostTemplateInput,
       },
       initialValue: "free",
     }),

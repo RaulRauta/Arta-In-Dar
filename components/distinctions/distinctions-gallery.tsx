@@ -122,12 +122,10 @@ export function DistinctionsGallery({
               )}
             </div>
             <div className="distinction-card__copy">
-              <p>
-                {item.description ||
-                  "Prezentarea distincției va fi completată în curând."}
-              </p>
               <span className="distinction-card__open">
-                Deschide prezentarea <b>↗</b>
+                <i aria-hidden="true" />
+                Deschide fișa
+                <b>↗</b>
               </span>
             </div>
           </motion.button>

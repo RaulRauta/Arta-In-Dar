@@ -5,10 +5,15 @@ import { ArrowUpRight } from "@/components/ui/icons";
 import { contactDetails, contactReasons } from "@/lib/contact-data";
 
 type FormState = "idle" | "sending" | "success" | "fallback" | "error";
+type ContactReason = (typeof contactReasons)[number];
 
 export function ContactForm() {
   const [state, setState] = useState<FormState>("idle");
   const [isActive, setIsActive] = useState(false);
+  const [isReasonOpen, setIsReasonOpen] = useState(false);
+  const [selectedReason, setSelectedReason] = useState<ContactReason>(
+    contactReasons[0],
+  );
   const [message, setMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const [formSnapshot, setFormSnapshot] = useState<Record<string, string> | null>(
@@ -43,6 +48,7 @@ export function ContactForm() {
     function handlePointerDown(event: PointerEvent) {
       if (!formRef.current?.contains(event.target as Node)) {
         setIsActive(false);
+        setIsReasonOpen(false);
       }
     }
 
@@ -79,7 +85,11 @@ export function ContactForm() {
       if (response.ok && payload.ok) {
         setState(payload.fallback ? "fallback" : "success");
         setMessage(payload.message ?? "Mesajul a fost pregătit.");
-        if (!payload.fallback) form.reset();
+        if (!payload.fallback) {
+          form.reset();
+          setSelectedReason(contactReasons[0]);
+          setIsReasonOpen(false);
+        }
         return;
       }
 
@@ -150,16 +160,43 @@ export function ContactForm() {
         </label>
       </div>
 
-      <label>
+      <div className="contact-reason-field">
         <span>Motiv</span>
-        <select name="reason" defaultValue={contactReasons[0]}>
+        <input type="hidden" name="reason" value={selectedReason} />
+        <button
+          type="button"
+          className="contact-reason-trigger"
+          aria-haspopup="listbox"
+          aria-expanded={isReasonOpen}
+          onClick={() => setIsReasonOpen((current) => !current)}
+        >
+          <span>{selectedReason}</span>
+          <i aria-hidden="true">⌄</i>
+        </button>
+
+        <div
+          className={`contact-reason-menu${
+            isReasonOpen ? " contact-reason-menu--open" : ""
+          }`}
+          role="listbox"
+          aria-label="Alege motivul mesajului"
+        >
           {contactReasons.map((reason) => (
-            <option key={reason} value={reason}>
+            <button
+              type="button"
+              key={reason}
+              role="option"
+              aria-selected={reason === selectedReason}
+              onClick={() => {
+                setSelectedReason(reason);
+                setIsReasonOpen(false);
+              }}
+            >
               {reason}
-            </option>
+            </button>
           ))}
-        </select>
-      </label>
+        </div>
+      </div>
 
       <label>
         <span>Mesaj</span>

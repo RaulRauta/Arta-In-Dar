@@ -205,6 +205,134 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   .archive-cabinet__heading h2 em{font-size:.92em}
 }
 
+/* FlowCraftStudio · colaborator digital, păstrat separat de straturile sculpturale. */
+.flowcraft-collaborator{
+  position:relative;
+  overflow:hidden;
+  padding-block:clamp(4.5rem,9vw,7rem);
+  background:
+    radial-gradient(circle at 16% 18%,rgba(95,111,82,.18),transparent 28%),
+    radial-gradient(circle at 84% 70%,rgba(201,162,77,.18),transparent 30%),
+    linear-gradient(135deg,#1f2723,#101513 62%,#2b241f);
+  color:var(--cream);
+}
+
+.flowcraft-collaborator::before{
+  content:"";
+  position:absolute;
+  inset:1.25rem;
+  border:1px solid rgba(247,241,232,.1);
+  border-radius:2rem;
+  background-image:
+    linear-gradient(rgba(247,241,232,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(247,241,232,.035) 1px,transparent 1px);
+  background-size:3.5rem 3.5rem;
+  mask-image:linear-gradient(90deg,transparent,black 20%,black 80%,transparent);
+  pointer-events:none;
+}
+
+.flowcraft-collaborator__card{
+  position:relative;
+  display:grid;
+  gap:2rem;
+  align-items:center;
+  overflow:hidden;
+  border:1px solid rgba(247,241,232,.16);
+  border-radius:2.25rem;
+  padding:clamp(2rem,5vw,4rem);
+  background:
+    linear-gradient(135deg,rgba(247,241,232,.12),rgba(247,241,232,.04)),
+    rgba(255,255,255,.03);
+  box-shadow:0 2rem 5rem rgba(0,0,0,.28);
+  isolation:isolate;
+}
+
+.flowcraft-collaborator__card::after{
+  content:"FlowCraftStudio";
+  position:absolute;
+  right:-.8rem;
+  bottom:-.7rem;
+  z-index:-1;
+  max-width:100%;
+  font-family:var(--font-display);
+  font-size:clamp(3.2rem,12vw,9rem);
+  line-height:.8;
+  color:rgba(247,241,232,.045);
+  white-space:nowrap;
+}
+
+.flowcraft-collaborator .eyebrow{
+  color:var(--gold);
+}
+
+.flowcraft-collaborator h2{
+  margin-top:.8rem;
+  font-family:var(--font-display);
+  font-size:clamp(2.6rem,7vw,6.5rem);
+  line-height:.85;
+  letter-spacing:-.06em;
+}
+
+.flowcraft-collaborator p:not(.eyebrow){
+  margin-top:1.25rem;
+  max-width:43rem;
+  color:rgba(247,241,232,.72);
+  font-size:clamp(1rem,2vw,1.2rem);
+  line-height:1.8;
+}
+
+.flowcraft-collaborator__mark{
+  position:relative;
+  width:min(14rem,48vw);
+  aspect-ratio:1;
+  border-radius:35% 65% 54% 46% / 42% 32% 68% 58%;
+  background:
+    radial-gradient(circle at 35% 30%,rgba(201,162,77,.9),transparent 9%),
+    linear-gradient(135deg,rgba(95,111,82,.75),rgba(184,107,69,.78));
+  box-shadow:
+    inset 1.2rem 1.2rem 2.6rem rgba(255,255,255,.12),
+    inset -1.2rem -1.2rem 2.6rem rgba(0,0,0,.34),
+    0 1.5rem 4rem rgba(0,0,0,.28);
+}
+
+.flowcraft-collaborator__mark span{
+  position:absolute;
+  display:block;
+  border:1px solid rgba(247,241,232,.45);
+  border-radius:999px;
+}
+
+.flowcraft-collaborator__mark span:nth-child(1){
+  inset:18%;
+  transform:rotate(-18deg);
+}
+
+.flowcraft-collaborator__mark span:nth-child(2){
+  inset:31% 12% 35% 18%;
+  transform:rotate(24deg);
+}
+
+.flowcraft-collaborator__mark span:nth-child(3){
+  inset:13% 36% 12% 37%;
+  transform:rotate(42deg);
+}
+
+@media (min-width:768px){
+  .flowcraft-collaborator__card{
+    grid-template-columns:auto 1fr;
+  }
+}
+
+@media (max-width:767px){
+  .flowcraft-collaborator__card{
+    text-align:left;
+  }
+
+  .flowcraft-collaborator__mark{
+    width:min(10rem,58vw);
+  }
+}
+
 /* Text safety — titlurile rămân artistice, dar nu se mai calcă între ele. */
 :is(
   .heading-lg,

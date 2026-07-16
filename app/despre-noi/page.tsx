@@ -67,6 +67,27 @@ export default async function AboutPage() {
         <AboutTeam groups={teamGroups} />
       </div>
 
+      <section className="flowcraft-collaborator" aria-labelledby="flowcraft-title">
+        <div className="shell">
+          <Reveal className="flowcraft-collaborator__card">
+            <div className="flowcraft-collaborator__mark" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div>
+              <p className="eyebrow">Colaborator</p>
+              <h2 id="flowcraft-title">FlowCraftStudio</h2>
+              <p>
+                Un atelier digital care sprijină felul în care povestea Arta în
+                dar prinde formă online — cu grijă pentru imagine, ritm și
+                experiență.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="sculpture-cta">
         <div className="shell">
           <Reveal className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">

@@ -91,7 +91,21 @@ export function SiteFooter() {
         <div className="flex flex-col gap-3 pt-6 text-xs text-cream/45 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Asociația Arta în dar · Powered By{" "}
-            <span className="text-gold">FlowCraftStudio</span>
+            <a
+              href="https://flowcraftstudio.app/ro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[#34d399] transition hover:text-[#22d3ee]"
+            >
+              <Image
+                src="/images/flowcraft-logo-icon.png"
+                alt=""
+                width={14}
+                height={14}
+                className="size-3.5"
+              />
+              FlowCraftStudio
+            </a>
           </p>
           <div className="flex flex-wrap gap-5">
             <Link href="/documente#politica-de-confidentialitate">

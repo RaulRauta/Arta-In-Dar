@@ -211,21 +211,22 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   overflow:hidden;
   padding-block:clamp(4.5rem,9vw,7rem);
   background:
-    radial-gradient(circle at 16% 18%,rgba(95,111,82,.18),transparent 28%),
-    radial-gradient(circle at 84% 70%,rgba(201,162,77,.18),transparent 30%),
-    linear-gradient(135deg,#1f2723,#101513 62%,#2b241f);
-  color:var(--cream);
+    radial-gradient(circle at 18% 0%,rgba(52,211,153,.18),transparent 38%),
+    radial-gradient(circle at 82% 14%,rgba(34,211,238,.14),transparent 36%),
+    radial-gradient(circle at 48% 52%,rgba(14,165,233,.08),transparent 42%),
+    linear-gradient(180deg,#06131d 0%,#05121b 45%,#040b12 100%);
+  color:#fff;
 }
 
 .flowcraft-collaborator::before{
   content:"";
   position:absolute;
   inset:1.25rem;
-  border:1px solid rgba(247,241,232,.1);
+  border:1px solid rgba(34,211,238,.12);
   border-radius:2rem;
   background-image:
-    linear-gradient(rgba(247,241,232,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(247,241,232,.035) 1px,transparent 1px);
+    linear-gradient(rgba(52,211,153,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,211,238,.045) 1px,transparent 1px);
   background-size:3.5rem 3.5rem;
   mask-image:linear-gradient(90deg,transparent,black 20%,black 80%,transparent);
   pointer-events:none;
@@ -237,13 +238,16 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   gap:2rem;
   align-items:center;
   overflow:hidden;
-  border:1px solid rgba(247,241,232,.16);
+  border:1px solid rgba(34,211,238,.18);
   border-radius:2.25rem;
   padding:clamp(2rem,5vw,4rem);
   background:
-    linear-gradient(135deg,rgba(247,241,232,.12),rgba(247,241,232,.04)),
+    radial-gradient(circle at 20% 18%,rgba(52,211,153,.13),transparent 34%),
+    linear-gradient(135deg,rgba(7,24,36,.92),rgba(6,19,29,.76)),
     rgba(255,255,255,.03);
-  box-shadow:0 2rem 5rem rgba(0,0,0,.28);
+  box-shadow:
+    0 0 76px rgba(52,211,153,.1),
+    0 2rem 5rem rgba(0,0,0,.32);
   isolation:isolate;
 }
 
@@ -257,12 +261,12 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
   font-family:var(--font-display);
   font-size:clamp(3.2rem,12vw,9rem);
   line-height:.8;
-  color:rgba(247,241,232,.045);
+  color:rgba(52,211,153,.055);
   white-space:nowrap;
 }
 
 .flowcraft-collaborator .eyebrow{
-  color:var(--gold);
+  color:#34d399;
 }
 
 .flowcraft-collaborator h2{
@@ -276,45 +280,63 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--gold); outline-of
 .flowcraft-collaborator p:not(.eyebrow){
   margin-top:1.25rem;
   max-width:43rem;
-  color:rgba(247,241,232,.72);
+  color:rgba(255,255,255,.72);
   font-size:clamp(1rem,2vw,1.2rem);
   line-height:1.8;
 }
 
 .flowcraft-collaborator__mark{
   position:relative;
+  display:grid;
+  place-items:center;
   width:min(14rem,48vw);
   aspect-ratio:1;
-  border-radius:35% 65% 54% 46% / 42% 32% 68% 58%;
+  border:1px solid rgba(52,211,153,.16);
+  border-radius:1.9rem;
   background:
-    radial-gradient(circle at 35% 30%,rgba(201,162,77,.9),transparent 9%),
-    linear-gradient(135deg,rgba(95,111,82,.75),rgba(184,107,69,.78));
+    radial-gradient(circle,rgba(52,211,153,.16),transparent 68%),
+    rgba(52,211,153,.08);
   box-shadow:
-    inset 1.2rem 1.2rem 2.6rem rgba(255,255,255,.12),
-    inset -1.2rem -1.2rem 2.6rem rgba(0,0,0,.34),
-    0 1.5rem 4rem rgba(0,0,0,.28);
+    0 0 35px rgba(52,211,153,.12),
+    inset 0 0 32px rgba(34,211,238,.08);
 }
 
-.flowcraft-collaborator__mark span{
-  position:absolute;
-  display:block;
-  border:1px solid rgba(247,241,232,.45);
+.flowcraft-collaborator__logo{
+  width:min(5.75rem,42%);
+  height:auto;
+  filter:drop-shadow(0 0 20px rgba(52,211,153,.32));
+}
+
+.flowcraft-collaborator__link{
+  margin-top:1.6rem;
+  display:inline-flex;
+  width:fit-content;
+  align-items:center;
+  gap:.55rem;
+  border:1px solid rgba(52,211,153,.22);
   border-radius:999px;
+  background:rgba(52,211,153,.08);
+  padding:.8rem 1.05rem;
+  color:#34d399;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  box-shadow:0 0 26px rgba(52,211,153,.1);
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
 }
 
-.flowcraft-collaborator__mark span:nth-child(1){
-  inset:18%;
-  transform:rotate(-18deg);
-}
-
-.flowcraft-collaborator__mark span:nth-child(2){
-  inset:31% 12% 35% 18%;
-  transform:rotate(24deg);
-}
-
-.flowcraft-collaborator__mark span:nth-child(3){
-  inset:13% 36% 12% 37%;
-  transform:rotate(42deg);
+.flowcraft-collaborator__link:hover{
+  transform:translateY(-2px);
+  border-color:rgba(34,211,238,.4);
+  background:rgba(34,211,238,.1);
+  color:#22d3ee;
+  box-shadow:0 0 42px rgba(34,211,238,.16);
 }
 
 @media (min-width:768px){

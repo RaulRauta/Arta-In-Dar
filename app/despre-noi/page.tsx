@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { AboutTeam } from "@/components/about/about-team";
 import { Reveal } from "@/components/home/reveal";
@@ -70,10 +71,14 @@ export default async function AboutPage() {
       <section className="flowcraft-collaborator" aria-labelledby="flowcraft-title">
         <div className="shell">
           <Reveal className="flowcraft-collaborator__card">
-            <div className="flowcraft-collaborator__mark" aria-hidden="true">
-              <span />
-              <span />
-              <span />
+            <div className="flowcraft-collaborator__mark">
+              <Image
+                src="/images/flowcraft-logo-icon.png"
+                alt="FlowCraftStudio logo"
+                width={92}
+                height={92}
+                className="flowcraft-collaborator__logo"
+              />
             </div>
             <div>
               <p className="eyebrow">Colaborator</p>
@@ -83,6 +88,14 @@ export default async function AboutPage() {
                 dar prinde formă online — cu grijă pentru imagine, ritm și
                 experiență.
               </p>
+              <Link
+                href="https://flowcraftstudio.app/ro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flowcraft-collaborator__link"
+              >
+                Vizitează FlowCraftStudio <ArrowUpRight className="size-4" />
+              </Link>
             </div>
           </Reveal>
         </div>

@@ -3,6 +3,7 @@ export const navigation = [
   { label: "Despre noi", href: "/despre-noi", art: "sculpture", kicker: "Formă și materie", story: "O poveste cioplită în timp, gest cu gest." },
   { label: "7 Capele, muzeu în aer liber", href: "/pelerinaj-7-capele", art: "manuscript", kicker: "Jurnal de călătorie", story: "Șapte opriri, un drum desenat de mână." },
   { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar", art: "theatre", kicker: "Scena comunității", story: "Intră în lumină. Povestea are nevoie și de tine." },
+  { label: "Noutăți", href: "/noutati", art: "music", kicker: "Partitură vie", story: "Vești, evenimente și oameni care dau ritm comunității." },
   { label: "Documente", href: "/documente", art: "archive", kicker: "Arhiva deschisă", story: "Urmele clare ale lucrurilor făcute cu rost." },
   { label: "Distincții", href: "/distinctii", art: "medallion", kicker: "Semne de recunoaștere", story: "Momente care ne onorează și ne obligă să continuăm." },
   { label: "Contact", href: "/contact", art: "calligraphy", kicker: "O scrisoare deschisă", story: "Orice proiect frumos începe cu un «bună»." },

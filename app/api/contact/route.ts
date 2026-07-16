@@ -2,7 +2,11 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
-const CONTACT_TO = process.env.CONTACT_TO_EMAIL || "artaindar7@yahoo.com";
+function envValue(name: string, fallback = "") {
+  return (process.env[name] || fallback).trim().replace(/^["']|["']$/g, "");
+}
+
+const CONTACT_TO = envValue("CONTACT_TO_EMAIL", "artaindar7@yahoo.com");
 
 function clean(value: FormDataEntryValue | null) {
   return String(value ?? "").trim();
@@ -22,17 +26,17 @@ function escapeHtml(value: string) {
 }
 
 function getTransporter() {
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const user = envValue("SMTP_USER");
+  const pass = envValue("SMTP_PASS").replace(/\s+/g, "");
 
   if (!user || !pass) {
     return null;
   }
 
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.mail.yahoo.com",
-    port: Number(process.env.SMTP_PORT || 465),
-    secure: process.env.SMTP_SECURE !== "false",
+    host: envValue("SMTP_HOST", "smtp.mail.yahoo.com"),
+    port: Number(envValue("SMTP_PORT", "465")),
+    secure: envValue("SMTP_SECURE", "true") !== "false",
     auth: { user, pass },
     connectionTimeout: 15000,
     greetingTimeout: 15000,
@@ -72,9 +76,9 @@ export async function POST(request: Request) {
   console.info("Contact form SMTP config", {
     hasUser: Boolean(process.env.SMTP_USER),
     hasPass: Boolean(process.env.SMTP_PASS),
-    host: process.env.SMTP_HOST || "smtp.mail.yahoo.com",
-    port: process.env.SMTP_PORT || "465",
-    secure: process.env.SMTP_SECURE || "true",
+    host: envValue("SMTP_HOST", "smtp.mail.yahoo.com"),
+    port: envValue("SMTP_PORT", "465"),
+    secure: envValue("SMTP_SECURE", "true"),
     to: CONTACT_TO,
   });
 
@@ -97,26 +101,29 @@ export async function POST(request: Request) {
   const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
   try {
+    const smtpUser = envValue("SMTP_USER");
+    const plainText = [
+      "Mesaj nou primit din formularul site-ului Arta in dar.",
+      "",
+      `Nume: ${name}`,
+      `Email: ${email}`,
+      `Telefon: ${phone || "-"}`,
+      `Motiv: ${reason || "Contact site"}`,
+      "",
+      message,
+    ].join("\n");
+
     const result = await transporter.sendMail({
-      from: `"Arta in dar" <${process.env.SMTP_USER}>`,
-      sender: process.env.SMTP_USER,
+      from: `"Arta in dar" <${smtpUser}>`,
+      sender: smtpUser,
       to: CONTACT_TO,
       replyTo: email,
       subject: `Mesaj site Arta in dar - ${reason || "Contact"}`,
       envelope: {
-        from: process.env.SMTP_USER,
+        from: smtpUser,
         to: CONTACT_TO,
       },
-      text: [
-        "Mesaj nou primit din formularul site-ului Arta in dar.",
-        "",
-        `Nume: ${name}`,
-        `Email: ${email}`,
-        `Telefon: ${phone || "-"}`,
-        `Motiv: ${reason || "Contact site"}`,
-        "",
-        message,
-      ].join("\n"),
+      text: plainText,
       html: `
         <div style="font-family:Arial,sans-serif;line-height:1.6;color:#2D241F">
           <h2 style="margin:0 0 16px">Mesaj nou din formularul Arta in dar</h2>
@@ -141,6 +148,51 @@ export async function POST(request: Request) {
       message: "Mesajul a fost trimis. Mulțumim!",
     });
   } catch (error) {
+    const smtpUser = envValue("SMTP_USER");
+    const responseCode =
+      typeof error === "object" && error && "responseCode" in error
+        ? Number(error.responseCode)
+        : null;
+
+    if (responseCode === 550 && transporter && smtpUser) {
+      try {
+        console.warn("Contact form normal email failed with 550. Trying plain-text fallback.");
+
+        const fallbackResult = await transporter.sendMail({
+          from: smtpUser,
+          to: CONTACT_TO,
+          subject: "Contact site Arta in dar",
+          envelope: {
+            from: smtpUser,
+            to: CONTACT_TO,
+          },
+          text: [
+            "Mesaj nou primit din formularul site-ului.",
+            "",
+            `Nume: ${name}`,
+            `Email: ${email}`,
+            `Telefon: ${phone || "-"}`,
+            `Motiv: ${reason || "Contact site"}`,
+            "",
+            message,
+          ].join("\n"),
+        });
+
+        console.info("Contact form fallback email sent", {
+          messageId: fallbackResult.messageId,
+          accepted: fallbackResult.accepted,
+          rejected: fallbackResult.rejected,
+        });
+
+        return Response.json({
+          ok: true,
+          message: "Mesajul a fost trimis. Mulțumim!",
+        });
+      } catch (fallbackError) {
+        console.error("Contact form fallback email failed", fallbackError);
+      }
+    }
+
     console.error("Contact form email failed", error);
     return Response.json(
       {

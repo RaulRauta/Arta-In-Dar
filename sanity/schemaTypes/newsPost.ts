@@ -196,6 +196,26 @@ export const newsPost = defineType({
             defineField({ name: "label", title: "Etichetă", type: "string", validation: (Rule) => Rule.max(60) }),
             defineField({ name: "title", title: "Titlu", type: "string", validation: (Rule) => Rule.max(100) }),
             defineField({ name: "text", title: "Text", type: "text", rows: 4, validation: (Rule) => Rule.max(520) }),
+            defineField({
+              name: "background",
+              title: "Fundal text",
+              type: "string",
+              description:
+                "Alege cum este așezat acest text în articol. «Automat» păstrează ritmul vizual al șablonului.",
+              initialValue: "auto",
+              options: {
+                layout: "radio",
+                list: [
+                  { title: "Automat / ritmul șablonului", value: "auto" },
+                  { title: "Fără fundal", value: "none" },
+                  { title: "Hârtie caldă", value: "paper" },
+                  { title: "Portativ discret", value: "staff" },
+                  { title: "Accent auriu", value: "gold" },
+                  { title: "Accent teracotă", value: "terracotta" },
+                  { title: "Fundal închis", value: "dark" },
+                ],
+              },
+            }),
           ],
           preview: {
             select: { title: "title", subtitle: "label" },

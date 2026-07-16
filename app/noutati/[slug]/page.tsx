@@ -222,7 +222,10 @@ function StructuredRows({ rows, template }: { rows?: NewsTemplateBlock["items"];
   return (
     <div className={`news-structured__rows news-structured__rows--${template || "free"}`}>
       {limitedRows.map((row, index) => (
-        <article key={row._key || `${row.title}-${index}`}>
+        <article
+          className={`news-structured__row-card news-structured__row-card--${row.background || "auto"}`}
+          key={row._key || `${row.title}-${index}`}
+        >
           <small>{row.label || String(index + 1).padStart(2, "0")}</small>
           {row.title ? <h3>{row.title}</h3> : null}
           {row.text ? <p>{row.text}</p> : null}
@@ -410,7 +413,11 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
         <NewsEnsemble author={post.author} coAuthors={post.coAuthors} />
 
         <section className="news-article">
-          <div className="shell news-article__sheet">
+          <div
+            className={`shell news-article__sheet${
+              post.postTemplate && post.postTemplate !== "free" ? " news-article__sheet--composed" : ""
+            }`}
+          >
             {post.postTemplate && post.postTemplate !== "free" ? (
               <NewsStructuredPost post={post} />
             ) : post.content?.length ? (

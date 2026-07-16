@@ -45,6 +45,7 @@ export type NewsTemplateItem = {
   label?: string;
   title?: string;
   text?: string;
+  background?: "auto" | "none" | "paper" | "staff" | "gold" | "terracotta" | "dark";
 };
 
 export type NewsTemplateBlock = {

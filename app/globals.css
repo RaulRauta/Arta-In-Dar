@@ -566,7 +566,7 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
   .contact-envelope i{right:4.2rem;bottom:3.35rem;width:5rem;opacity:.45}
   .contact-side-notes{gap:.75rem}
   .contact-side-notes article{padding:1.35rem 1.15rem}
-  .contact-side-notes a,.contact-side-notes p{font-size:clamp(1.45rem,8.4vw,2.15rem);line-height:1.08;overflow-wrap:anywhere}
+  .contact-side-notes a,.contact-side-notes p{font-size:clamp(1.45rem,8.4vw,2.15rem);line-height:1.08;overflow-wrap:break-word;word-break:normal}
   .contact-side-notes small{font-size:.82rem}
   .archive-cabinet__heading h2{max-width:21rem;font-size:clamp(3.05rem,14vw,4.65rem);line-height:.82}
   .archive-cabinet__heading h2 em{font-size:.92em}
@@ -1260,8 +1260,9 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 
   .distinction-card__plate h2{
     min-height:0;
-    overflow-wrap:anywhere;
-    hyphens:auto;
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
   }
 
   .distinction-card__image{
@@ -1399,7 +1400,9 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
   .contact-side-notes a,
   .contact-side-notes p
 ){
-  overflow-wrap:anywhere;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
   text-wrap:balance;
 }
 
@@ -1706,7 +1709,9 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 
 main :is(h1,h2,h3,h4){
   line-height:1.04!important;
-  overflow-wrap:anywhere;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
   text-wrap:balance;
 }
 
@@ -1742,7 +1747,9 @@ main :is(h1,h2,h3,h4) span{
 @layer utilities{
   main :where(h1,h2,h3,h4){
     line-height:1.06!important;
-    overflow-wrap:anywhere;
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
     text-wrap:balance;
   }
 
@@ -3463,6 +3470,20 @@ main :is(h1,h2,h3,h4) span{
 .documents-page .documents-hero .documents-hero__copy .eyebrow,
 .documents-page .documents-hero h1 em{
   color:#dce4d1;
+}
+
+.documents-page .documents-hero h1{
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+}
+
+@media(max-width:767px){
+  .documents-page .documents-hero h1{
+    max-width:100%;
+    font-size:clamp(3.95rem,18.2vw,6.2rem);
+    line-height:.86!important;
+  }
 }
 
 .news-ensemble{

@@ -814,22 +814,158 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
   outline-offset:4px;
 }
 
+.distinctions-gallery .distinction-card{
+  gap:0;
+  overflow:visible;
+  border:0;
+  border-radius:.35rem;
+  background:
+    linear-gradient(145deg,rgba(255,246,225,.98),rgba(214,190,143,.92)),
+    var(--medal-paper);
+  padding:clamp(.85rem,1.6vw,1.15rem);
+  color:var(--medal-ink);
+  box-shadow:
+    .8rem .9rem 0 rgba(0,0,0,.16),
+    0 2rem 5rem rgba(0,0,0,.24);
+}
+
+.distinctions-gallery .distinction-card::before{
+  inset:.85rem;
+  border:1px solid rgba(44,35,25,.14);
+  background:
+    linear-gradient(90deg,rgba(44,35,25,.18) 0 1px,transparent 1px) 1rem 1rem/3.6rem 1px no-repeat,
+    linear-gradient(90deg,rgba(44,35,25,.18) 0 1px,transparent 1px) calc(100% - 1rem) calc(100% - 1rem)/3.6rem 1px no-repeat;
+  opacity:.9;
+}
+
+.distinctions-gallery .distinction-card::after{
+  content:"";
+  position:absolute;
+  right:1.35rem;
+  bottom:1.35rem;
+  width:5.25rem;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 28%,#fff2b5 0,#d2aa55 38%,#7d5728 82%);
+  box-shadow:
+    inset 0 0 0 .32rem rgba(255,239,178,.22),
+    inset 0 0 0 .75rem rgba(65,44,22,.18),
+    0 .8rem 1.7rem rgba(44,35,25,.2);
+  opacity:.9;
+  pointer-events:none;
+  transition:transform .42s ease,filter .42s ease;
+}
+
+.distinctions-gallery .distinction-card:hover{
+  border-color:transparent;
+  box-shadow:
+    1.05rem 1.15rem 0 rgba(164,95,63,.16),
+    0 2.8rem 5.8rem rgba(0,0,0,.32);
+  transform:translateY(-.65rem) rotate(-.35deg);
+}
+
+.distinctions-gallery .distinction-card:hover::after{
+  filter:brightness(1.08) saturate(1.08);
+  transform:translateY(-.25rem) rotate(8deg);
+}
+
+.distinctions-gallery .distinction-card__plate{
+  min-height:12.5rem;
+  border:1px solid rgba(44,35,25,.11);
+  background:
+    radial-gradient(circle at 14% 20%,rgba(255,255,255,.46),transparent 9rem),
+    repeating-linear-gradient(0deg,transparent 0 1.15rem,rgba(44,35,25,.045) 1.18rem 1.22rem),
+    linear-gradient(135deg,#f8ecd4,#e5cf9f);
+  color:var(--medal-ink);
+  box-shadow:none;
+}
+
+.distinctions-gallery .distinction-card__plate::before,
+.distinctions-gallery .distinction-card__plate::after{
+  content:"";
+  position:absolute;
+  width:2.8rem;
+  height:2.8rem;
+  border-color:rgba(158,89,57,.32);
+  pointer-events:none;
+}
+
+.distinctions-gallery .distinction-card__plate::before{
+  left:.7rem;
+  top:.7rem;
+  border-left:1px solid;
+  border-top:1px solid;
+}
+
+.distinctions-gallery .distinction-card__plate::after{
+  right:.7rem;
+  bottom:.7rem;
+  border-right:1px solid;
+  border-bottom:1px solid;
+}
+
+.distinctions-gallery .distinction-card__plate span{
+  border-color:rgba(158,89,57,.38);
+  background:rgba(247,241,232,.38);
+  color:#8f4e32;
+}
+
+.distinctions-gallery .distinction-card__plate h2{
+  max-width:31rem;
+  color:var(--medal-ink);
+  text-shadow:none;
+}
+
+.distinctions-gallery .distinction-card__plate p{
+  color:rgba(44,35,25,.6);
+  opacity:1;
+}
+
+.distinctions-gallery .distinction-card__image{
+  min-height:22rem;
+  margin-top:.85rem;
+  border:1px solid rgba(44,35,25,.1);
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.34),transparent 45%),
+    #efe1c8;
+  box-shadow:inset 0 0 0 .65rem rgba(44,35,25,.055);
+}
+
+.distinctions-gallery .distinction-card__copy{
+  padding:.85rem .25rem 0;
+}
+
 .distinction-card__open{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-top:1.15rem;
-  border-top:1px solid rgba(239,225,200,.14);
-  padding-top:1rem;
-  color:rgba(239,225,200,.66);
+  position:relative;
+  z-index:2;
+  margin-top:.3rem;
+  border-top:1px solid rgba(44,35,25,.16);
+  padding-top:.85rem;
+  color:#8f4e32;
   font-size:.58rem;
   font-weight:900;
   letter-spacing:.14em;
   text-transform:uppercase;
 }
 
+.distinction-card__open i{
+  display:block;
+  width:2.6rem;
+  height:1px;
+  background:linear-gradient(90deg,#8f4e32,transparent);
+  transition:width .35s ease;
+}
+
+.distinction-card:hover .distinction-card__open i{
+  width:4rem;
+}
+
 .distinction-card__open b{
-  color:var(--medal-gold-light);
+  color:#8f4e32;
   font-size:1rem;
 }
 

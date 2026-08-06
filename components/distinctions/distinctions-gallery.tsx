@@ -124,7 +124,7 @@ export function DistinctionsGallery({
             <div className="distinction-card__copy">
               <span className="distinction-card__open">
                 <i aria-hidden="true" />
-                Deschide fișa
+                Vezi povestea
                 <b>↗</b>
               </span>
             </div>

@@ -179,7 +179,25 @@ export const newsPost = defineType({
           ],
         },
       ],
-      validation: (Rule) => Rule.max(12),
+      validation: (Rule) =>
+        Rule.max(12).custom((images, context) => {
+          const template = String(context?.document?.postTemplate || "");
+          const count = Array.isArray(images) ? images.length : 0;
+
+          if (template === "threePhotosFiveRows" && count !== 3) {
+            return "Șablonul «3 poze + 5 rânduri» are nevoie de exact 3 imagini.";
+          }
+
+          if (template === "beforeAfter" && count !== 2) {
+            return "Șablonul «Înainte / După» are nevoie de exact 2 imagini.";
+          }
+
+          if (template === "photoReport" && count < 3) {
+            return "Șablonul «Reportaj foto» are nevoie de minimum 3 imagini.";
+          }
+
+          return true;
+        }),
     }),
     defineField({
       name: "templateRows",

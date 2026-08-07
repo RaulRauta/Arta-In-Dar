@@ -25,7 +25,7 @@ function ArchiveImage({
 export function HomePage() {
   return (
     <main className="home-page">
-      <section className="hero relative flex min-h-[760px] items-end overflow-hidden bg-ink text-cream lg:min-h-screen">
+      <section className="hero home-hero relative flex min-h-[760px] items-end overflow-hidden bg-ink text-cream lg:min-h-screen">
         <Image
           src="/images/hero-arta-in-dar.png"
           alt="Trei generații creează împreună, la o masă cu flori, ceramică și fotografii vechi"
@@ -36,18 +36,18 @@ export function HomePage() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(45,36,31,.86)_0%,rgba(45,36,31,.47)_43%,rgba(45,36,31,.05)_78%),linear-gradient(0deg,rgba(45,36,31,.65),transparent_55%)]" />
         <div className="paper-noise absolute inset-0 opacity-30 mix-blend-soft-light" />
-        <div className="shell relative z-10 pb-16 pt-36 lg:pb-20">
-          <div className="max-w-4xl">
-            <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.32em] text-gold">
+        <div className="shell home-hero__content relative z-10 pb-16 pt-36 lg:pb-20">
+          <div className="home-hero__copy max-w-4xl">
+            <p className="home-hero__eyebrow mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.32em] text-gold">
               <span className="h-px w-10 bg-gold" />
               Artă · voluntariat · patrimoniu
             </p>
-            <h1 className="font-display text-[clamp(4.3rem,11vw,10.8rem)] leading-[1.04] tracking-[-.04em]">
+            <h1 className="home-hero__title font-display text-[clamp(4.3rem,11vw,10.8rem)] leading-[1.04] tracking-[-.04em]">
               Arta
               <br />
               <span className="ml-[.12em] italic text-gold">unește.</span>
             </h1>
-            <div className="mt-10 flex max-w-2xl flex-col gap-7 border-l border-cream/35 pl-5 sm:flex-row sm:items-end sm:justify-between">
+            <div className="home-hero__lead mt-10 flex max-w-2xl flex-col gap-7 border-l border-cream/35 pl-5 sm:flex-row sm:items-end sm:justify-between">
               <p className="max-w-md text-base leading-relaxed text-cream/80 sm:text-lg">
                 Munca voluntară aduce arta la țară și ne face mai puternici, mai
                 buni, mai aproape.

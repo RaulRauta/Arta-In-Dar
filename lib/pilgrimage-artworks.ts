@@ -4,7 +4,7 @@ import { sanityClient } from "@/lib/sanity-client";
 export type PilgrimageArtwork = {
   id: string;
   title: string;
-  type: "sculptura" | "basorelief";
+  type: "sculptura" | "basorelief" | "picturaMurala";
   artist: string;
   image?: string;
   imageAlt?: string;

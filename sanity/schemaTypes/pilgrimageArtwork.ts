@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const pilgrimageArtwork = defineType({
   name: "pilgrimageArtwork",
-  title: "7 Capele · Sculptură / Basorelief",
+  title: "7 Capele · Lucrări de artă",
   type: "document",
   fields: [
     defineField({
@@ -21,6 +21,7 @@ export const pilgrimageArtwork = defineType({
         list: [
           { title: "Sculptură", value: "sculptura" },
           { title: "Basorelief", value: "basorelief" },
+          { title: "Pictură murală", value: "picturaMurala" },
         ],
       },
       validation: (rule) => rule.required(),
@@ -75,7 +76,12 @@ export const pilgrimageArtwork = defineType({
       media: "image",
     },
     prepare({ title, artist, type }) {
-      const label = type === "basorelief" ? "Basorelief" : "Sculptură";
+      const label =
+        type === "basorelief"
+          ? "Basorelief"
+          : type === "picturaMurala"
+            ? "Pictură murală"
+            : "Sculptură";
 
       return {
         title,

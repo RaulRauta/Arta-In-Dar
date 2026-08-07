@@ -18,7 +18,10 @@ type ArtworkGallerySectionProps = {
 };
 
 function artworkTypeLabel(type: PilgrimageArtwork["type"]) {
-  return type === "basorelief" ? "Basorelief" : "Sculptură";
+  if (type === "basorelief") return "Basorelief";
+  if (type === "picturaMurala") return "Pictură murală";
+
+  return "Sculptură";
 }
 
 function ArtworkPlaceholder() {
@@ -272,8 +275,11 @@ function ArtworkGallerySection({
 }
 
 export function SculptureGallery({ artworks }: SculptureGalleryProps) {
-  const sculptures = artworks.filter((artwork) => artwork.type !== "basorelief");
+  const sculptures = artworks.filter((artwork) => artwork.type === "sculptura");
   const basoreliefs = artworks.filter((artwork) => artwork.type === "basorelief");
+  const muralPaintings = artworks.filter(
+    (artwork) => artwork.type === "picturaMurala",
+  );
 
   return (
     <section className="sculpture-gallery" id="galerie-sculpturi">
@@ -292,6 +298,14 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           title="Basoreliefuri și autori"
           description="Basoreliefurile păstrează memoria locului în suprafețe lucrate, povești și semne vizuale. Selectează un basorelief pentru a-i deschide fișa."
           emptyTitle="Galeria de basoreliefuri va fi completată din Sanity."
+        />
+
+        <ArtworkGallerySection
+          artworks={muralPaintings}
+          eyebrow="Mini-galerie · picturi murale"
+          title="Picturi murale și artiști"
+          description="Picturile murale adaugă culoare traseului și transformă spațiile în pagini vii ale muzeului în aer liber. Selectează o pictură murală pentru a-i deschide povestea."
+          emptyTitle="Galeria de picturi murale va fi completată din Sanity."
         />
       </div>
     </section>

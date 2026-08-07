@@ -88,8 +88,8 @@ export default async function DistinctionsPage() {
 
       <DistinctionsGallery
         distinctions={distinctions}
-        emptyTitle="Distincțiile vor fi adăugate din Sanity."
-        emptyDescription="Când vei adăuga prima distincție în panoul de administrare, ea va apărea automat aici."
+        emptyTitle="Distincțiile își pregătesc locul în galerie."
+        emptyDescription="Această pagină va aduna recunoașterile primite de asociație și poveștile din spatele lor."
       />
 
       <section className="distinctions-finale">

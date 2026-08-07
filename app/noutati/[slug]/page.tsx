@@ -424,8 +424,8 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
               <PortableText value={post.content} components={portableTextComponents} />
             ) : (
               <p>
-                Conținutul acestei noutăți urmează să fie completat în Sanity. Cardul există deja,
-                iar pagina este pregătită pentru text, imagini și detalii.
+                Povestea acestei noutăți se pregătește. În curând, pagina va
+                aduna aici text, imagini și detalii.
               </p>
             )}
 

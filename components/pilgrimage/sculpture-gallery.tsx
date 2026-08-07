@@ -150,8 +150,8 @@ function ArtworkGallerySection({
             <p className="eyebrow text-terracotta">În pregătire</p>
             <h3>{emptyTitle}</h3>
             <p>
-              Lucrările vor apărea aici imediat ce sunt adăugate în panoul de
-              administrare.
+              Această galerie se pregătește pentru a aduna lucrările, artiștii
+              și poveștile care dau traseului chipul său viu.
             </p>
           </div>
         )}
@@ -193,7 +193,7 @@ function ArtworkGallerySection({
             >
               <div className="sculpture-modal__bar">
                 <span>
-                  Fișa {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                  Povestea {String(activeIndex + 1).padStart(2, "0")} /{" "}
                   {artworksCount}
                 </span>
                 <strong>Galeria traseului</strong>
@@ -246,7 +246,7 @@ function ArtworkGallerySection({
                       </div>
                     ) : (
                       <p className="sculpture-modal__description">
-                        Povestea lucrării va fi completată în curând.
+                        Povestea acestei lucrări va prinde contur în curând.
                       </p>
                     )}
                   </div>
@@ -289,7 +289,7 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           eyebrow="Mini-galerie · sculpturi"
           title="Sculpturi și artiști"
           description="Lucrările sculpturale așezate pe traseu transformă drumul într-o galerie în aer liber. Alege o sculptură pentru a descoperi autorul, povestea și detaliile lucrării."
-          emptyTitle="Galeria de sculpturi va fi completată din Sanity."
+          emptyTitle="Galeria de sculpturi este în pregătire."
         />
 
         <ArtworkGallerySection
@@ -297,15 +297,15 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           eyebrow="Mini-galerie · basoreliefuri"
           title="Basoreliefuri și autori"
           description="Basoreliefurile păstrează memoria locului în suprafețe lucrate, povești și semne vizuale. Alege un basorelief pentru a descoperi autorul, povestea și detaliile lucrării."
-          emptyTitle="Galeria de basoreliefuri va fi completată din Sanity."
+          emptyTitle="Galeria de basoreliefuri este în pregătire."
         />
 
         <ArtworkGallerySection
           artworks={muralPaintings}
           eyebrow="Mini-galerie · picturi murale"
           title="Picturi murale și artiști"
-          description="Picturile murale adaugă culoare traseului și transformă spațiile în pagini vii ale muzeului în aer liber. Selectează o pictură murală pentru a-i deschide povestea."
-          emptyTitle="Galeria de picturi murale va fi completată din Sanity."
+          description="Picturile murale adaugă culoare traseului și transformă spațiile în pagini vii ale muzeului în aer liber. Alege o pictură murală pentru a-i descoperi povestea."
+          emptyTitle="Galeria de picturi murale este în pregătire."
         />
       </div>
     </section>

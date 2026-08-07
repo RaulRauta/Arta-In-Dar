@@ -210,7 +210,7 @@ export function DistinctionsGallery({
                       </div>
                     ) : (
                       <p className="distinction-modal__description">
-                        Prezentarea distincției va fi completată în curând.
+                        Povestea acestei distincții va prinde contur în curând.
                       </p>
                     )}
                   </div>

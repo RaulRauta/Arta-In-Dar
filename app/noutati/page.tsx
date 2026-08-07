@@ -80,8 +80,8 @@ export default async function NewsPage() {
               <span aria-hidden="true">𝄞</span>
               <h2>Noutățile se vor scrie aici.</h2>
               <p>
-                Momentan nu există postări publicate în Sanity. Când adaugi prima noutate, cardul
-                apare automat aici și va avea propria pagină.
+                În curând, aici vor apărea evenimente, oameni, ateliere și pași
+                mici care compun ritmul asociației.
               </p>
             </Reveal>
           )}

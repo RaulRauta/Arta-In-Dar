@@ -65,8 +65,8 @@ export function AboutTeam({ groups }: AboutTeamProps) {
             <p className="eyebrow">Straturi în lucru</p>
             <h2>Echipa va fi cioplită aici, persoană cu persoană.</h2>
             <p>
-              Datele pentru pagina „Despre noi” vor apărea automat după ce
-              sunt adăugate în Sanity.
+              În curând, acest spațiu va aduna oamenii, rolurile și poveștile
+              care susțin asociația din interior.
             </p>
           </Reveal>
         </div>
@@ -108,7 +108,7 @@ export function AboutTeam({ groups }: AboutTeamProps) {
                     type="button"
                     className="sculpted-portrait sculpted-portrait--button"
                     onClick={() => setActiveMember(member)}
-                    aria-label={`Deschide fișa pentru ${member.name}`}
+                    aria-label={`Deschide povestea pentru ${member.name}`}
                   >
                     <div className="sculpted-portrait__image">
                       <MemberImage member={member} />
@@ -144,7 +144,7 @@ export function AboutTeam({ groups }: AboutTeamProps) {
               type="button"
               className="team-modal__backdrop"
               onClick={() => setActiveMember(null)}
-              aria-label="Închide fișa"
+              aria-label="Închide povestea"
             />
             <motion.article
               className="team-modal__panel"
@@ -165,7 +165,7 @@ export function AboutTeam({ groups }: AboutTeamProps) {
                 <MemberImage member={activeMember} />
               </div>
               <div className="team-modal__copy">
-                <p className="eyebrow">Fișă de atelier</p>
+                <p className="eyebrow">Portret de atelier</p>
                 <h3 id="team-modal-title">{activeMember.name}</h3>
                 <p className="team-modal__role">{activeMember.role}</p>
                 {activeMember.quote ? (
@@ -179,7 +179,7 @@ export function AboutTeam({ groups }: AboutTeamProps) {
                   </div>
                 ) : (
                   <p className="team-modal__bio-muted">
-                    Povestea acestei persoane va fi adăugată în curând.
+                    Povestea acestei persoane va prinde contur în curând.
                   </p>
                 )}
               </div>
@@ -190,4 +190,3 @@ export function AboutTeam({ groups }: AboutTeamProps) {
     </>
   );
 }
-

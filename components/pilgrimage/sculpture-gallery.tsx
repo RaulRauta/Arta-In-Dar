@@ -115,7 +115,7 @@ function ArtworkGallerySection({
                 key={artwork.id}
                 className="sculpture-card sculpture-card--button"
                 onClick={() => setActiveIndex(index)}
-                aria-label={`Deschide fișa lucrării ${artwork.title}`}
+                aria-label={`Deschide povestea lucrării ${artwork.title}`}
               >
                 <div className="sculpture-card__image">
                   {artwork.image ? (
@@ -182,7 +182,7 @@ function ArtworkGallerySection({
               type="button"
               className="sculpture-modal__backdrop"
               onClick={() => setActiveIndex(null)}
-              aria-label="Închide fișa lucrării"
+              aria-label="Închide povestea lucrării"
             />
             <motion.div
               className="sculpture-modal__sheet"
@@ -288,7 +288,7 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           artworks={sculptures}
           eyebrow="Mini-galerie · sculpturi"
           title="Sculpturi și artiști"
-          description="Lucrările sculpturale așezate pe traseu transformă drumul într-o galerie în aer liber. Selectează o sculptură pentru a-i deschide fișa, fără să pierzi locul în galerie."
+          description="Lucrările sculpturale așezate pe traseu transformă drumul într-o galerie în aer liber. Alege o sculptură pentru a descoperi autorul, povestea și detaliile lucrării."
           emptyTitle="Galeria de sculpturi va fi completată din Sanity."
         />
 
@@ -296,7 +296,7 @@ export function SculptureGallery({ artworks }: SculptureGalleryProps) {
           artworks={basoreliefs}
           eyebrow="Mini-galerie · basoreliefuri"
           title="Basoreliefuri și autori"
-          description="Basoreliefurile păstrează memoria locului în suprafețe lucrate, povești și semne vizuale. Selectează un basorelief pentru a-i deschide fișa."
+          description="Basoreliefurile păstrează memoria locului în suprafețe lucrate, povești și semne vizuale. Alege un basorelief pentru a descoperi autorul, povestea și detaliile lucrării."
           emptyTitle="Galeria de basoreliefuri va fi completată din Sanity."
         />
 

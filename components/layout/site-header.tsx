@@ -27,7 +27,16 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <button type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="mobile-menu" className="menu-trigger group lg:hidden">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-hidden={open}
+          disabled={open}
+          tabIndex={open ? -1 : 0}
+          className={`menu-trigger group lg:hidden ${open ? "menu-trigger--hidden" : ""}`}
+        >
           <span className="hidden text-[9px] font-bold uppercase tracking-[.25em] sm:block">Meniu</span>
           <span className="menu-trigger__mark"><MenuIcon className="size-7 transition-transform duration-500 group-hover:rotate-6" /></span>
           <span className="sr-only">Deschide meniul</span>

@@ -408,6 +408,8 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 /* Contact: hârtie, peniță și o linie de cerneală vie. */
 .art-preview--calligraphy { background:#e8ddca;color:#332923; }.art-preview--calligraphy .art-preview__scene{background:linear-gradient(105deg,#b4a185,#f1e7d6)}.art-preview--calligraphy .art-piece--one{width:8.2rem;height:5.8rem;left:1.4rem;top:2.2rem;background:#f5ecdc;box-shadow:7px 8px 18px rgba(46,35,28,.2);transform:rotate(-5deg)}.art-preview--calligraphy .art-piece--two{width:6rem;height:3rem;left:2.4rem;top:3.5rem;border-bottom:2px solid #46372d;border-radius:0 0 60% 40%;transform:rotate(-9deg)}.art-preview--calligraphy .art-piece--three{width:5rem;height:.35rem;right:-.2rem;top:2.6rem;background:#45362c;clip-path:polygon(0 35%,85% 0,100% 50%,85% 100%,0 65%);transform:rotate(128deg);transform-origin:right}.art-preview--calligraphy .art-preview__copy strong{font-style:italic}
 .menu-trigger,.menu-close { display:inline-flex; align-items:center; gap:.75rem; }
+.menu-trigger { transition:opacity .25s ease,visibility .25s ease,transform .25s ease; }
+.menu-trigger--hidden { opacity:0; visibility:hidden; pointer-events:none; transform:scale(.92); }
 .menu-trigger__mark { position:relative; display:grid; width:3rem; height:3rem; place-items:center; border:1px solid rgba(247,241,232,.42); border-radius:48% 52% 46% 54%; transition:background .35s,color .35s,border-radius .5s; }
 .menu-trigger__mark::after { content:""; position:absolute; inset:-4px; border:1px solid rgba(201,162,77,.38); border-radius:55% 45% 52% 48%; transform:rotate(8deg); }
 .menu-trigger:hover .menu-trigger__mark { background:var(--gold); color:var(--ink); border-radius:58% 42% 55% 45%; }

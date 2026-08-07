@@ -39,12 +39,18 @@ export const metadata: Metadata = {
     description: "Artă, patrimoniu și oameni care construiesc împreună.",
     images: [
       {
-        url: "/images/hero-arta-in-dar.png",
-        width: 1536,
-        height: 1024,
+        url: "/images/share/arta-in-dar-link-preview.png",
+        width: 1200,
+        height: 630,
         alt: "Comunitatea Arta în dar creează împreună",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AsociaÈ›ia Arta Ã®n dar â€” Munca voluntarÄƒ, arta la È›arÄƒ",
+    description: "ArtÄƒ, patrimoniu È™i oameni care construiesc Ã®mpreunÄƒ.",
+    images: ["/images/share/arta-in-dar-link-preview.png"],
   },
 };
 

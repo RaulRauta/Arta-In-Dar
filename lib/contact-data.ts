@@ -2,7 +2,8 @@ export const contactDetails = {
   email: "artaindar7@yahoo.com",
   alternateEmail: "artaindar7@yahoo.com",
   address: "Strada Alexandru Ioan Cuza 222, Nicolae Bălcescu, jud. Bacău, România",
-  centerAddress: "Centrul „În câmp”, Str. Gării f.n., N. Bălcescu, jud. Bacău",
+  centerAddress:
+    "Centrul „În câmp”, hub de artă, agro-turism comunitar și voluntariat · Str. Gării f.n., N. Bălcescu, jud. Bacău",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Strada%20Alexandru%20Ioan%20Cuza%20222%2C%20Nicolae%20B%C4%83lcescu%2C%20Bac%C4%83u",
   mapEmbed:

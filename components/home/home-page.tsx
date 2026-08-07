@@ -144,8 +144,8 @@ export function HomePage() {
           <div className="mt-14 grid items-center gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
             <Reveal>
               <h3 className="font-display text-4xl leading-tight">
-                Centrul „În câmp”, hub de muncă voluntară, creație și recreere
-                pro bono 24/24.
+                Centrul „În câmp”, hub de artă, agro-turism comunitar și
+                voluntariat.
               </h3>
               <p className="body-copy mt-7">
                 Str. Gării f.n., N. Bălcescu, jud. Bacău.

@@ -58,13 +58,15 @@ export function SiteHeader() {
             animate={{ clipPath: "circle(150% at calc(100% - 3rem) 3rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 3rem) 3rem)" }}
             transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 overflow-x-hidden overflow-y-auto bg-cream p-5 text-ink sm:p-8"
+            className="fixed inset-0 z-[80] overflow-x-hidden overflow-y-auto bg-cream p-5 text-ink sm:p-8"
           >
             <div className="menu-orbit menu-orbit--one" />
             <div className="menu-orbit menu-orbit--two" />
-            <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between">
-              <Logo />
-              <button onClick={() => setOpen(false)} className="menu-close group">
+            <div className="mobile-menu__bar relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-4">
+              <div className="mobile-menu__logo">
+                <Logo />
+              </div>
+              <button onClick={() => setOpen(false)} className="menu-close group relative z-20 shrink-0">
                 <span className="hidden text-[9px] font-bold uppercase tracking-[.25em] sm:block">Închide</span>
                 <span className="grid size-11 place-items-center rounded-full bg-ink text-cream transition-transform duration-500 group-hover:rotate-90"><CloseIcon className="size-5" /></span>
                 <span className="sr-only">Închide meniul</span>

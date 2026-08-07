@@ -413,6 +413,9 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 .menu-trigger__mark { position:relative; display:grid; width:3rem; height:3rem; place-items:center; border:1px solid rgba(247,241,232,.42); border-radius:48% 52% 46% 54%; transition:background .35s,color .35s,border-radius .5s; }
 .menu-trigger__mark::after { content:""; position:absolute; inset:-4px; border:1px solid rgba(201,162,77,.38); border-radius:55% 45% 52% 48%; transform:rotate(8deg); }
 .menu-trigger:hover .menu-trigger__mark { background:var(--gold); color:var(--ink); border-radius:58% 42% 55% 45%; }
+.mobile-menu__logo { min-width:0; overflow:hidden; }
+.mobile-menu__logo a { max-width:100%; min-width:0; overflow:hidden; }
+.mobile-menu__logo a>span:last-child { min-width:0; overflow:hidden; }
 .menu-orbit { position:absolute; pointer-events:none; border:1px solid color-mix(in srgb,var(--terracotta) 22%,transparent); border-radius:44% 56% 49% 51%; }
 .menu-orbit--one { width:32rem; height:32rem; right:-13rem; top:-14rem; transform:rotate(20deg); }
 .menu-orbit--two { width:21rem; height:21rem; left:-12rem; bottom:-10rem; border-color:color-mix(in srgb,var(--olive) 24%,transparent); }
@@ -444,6 +447,7 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 .archive-image--report { min-height:38rem;background-image:url('/images/archive/basorelief-si-cartea-drumetului.png');background-size:cover;background-position:center; }
 @media(min-width:768px){.shell{width:min(100% - 4rem,1280px)}.gallery-grid{grid-template-columns:1.15fr .8fr 1fr .72fr;gap:1.25rem}.gallery-tile--2{margin-top:6rem}.gallery-tile--3{margin-top:0}.gallery-tile--4{margin-top:8rem}}
 @media(min-width:1024px){button.menu-trigger{display:none!important}}
+@media(max-width:420px){.mobile-menu__logo a>span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 ::view-transition-group(page-content){animation-duration:.62s;animation-timing-function:cubic-bezier(.22,1,.36,1)}

@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Distincții",
   description:
     "Distincțiile și recunoașterile primite de Asociația Arta în dar pentru proiecte culturale, voluntariat și patrimoniu local.",
+  alternates: {
+    canonical: "/distinctii",
+  },
 };
 
 export default async function DistinctionsPage() {

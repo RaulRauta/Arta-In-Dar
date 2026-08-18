@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: "Despre noi",
   description:
     "Cunoaște echipele și oamenii Asociației Arta în dar: straturile vii care dau formă proiectelor culturale, voluntariatului și comunității.",
+  alternates: {
+    canonical: "/despre-noi",
+  },
 };
 
 export default async function AboutPage() {

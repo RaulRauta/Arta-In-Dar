@@ -7,6 +7,9 @@ import { involvementResources, taxResources } from "@/lib/involvement-data";
 export const metadata: Metadata = {
   title: "Donează / Fii voluntar",
   description: "Intră în scena comunității Arta în dar prin voluntariat, sponsorizare sau redirecționarea a 3,5% din impozitul pe venit.",
+  alternates: {
+    canonical: "/doneaza-fii-voluntar",
+  },
 };
 
 export default function InvolvementPage() {

@@ -6,6 +6,9 @@ import { getNewsPosts } from "@/lib/news";
 export const metadata: Metadata = {
   title: "Noutăți",
   description: "Noutăți, evenimente și povești recente din activitatea Asociației Arta în dar.",
+  alternates: {
+    canonical: "/noutati",
+  },
 };
 
 export default async function NewsPage() {

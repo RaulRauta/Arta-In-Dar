@@ -6,6 +6,9 @@ import { archiveHighlights, documentSections } from "@/lib/documents-data";
 export const metadata: Metadata = {
   title: "Documente",
   description: "Arhiva oficială Arta în dar: statut, istoric, rapoarte de activitate, bilanțuri, contracte și formularul 230.",
+  alternates: {
+    canonical: "/documente",
+  },
 };
 
 export default function DocumentsPage() {

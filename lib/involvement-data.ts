@@ -4,7 +4,7 @@ export const involvementResources = [
     eyebrow: "Document fondator",
     title: "Statutul asociației",
     description: "Cadrul în care lucrăm, valorile care ne țin împreună și regulile după care construim.",
-    href: "https://asociatiaartaindar.ro/wp-content/uploads/2026/01/STATUTUL-ASOCIATIEI-arta-in-dar.pdf",
+    href: "/documents/statutul-asociatiei-arta-in-dar.pdf",
     action: "Deschide statutul",
   },
   {
@@ -12,7 +12,7 @@ export const involvementResources = [
     eyebrow: "Rol în distribuție",
     title: "Contract de voluntariat",
     description: "Documentul de la care începe o colaborare clară, asumată și făcută cu rost.",
-    href: "https://asociatiaartaindar.ro/wp-content/uploads/2026/01/CONTRACT-DE-VOLUNTARIAT.odt",
+    href: "/documents/contract-voluntariat-arta-in-dar.odt",
     action: "Descarcă documentul",
   },
   {
@@ -20,7 +20,7 @@ export const involvementResources = [
     eyebrow: "Parteneriat",
     title: "Contract de sponsorizare",
     description: "Pentru companiile și oamenii care aleg să susțină direct proiectele asociației.",
-    href: "https://asociatiaartaindar.ro/wp-content/uploads/2026/01/CONTRACT-DE-SPONSORIZARE.odt",
+    href: "/documents/contract-sponsorizare-arta-in-dar.odt",
     action: "Descarcă documentul",
   },
 ] as const;
@@ -37,7 +37,7 @@ export const taxResources = [
     number: "230",
     title: "Formular pregătit",
     description: "Deschide varianta PDF a Formularului 230, completată cu datele asociației.",
-    href: "https://asociatiaartaindar.ro/wp-content/uploads/2026/02/230_OPANAF_103_2025-COMPLETAT.pdf",
+    href: "/documents/formular-230-arta-in-dar-2025.pdf",
     action: "Deschide formularul",
   },
 ] as const;

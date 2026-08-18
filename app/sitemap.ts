@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = "https://asociatiaartaindar.ro";
+import { getNewsPosts } from "@/lib/news";
+import { getSiteUrl } from "@/lib/site-url";
 
 const routes = [
   { path: "", priority: 1, changeFrequency: "monthly" },
@@ -13,13 +13,23 @@ const routes = [
   { path: "/contact", priority: 0.75, changeFrequency: "yearly" },
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = getSiteUrl();
   const lastModified = new Date();
 
-  return routes.map((route) => ({
+  const staticRoutes = routes.map((route) => ({
     url: `${siteUrl}${route.path}`,
     lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
+
+  const newsRoutes = (await getNewsPosts()).map((post) => ({
+    url: `${siteUrl}/noutati/${post.slug}`,
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : lastModified,
+    changeFrequency: "monthly" as const,
+    priority: post.featured ? 0.75 : 0.6,
+  }));
+
+  return [...staticRoutes, ...newsRoutes];
 }

@@ -10,6 +10,9 @@ import { getPilgrimageArtworks } from "@/lib/pilgrimage-artworks";
 export const metadata: Metadata = {
   title: "7 Capele, muzeu în aer liber",
   description: "Descoperă 7 Capele, muzeu în aer liber: 26 km prin Valea Siretului, șase capele istorice, artă contemporană și o a șaptea capelă imaterială.",
+  alternates: {
+    canonical: "/pelerinaj-7-capele",
+  },
 };
 
 export default async function PilgrimagePage() {

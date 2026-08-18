@@ -1,0 +1,4 @@
+Contact: mailto:artaindar7@yahoo.com
+Expires: 2027-08-18T00:00:00Z
+Preferred-Languages: ro, en
+Canonical: https://arta-in-dar.vercel.app/.well-known/security.txt

@@ -358,6 +358,9 @@ export async function generateMetadata({ params }: NewsPostPageProps): Promise<M
   return {
     title: post.title,
     description: post.lead || post.cardSummary || "Noutate publicată de Asociația Arta în dar.",
+    alternates: {
+      canonical: `/noutati/${post.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.lead || post.cardSummary || undefined,

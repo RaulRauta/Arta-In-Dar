@@ -7,6 +7,9 @@ import { contactDetails } from "@/lib/contact-data";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contactează Asociația Arta în dar pentru voluntariat, donații, vizite pe traseul 7 Capele, parteneriate culturale sau întrebări.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

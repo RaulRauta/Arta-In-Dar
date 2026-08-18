@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { SiteChrome } from "@/components/layout/site-chrome";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -16,13 +17,16 @@ const sans = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://asociatiaartaindar.ro"),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Asociația Arta în dar — Munca voluntară, arta la țară",
     template: "%s | Arta în dar",
   },
   description:
     "Asociația Arta în dar aduce împreună arta, voluntariatul, patrimoniul local și comunitățile prin proiecte culturale vii.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Arta în dar",
     "Arta în dar",

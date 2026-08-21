@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     "turism cultural",
     "proiecte culturale",
   ],
+  verification: {
+    google: "xMR4F3HvjUrOxp71u4syypuxFOiOA0Wp63Exw2jJFO8",
+  },
   openGraph: {
     type: "website",
     locale: "ro_RO",

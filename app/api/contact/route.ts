@@ -9,6 +9,11 @@ const RATE_LIMIT_MAX_REQUESTS = 5;
 const RATE_LIMIT_BUCKETS_MAX = 1_000;
 const CONTACT_TO = envValue("CONTACT_TO_EMAIL", "artaindar7@yahoo.com");
 const ALLOWED_REASONS = new Set<string>(contactReasons);
+const DEFAULT_ALLOWED_ORIGINS = [
+  "https://asociatiaartaindar.ro",
+  "https://www.asociatiaartaindar.ro",
+  "https://arta-in-dar.vercel.app",
+];
 
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 
@@ -66,11 +71,16 @@ function json(
 
 function getAllowedOrigins(request: Request) {
   const url = new URL(request.url);
+  const extraOrigins = envValue("CONTACT_ALLOWED_ORIGINS")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
   const configuredOrigins = [
+    ...DEFAULT_ALLOWED_ORIGINS,
+    ...extraOrigins,
     envValue("NEXT_PUBLIC_SITE_URL"),
     envValue("SITE_URL"),
     envValue("VERCEL_URL") ? `https://${envValue("VERCEL_URL")}` : "",
-    "https://arta-in-dar.vercel.app",
     process.env.NODE_ENV !== "production" ? `${url.protocol}//${url.host}` : "",
   ];
 

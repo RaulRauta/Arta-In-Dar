@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://arta-in-dar.vercel.app";
+const FALLBACK_SITE_URL = "https://www.asociatiaartaindar.ro";
 
 export function getSiteUrl() {
   const rawUrl =

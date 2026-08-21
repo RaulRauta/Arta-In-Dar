@@ -4,12 +4,12 @@ function getSiteOrigin() {
   const rawUrl =
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.SITE_URL ||
-    "https://arta-in-dar.vercel.app";
+    "https://www.asociatiaartaindar.ro";
 
   try {
     return new URL(rawUrl).origin;
   } catch {
-    return "https://arta-in-dar.vercel.app";
+    return "https://www.asociatiaartaindar.ro";
   }
 }
 

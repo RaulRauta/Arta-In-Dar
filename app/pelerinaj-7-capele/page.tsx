@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { Reveal } from "@/components/home/reveal";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { SculptureGallery } from "@/components/pilgrimage/sculpture-gallery";
@@ -15,9 +16,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function PilgrimagePage() {
+async function PilgrimageArtworksSection() {
   const artworks = await getPilgrimageArtworks();
 
+  return <SculptureGallery artworks={artworks} />;
+}
+
+function PilgrimageArtworksFallback() {
+  return (
+    <section className="sculpture-gallery" aria-busy="true">
+      <div className="shell sculpture-gallery__stack">
+        <div className="section-loading section-loading--dark">
+          <span />
+          <p className="eyebrow text-gold">Galeria se pregătește</p>
+          <h2>Lucrările se așază pe traseu.</h2>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function PilgrimagePage() {
   return (
     <main className="pilgrimage-page">
       <section className="pilgrimage-hero">
@@ -113,7 +132,9 @@ export default async function PilgrimagePage() {
         </div>
       </section>
 
-      <SculptureGallery artworks={artworks} />
+      <Suspense fallback={<PilgrimageArtworksFallback />}>
+        <PilgrimageArtworksSection />
+      </Suspense>
 
       <section className="pilgrimage-cta"><div className="shell"><Reveal className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow">Ultima filă rămâne nescrisă</p><h2>Drumul începe<br /><em>cu primul pas.</em></h2></div><div className="flex flex-wrap gap-3"><Link href="/contact" className="button-dark">Planifică o vizită <ArrowUpRight className="size-4" /></Link><Link href="/doneaza-fii-voluntar" className="pilgrimage-link">Ajută-ne să păstrăm traseul</Link></div></Reveal></div></section>
     </main>

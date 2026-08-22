@@ -552,6 +552,73 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
   animation:route-glow .7s cubic-bezier(.22,1,.36,1) both;
 }
 
+.section-loading{
+  position:relative;
+  display:grid;
+  min-height:22rem;
+  place-items:center;
+  overflow:hidden;
+  border:1px solid rgba(45,36,31,.12);
+  background:rgba(247,241,232,.28);
+  padding:3rem;
+  text-align:center;
+}
+
+.section-loading::before{
+  content:"";
+  position:absolute;
+  inset:1rem;
+  border:1px solid rgba(45,36,31,.08);
+  pointer-events:none;
+}
+
+.section-loading span{
+  position:relative;
+  display:block;
+  width:5rem;
+  aspect-ratio:1;
+  border:1px solid currentColor;
+  border-radius:50%;
+  color:rgba(184,107,69,.42);
+  animation:loading-orbit 1.6s cubic-bezier(.76,0,.24,1) infinite;
+}
+
+.section-loading span::after{
+  content:"";
+  position:absolute;
+  width:.7rem;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:var(--gold);
+  transform:translate(3.9rem,.55rem);
+}
+
+.section-loading p,
+.section-loading h2{
+  position:relative;
+  z-index:1;
+}
+
+.section-loading h2{
+  margin-top:1rem;
+  max-width:34rem;
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,6vw,5.6rem);
+  font-weight:500;
+  line-height:.86;
+  letter-spacing:-.045em;
+}
+
+.section-loading--dark{
+  border-color:rgba(247,241,232,.13);
+  background:rgba(247,241,232,.045);
+  color:var(--cream);
+}
+
+.section-loading--news{
+  background:rgba(255,248,232,.34);
+}
+
 html[data-route-pending="true"] a,
 html[data-route-pending="true"] button{
   cursor:progress;
@@ -567,8 +634,10 @@ html[data-route-pending="true"] button{
 @keyframes page-enter{from{opacity:0;filter:blur(2px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
 @keyframes route-line{0%{transform:scaleX(0)}52%{transform:scaleX(.72)}100%{transform:scaleX(1)}}
 @keyframes route-glow{0%{opacity:0;transform:translateY(-1rem)}35%{opacity:1}100%{opacity:0;transform:translateY(0)}}
+@keyframes loading-orbit{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){
   .navigation-transition{display:none}
+  .section-loading span{animation:none}
   ::view-transition-old(*),::view-transition-new(*),::view-transition-group(*){animation-duration:0s!important;animation-delay:0s!important}
 }
 

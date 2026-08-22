@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AboutTeam } from "@/components/about/about-team";
 import { Reveal } from "@/components/home/reveal";
 import { ArrowUpRight } from "@/components/ui/icons";
@@ -15,9 +16,27 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function AboutPage() {
+async function AboutTeamSection() {
   const teamGroups = await getAboutTeamGroups();
 
+  return <AboutTeam groups={teamGroups} />;
+}
+
+function AboutTeamFallback() {
+  return (
+    <section className="team-stratum team-stratum--calcar" aria-busy="true">
+      <div className="shell">
+        <div className="section-loading">
+          <span />
+          <p className="eyebrow">Echipele se așază</p>
+          <h2>Cioplim portretele în pagină.</h2>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function AboutPage() {
   return (
     <main className="sculpture-page">
       <section className="sculpture-hero">
@@ -68,7 +87,9 @@ export default async function AboutPage() {
       </section>
 
       <div id="echipe">
-        <AboutTeam groups={teamGroups} />
+        <Suspense fallback={<AboutTeamFallback />}>
+          <AboutTeamSection />
+        </Suspense>
       </div>
 
       <section className="flowcraft-collaborator" aria-labelledby="flowcraft-title">

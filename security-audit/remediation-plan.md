@@ -7,12 +7,14 @@
    - Risc regresie: mic.
    - Acțiuni: helper `safeHref`, allowlist `http:`, `https:`, `mailto:`, `tel:` și path-uri interne care încep cu `/`; fallback la `#` sau ascundere link.
 
-## În 24–48 de ore
+## Remediate
 
-2. SEC-002 — dependency remediation plan pentru Sanity.
-   - Dificultate: medie-mare.
-   - Risc regresie: mediu-mare, deoarece `npm audit` sugerează schimbări majore.
-   - Acțiuni: test upgrade pe branch separat, verificare Studio, build, query-uri și compatibilitate Next 16.
+2. SEC-002 — dependency remediation pentru Sanity/toolchain.
+   - Status: remediat.
+   - Acțiuni aplicate: update controlat Sanity/next-sanity/Next/React/Nodemailer/Tailwind/ESLint și overrides țintite pentru dependențe tranzitive vulnerabile.
+   - Verificare: `npm audit`, `npm audit --omit=dev`, `npm run lint`, `npm run build`.
+
+## În 24–48 de ore
 
 3. SEC-004 — igienizare documente publice.
    - Dificultate: mică-medie.
@@ -37,4 +39,3 @@
    - Dificultate: medie.
    - Risc regresie: nul.
    - Acțiuni: verifică env vars, preview deployments, branch protection, log retention, Sanity roles/CORS.
-

@@ -6,7 +6,7 @@ Auditul post-remediere a verificat repository-ul local și deploymentul public `
 
 Controalele remediate anterior sunt prezente: `/api/contact` are validare server-side, limită de corp, verificare Origin/Referer, honeypot, răspunsuri `no-store` și email text-only; `/studio` este protejat fail-closed prin Basic Auth; headerele de securitate sunt active pe producție; fișierele sensibile uzuale nu sunt expuse public.
 
-Riscul principal rămas este de supply-chain și CMS content safety: `npm audit --omit=dev` raportează 20 vulnerabilități tranzitive, majoritatea prin toolchain Sanity/CLI, iar linkurile introduse din Sanity nu sunt filtrate printr-un allowlist de scheme-uri sigure.
+Riscurile majore identificate anterior pentru CMS content safety și supply-chain au fost remediate. Linkurile venite din Sanity sunt filtrate prin allowlist de scheme-uri sigure, iar `npm audit` și `npm audit --omit=dev` raportează 0 vulnerabilități.
 
 ## 2. Data și ora auditului
 
@@ -21,14 +21,14 @@ Riscul principal rămas este de supply-chain și CMS content safety: `npm audit 
 
 ## 4. Framework și versiuni
 
-- Next.js: `16.3.1`
-- React / React DOM: `19.2.4`
+- Next.js: `16.3.2`
+- React / React DOM: `19.2.8`
 - TypeScript: `5.9.3`
-- Tailwind CSS: `4.3.2`
+- Tailwind CSS: `4.3.3`
 - Framer Motion: `12.42.2`
-- Sanity: `6.5.0`
-- next-sanity: `13.1.3`
-- Nodemailer: `9.0.3`
+- Sanity: `6.10.1`
+- next-sanity: `13.3.3`
+- Nodemailer: `9.0.5`
 
 ## 5. Suprafața analizată
 
@@ -56,31 +56,29 @@ Riscul principal rămas este de supply-chain și CMS content safety: `npm audit 
 | --- | ---: |
 | Critical | 0 |
 | High | 0 |
-| Medium | 2 |
+| Medium | 0 |
 | Low | 2 |
 | Informational | 1 |
 
 ## 8. Lista completă a constatărilor
 
-- [SEC-001](findings/SEC-001.md) — Linkuri CMS fără allowlist de scheme-uri sigure.
-- [SEC-002](findings/SEC-002.md) — Vulnerabilități tranzitive în dependency tree Sanity/toolchain.
+- [SEC-001](findings/SEC-001.md) — Linkuri CMS fără allowlist de scheme-uri sigure — remediat.
+- [SEC-002](findings/SEC-002.md) — Vulnerabilități tranzitive în dependency tree Sanity/toolchain — remediat.
 - [SEC-003](findings/SEC-003.md) — Rate limiting în memorie pe runtime serverless.
 - [SEC-004](findings/SEC-004.md) — Documente PDF publice cu markeri activi/metadate.
 - [SEC-005](findings/SEC-005.md) — CSP compatibilă, dar nu strictă.
 
 ## 9. Riscul general
 
-Risc general: **Medium**.
+Risc general: **Low–Medium**.
 
-Nu există un blocker critic confirmat pentru menținerea site-ului live, dar înainte de migrarea completă de pe WordPress recomand remedierea SEC-001 și planificarea upgrade-ului Sanity/dependency tree.
+Nu există un blocker critic/high confirmat pentru menținerea site-ului live. Problemele rămase sunt în principal hardening: rate limiting distribuit, igienizarea documentelor publice și întărirea CSP.
 
 ## 10. Ordinea recomandată a remedierilor
 
-1. SEC-001 — adaugă validare/normalizare URL pentru toate linkurile venite din Sanity.
-2. SEC-002 — upgrade controlat pentru Sanity/next-sanity și pachetele tranzitive afectate.
-3. SEC-003 — mută rate limiting pe storage distribuit sau edge/WAF.
-4. SEC-004 — regenerează/igienizează PDF-urile publice.
-5. SEC-005 — întărește CSP cu nonce/hash unde permite Next/Sanity.
+1. SEC-003 — mută rate limiting pe storage distribuit sau edge/WAF.
+2. SEC-004 — regenerează/igienizează PDF-urile publice.
+3. SEC-005 — întărește CSP cu nonce/hash unde permite Next/Sanity.
 
 ## 11. Controale implementate corect
 
@@ -101,5 +99,4 @@ Nu există un blocker critic confirmat pentru menținerea site-ului live, dar î
 
 ## 12. Concluzie privind siguranța lansării
 
-Site-ul este într-o stare semnificativ mai sigură decât înainte de remedieri. Pentru folosire publică pe Vercel, nu am confirmat vulnerabilități critice/high exploatabile anonim. Pentru înlocuirea completă a WordPress-ului, recomand să nu se considere auditul „clean” până nu sunt rezolvate SEC-001 și măcar planificat SEC-002.
-
+Site-ul este într-o stare semnificativ mai sigură decât înainte de remedieri. Pentru folosire publică pe Vercel, nu am confirmat vulnerabilități critice/high exploatabile anonim, iar dependency audit-ul este curat. Pentru înlocuirea completă a WordPress-ului, rămân recomandate hardening-ul rate limiting, igienizarea PDF-urilor și CSP mai strictă.

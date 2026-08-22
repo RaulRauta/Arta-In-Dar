@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { PostTemplateInput } from "../components/post-template-input";
 import { newsPostTemplateOptions } from "../news-post-templates";
+import { safeLinkValidation } from "./safeLinkValidation";
 
 export const newsPost = defineType({
   name: "newsPost",
@@ -276,6 +277,7 @@ export const newsPost = defineType({
       type: "string",
       description: "Destinația butonului roșu: pagină internă, formular sau link extern.",
       hidden: ({ document }) => !["shortAnnouncement", "profileStory"].includes(String(document?.postTemplate)),
+      validation: (Rule) => Rule.custom(safeLinkValidation),
     }),
     defineField({
       name: "content",
@@ -305,7 +307,14 @@ export const newsPost = defineType({
                 name: "link",
                 title: "Link",
                 type: "object",
-                fields: [defineField({ name: "href", title: "Adresă", type: "url" })],
+                fields: [
+                  defineField({
+                    name: "href",
+                    title: "Adresă",
+                    type: "string",
+                    validation: (Rule) => Rule.custom(safeLinkValidation),
+                  }),
+                ],
               },
             ],
           },
@@ -362,6 +371,7 @@ export const newsPost = defineType({
       title: "Link buton opțional",
       type: "string",
       description: "Poate fi link intern, de exemplu /contact, sau link extern.",
+      validation: (Rule) => Rule.custom(safeLinkValidation),
     }),
     defineField({ name: "featured", title: "Noutate principală", type: "boolean", initialValue: false }),
     defineField({ name: "visible", title: "Vizibil pe site", type: "boolean", initialValue: true }),

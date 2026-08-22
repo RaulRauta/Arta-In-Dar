@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import type React from "react";
 import { ArrowUpRight } from "@/components/ui/icons";
 import { formatNewsDate, getNewsPost, type NewsAuthor, type NewsPortableImage, type NewsPost, type NewsTemplateBlock } from "@/lib/news";
+import { isExternalHttpHref, isInternalHref, safeHref } from "@/lib/safe-href";
 
 type NewsPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -28,10 +29,14 @@ const portableTextComponents: PortableTextComponents = {
   },
   marks: {
     link: ({ children, value }) => {
-      const href = typeof value?.href === "string" ? value.href : "#";
+      const href = safeHref(typeof value?.href === "string" ? value.href : null);
+
+      if (!href) {
+        return <>{children}</>;
+      }
 
       return (
-        <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>
+        <a href={href} target={isExternalHttpHref(href) ? "_blank" : undefined} rel={isExternalHttpHref(href) ? "noreferrer" : undefined}>
           {children}
         </a>
       );
@@ -81,22 +86,32 @@ function TextLines({ text }: { text?: string }) {
 }
 
 function TemplateLink({ href, children }: { href?: string; children?: React.ReactNode }) {
-  if (!href || !children) {
+  const normalizedHref = safeHref(href);
+
+  if (!normalizedHref || !children) {
     return null;
   }
 
-  if (href.startsWith("http")) {
+  if (isInternalHref(normalizedHref)) {
     return (
-      <a className="news-template__link" href={href} target="_blank" rel="noreferrer">
+      <Link className="news-template__link" href={normalizedHref}>
+        {children} <ArrowUpRight className="size-4" />
+      </Link>
+    );
+  }
+
+  if (isExternalHttpHref(normalizedHref)) {
+    return (
+      <a className="news-template__link" href={normalizedHref} target="_blank" rel="noreferrer">
         {children} <ArrowUpRight className="size-4" />
       </a>
     );
   }
 
   return (
-    <Link className="news-template__link" href={href}>
+    <a className="news-template__link" href={normalizedHref}>
       {children} <ArrowUpRight className="size-4" />
-    </Link>
+    </a>
   );
 }
 
@@ -236,22 +251,32 @@ function StructuredRows({ rows, template }: { rows?: NewsTemplateBlock["items"];
 }
 
 function TemplateCta({ href, label }: { href?: string; label?: string }) {
-  if (!href || !label) {
+  const normalizedHref = safeHref(href);
+
+  if (!normalizedHref || !label) {
     return null;
   }
 
-  if (href.startsWith("http")) {
+  if (isInternalHref(normalizedHref)) {
     return (
-      <a className="news-structured__cta" href={href} target="_blank" rel="noreferrer">
+      <Link className="news-structured__cta" href={normalizedHref}>
+        {label} <ArrowUpRight className="size-4" />
+      </Link>
+    );
+  }
+
+  if (isExternalHttpHref(normalizedHref)) {
+    return (
+      <a className="news-structured__cta" href={normalizedHref} target="_blank" rel="noreferrer">
         {label} <ArrowUpRight className="size-4" />
       </a>
     );
   }
 
   return (
-    <Link className="news-structured__cta" href={href}>
+    <a className="news-structured__cta" href={normalizedHref}>
       {label} <ArrowUpRight className="size-4" />
-    </Link>
+    </a>
   );
 }
 
@@ -445,11 +470,7 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
               </div>
             ) : null}
 
-            {post.ctaLabel && post.ctaHref ? (
-              <Link className="news-article__cta" href={post.ctaHref}>
-                {post.ctaLabel} <ArrowUpRight className="size-4" />
-              </Link>
-            ) : null}
+            <TemplateCta href={post.ctaHref} label={post.ctaLabel} />
           </div>
         </section>
       </article>

@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { safeLinkValidation } from "./safeLinkValidation";
 
 const templatePresets = [
   { name: "newsTemplateIntroImage", title: "01 · Introducere cu imagine laterală", preset: "introImage" },
@@ -140,6 +141,7 @@ function templateFields(lockedPreset?: string) {
       type: "string",
       description: "Poate fi link intern, de exemplu /contact, sau link extern.",
       hidden: ({ parent }) => !linkPresets.includes(lockedPreset || parent?.preset),
+      validation: (Rule) => Rule.custom(safeLinkValidation),
     }),
   ];
 }

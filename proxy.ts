@@ -1,5 +1,38 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+const studioCsp = [
+  "default-src 'self' https: data: blob:",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:",
+  "script-src-attr 'none'",
+  "style-src 'self' 'unsafe-inline' https:",
+  "style-src-attr 'unsafe-inline'",
+  "img-src 'self' data: blob: https:",
+  "font-src 'self' data: https:",
+  "connect-src 'self' https: wss:",
+  "worker-src 'self' blob:",
+  "frame-src 'self' https:",
+  "child-src 'self' https:",
+  "manifest-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
+const studioSecurityHeaders = {
+  "Cache-Control": "no-store",
+  "X-Robots-Tag": "noindex, nofollow, noarchive",
+  "X-Content-Type-Options": "nosniff",
+  "X-Frame-Options": "SAMEORIGIN",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy":
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+  "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+  "Cross-Origin-Resource-Policy": "cross-origin",
+  "Content-Security-Policy": studioCsp,
+};
+
 function envValue(name: string) {
   return (process.env[name] || "").trim().replace(/^["']|["']$/g, "");
 }
@@ -43,9 +76,8 @@ function unauthorizedResponse() {
   return new NextResponse("Authentication required.", {
     status: 401,
     headers: {
-      "Cache-Control": "no-store",
+      ...studioSecurityHeaders,
       "WWW-Authenticate": 'Basic realm="Sanity Studio", charset="UTF-8"',
-      "X-Robots-Tag": "noindex, nofollow, noarchive",
     },
   });
 }
@@ -69,8 +101,10 @@ export function proxy(request: NextRequest) {
   }
 
   const response = NextResponse.next();
-  response.headers.set("Cache-Control", "no-store");
-  response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  Object.entries(studioSecurityHeaders).forEach(([key, value]) => {
+    response.headers.set(key, value);
+  });
+
   return response;
 }
 

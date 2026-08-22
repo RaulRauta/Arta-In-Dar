@@ -28,12 +28,16 @@
    - Risc regresie: mediu.
    - Acțiuni: Vercel Firewall/edge rules, Upstash Redis sau Turnstile cu verificare server-side.
 
-## Hardening ulterior
+## Remediate parțial / hardening aplicat
 
 5. SEC-005 — CSP strictă.
-   - Dificultate: medie-mare.
-   - Risc regresie: mediu-mare.
-   - Acțiuni: nonce/hash pentru scripturi inline unde se poate; politică separată pentru Studio; test complet pe toate paginile.
+   - Status: hardening compatibil aplicat.
+   - Dificultate: medie-mare pentru trecerea la nonce/hash strict.
+   - Risc regresie: mediu-mare pentru nonce/hash strict.
+   - Acțiuni aplicate: `script-src-attr 'none'`, directive explicite pentru worker/child/manifest, politică separată pentru Studio.
+   - Acțiuni viitoare opționale: nonce/hash pentru scripturi inline doar dacă se acceptă randare dinamică sau o strategie SRI/hash matură.
+
+## Hardening ulterior
 
 6. Audit connector-based Vercel/GitHub/Sanity.
    - Dificultate: medie.

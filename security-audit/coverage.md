@@ -17,7 +17,7 @@
 | GROQ injection | Verificată — fără probleme | Query parametrizat cu `$slug`; nu am găsit concatenare GROQ din input. |
 | SSRF/path traversal/command injection | Verificată — fără probleme | Nu am găsit exec, filesystem din input sau fetch server-side către URL user-controlled. |
 | Email injection | Verificată — fără probleme | Email text-only, subject static, CRLF curățat din câmpuri single-line. |
-| Headere browser/transport | Verificată — finding asociat | Headere bune; CSP compatibilă, dar nu strictă, SEC-005. |
+| Headere browser/transport | Verificată — hardening aplicat | Headere bune; CSP întărită compatibil în SEC-005, fără nonce strict pentru a păstra static generation/CDN. |
 | Fișiere expuse | Verificată — fără probleme | `.env`, `.git`, package/config publice testate: 404; sourcemaps: 403. |
 | Documente publice | Verificată — finding asociat | PDF-uri cu markeri/metadate, SEC-004. |
 | WordPress/servicii externe | Parțial verificată | Nu am testat agresiv vechiul WordPress; linkurile externe rămân trust boundary. |

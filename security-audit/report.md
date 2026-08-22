@@ -78,7 +78,7 @@ Nu există un blocker critic/high confirmat pentru menținerea site-ului live. P
 
 1. SEC-003 — mută rate limiting pe storage distribuit sau edge/WAF.
 2. SEC-004 — regenerează/igienizează PDF-urile publice.
-3. SEC-005 — întărește CSP cu nonce/hash unde permite Next/Sanity.
+3. SEC-005 — continuă întărirea CSP cu nonce/hash doar dacă se acceptă costul de randare dinamică sau se adoptă o strategie SRI/hash matură.
 
 ## 11. Controale implementate corect
 
@@ -87,6 +87,7 @@ Nu există un blocker critic/high confirmat pentru menținerea site-ului live. P
 - `X-Content-Type-Options: nosniff`.
 - `X-Frame-Options: DENY` pe site; `SAMEORIGIN` pe Studio.
 - `frame-ancestors` setat în CSP.
+- CSP are politici separate pentru site și Studio; după hardening include `script-src-attr 'none'`, `worker-src`, `child-src` și `manifest-src`.
 - `Referrer-Policy: strict-origin-when-cross-origin`.
 - `Permissions-Policy` restrictiv.
 - `Cross-Origin-Opener-Policy` și `Cross-Origin-Resource-Policy`.
@@ -99,4 +100,4 @@ Nu există un blocker critic/high confirmat pentru menținerea site-ului live. P
 
 ## 12. Concluzie privind siguranța lansării
 
-Site-ul este într-o stare semnificativ mai sigură decât înainte de remedieri. Pentru folosire publică pe Vercel, nu am confirmat vulnerabilități critice/high exploatabile anonim, iar dependency audit-ul este curat. Pentru înlocuirea completă a WordPress-ului, rămân recomandate hardening-ul rate limiting, igienizarea PDF-urilor și CSP mai strictă.
+Site-ul este într-o stare semnificativ mai sigură decât înainte de remedieri. Pentru folosire publică pe Vercel, nu am confirmat vulnerabilități critice/high exploatabile anonim, iar dependency audit-ul este curat. Pentru înlocuirea completă a WordPress-ului, rămân recomandate hardening-ul rate limiting și igienizarea PDF-urilor. CSP a fost întărită compatibil, iar o politică strictă cu nonce/hash rămâne opțională dacă se acceptă compromisurile de performanță/compatibilitate.

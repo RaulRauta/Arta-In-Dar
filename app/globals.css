@@ -509,15 +509,68 @@ body:has(.news-post-page)::-webkit-scrollbar-thumb{border-color:#efe2c8;backgrou
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
-::view-transition-group(page-content){animation-duration:.62s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
-::view-transition-old(.page-shift){animation:260ms cubic-bezier(.4,0,1,1) both page-leave}
-::view-transition-new(.page-shift){animation:520ms cubic-bezier(.22,1,.36,1) 90ms both page-enter}
+.navigation-transition{
+  position:fixed;
+  inset:0;
+  z-index:140;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .2s ease;
+}
+
+.navigation-transition--active{
+  opacity:1;
+}
+
+.navigation-transition__line{
+  position:absolute;
+  left:0;
+  top:0;
+  height:3px;
+  width:100%;
+  background:linear-gradient(90deg,var(--gold),var(--terracotta),var(--olive));
+  box-shadow:0 .35rem 1.3rem rgba(201,162,77,.32);
+  transform:scaleX(0);
+  transform-origin:left;
+}
+
+.navigation-transition--active .navigation-transition__line{
+  animation:route-line 1.05s cubic-bezier(.22,1,.36,1) both;
+}
+
+.navigation-transition__glow{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 0,rgba(201,162,77,.13),transparent 24rem),
+    linear-gradient(180deg,rgba(247,241,232,.24),transparent 9rem);
+  transform:translateY(-1rem);
+  opacity:0;
+}
+
+.navigation-transition--active .navigation-transition__glow{
+  animation:route-glow .7s cubic-bezier(.22,1,.36,1) both;
+}
+
+html[data-route-pending="true"] a,
+html[data-route-pending="true"] button{
+  cursor:progress;
+}
+
+::view-transition-group(page-content){animation-duration:.36s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(.page-shift){animation:160ms cubic-bezier(.4,0,1,1) both page-leave}
+::view-transition-new(.page-shift){animation:320ms cubic-bezier(.22,1,.36,1) 35ms both page-enter}
 ::view-transition-group(site-header){z-index:120;animation:none}
 ::view-transition-old(site-header){display:none}
 ::view-transition-new(site-header){animation:none}
-@keyframes page-leave{to{opacity:0;filter:blur(3px);transform:translateY(-12px) scale(.992)}}
-@keyframes page-enter{from{opacity:0;filter:blur(5px);transform:translateY(20px) scale(.992)}to{opacity:1;filter:blur(0);transform:none}}
-@media(prefers-reduced-motion:reduce){::view-transition-old(*),::view-transition-new(*),::view-transition-group(*){animation-duration:0s!important;animation-delay:0s!important}}
+@keyframes page-leave{to{opacity:0;filter:blur(1px);transform:translateY(-4px)}}
+@keyframes page-enter{from{opacity:0;filter:blur(2px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes route-line{0%{transform:scaleX(0)}52%{transform:scaleX(.72)}100%{transform:scaleX(1)}}
+@keyframes route-glow{0%{opacity:0;transform:translateY(-1rem)}35%{opacity:1}100%{opacity:0;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+  .navigation-transition{display:none}
+  ::view-transition-old(*),::view-transition-new(*),::view-transition-group(*){animation-duration:0s!important;animation-delay:0s!important}
+}
 
 /* DESPRE NOI — o pagină construită ca o sculptură în straturi. */
 .sculpture-page { --stone:#d9cbb4;--stone-deep:#95836c;--stone-dark:#382f29;background:var(--stone); isolation:isolate; }

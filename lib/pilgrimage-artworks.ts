@@ -1,6 +1,22 @@
 import { groq } from "next-sanity";
 import { sanityClient } from "@/lib/sanity-client";
 
+export type PilgrimageArtworkGalleryPreset =
+  | "auto"
+  | "duo"
+  | "triptych"
+  | "quad"
+  | "mosaicFive"
+  | "mosaicSix"
+  | "mosaicSeven";
+
+export type PilgrimageArtworkImage = {
+  _key?: string;
+  url?: string;
+  alt?: string;
+  caption?: string;
+};
+
 export type PilgrimageArtwork = {
   id: string;
   title: string;
@@ -8,6 +24,8 @@ export type PilgrimageArtwork = {
   artist: string;
   image?: string;
   imageAlt?: string;
+  galleryPreset?: PilgrimageArtworkGalleryPreset;
+  gallery?: PilgrimageArtworkImage[];
   description?: string;
   order?: number;
 };
@@ -21,7 +39,14 @@ const pilgrimageArtworksQuery = groq`
     description,
     order,
     "image": image.asset->url,
-    "imageAlt": coalesce(image.alt, title)
+    "imageAlt": coalesce(image.alt, title),
+    galleryPreset,
+    gallery[]{
+      _key,
+      "url": asset->url,
+      "alt": coalesce(alt, caption, ^.title),
+      caption
+    }
   }
 `;
 
@@ -36,6 +61,8 @@ export async function getPilgrimageArtworks(): Promise<PilgrimageArtwork[]> {
     return (artworks || []).map((artwork) => ({
       ...artwork,
       type: artwork.type || "sculptura",
+      galleryPreset: artwork.galleryPreset || "auto",
+      gallery: artwork.gallery || [],
     }));
   } catch (error) {
     console.warn("Sanity pilgrimage artworks fetch failed", error);

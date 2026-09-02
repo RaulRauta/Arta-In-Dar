@@ -48,6 +48,57 @@ export const pilgrimageArtwork = defineType({
       ],
     }),
     defineField({
+      name: "galleryPreset",
+      title: "Preset galerie detaliu",
+      type: "string",
+      initialValue: "auto",
+      description:
+        "Controlează forma colajului din modal. Imaginea principală rămâne folosită pentru card.",
+      options: {
+        layout: "dropdown",
+        list: [
+          { title: "Auto — după numărul de poze", value: "auto" },
+          { title: "2 poze — dialog", value: "duo" },
+          { title: "3 poze — triptic", value: "triptych" },
+          { title: "4 poze — cadran iregular", value: "quad" },
+          { title: "5 poze — colaj deschis", value: "mosaicFive" },
+          { title: "6 poze — atelier", value: "mosaicSix" },
+          { title: "7 poze — jurnal complet", value: "mosaicSeven" },
+        ],
+      },
+    }),
+    defineField({
+      name: "gallery",
+      title: "Galerie suplimentară pentru detaliu",
+      type: "array",
+      description:
+        "Adaugă până la 6 poze suplimentare. Împreună cu poza principală pot forma un colaj de până la 7 imagini în modal.",
+      of: [
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Text alternativ",
+              type: "string",
+              description: "Descriere scurtă pentru accesibilitate.",
+              validation: (rule) =>
+                rule.required().warning("Recomandat pentru accesibilitate."),
+            }),
+            defineField({
+              name: "caption",
+              title: "Legendă scurtă",
+              type: "string",
+              description: "Opțional. Apare discret peste imagine în modal.",
+            }),
+          ],
+        },
+      ],
+      validation: (rule) =>
+        rule.max(6).warning("Folosește maximum 6 poze suplimentare pe lucrare."),
+    }),
+    defineField({
       name: "description",
       title: "Descriere / poveste scurtă",
       type: "text",

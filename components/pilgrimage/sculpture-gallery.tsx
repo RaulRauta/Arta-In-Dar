@@ -3,7 +3,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import type { PilgrimageArtwork } from "@/lib/pilgrimage-artworks";
+import type {
+  PilgrimageArtwork,
+  PilgrimageArtworkGalleryPreset,
+  PilgrimageArtworkImage,
+} from "@/lib/pilgrimage-artworks";
 
 type SculptureGalleryProps = {
   artworks: PilgrimageArtwork[];
@@ -30,6 +34,96 @@ function ArtworkPlaceholder() {
       <span />
       <i />
       <b />
+    </div>
+  );
+}
+
+function getArtworkImages(artwork: PilgrimageArtwork) {
+  const mainImage = artwork.image
+    ? [
+        {
+          _key: `${artwork.id}-main`,
+          url: artwork.image,
+          alt: artwork.imageAlt || `${artwork.title}, de ${artwork.artist}`,
+        },
+      ]
+    : [];
+
+  return [...mainImage, ...(artwork.gallery || [])]
+    .filter(
+      (image): image is PilgrimageArtworkImage & { url: string } =>
+        Boolean(image.url),
+    )
+    .slice(0, 7);
+}
+
+function getGalleryPreset(
+  count: number,
+  selected?: PilgrimageArtworkGalleryPreset,
+) {
+  if (selected && selected !== "auto") return selected;
+  if (count <= 2) return "duo";
+  if (count === 3) return "triptych";
+  if (count === 4) return "quad";
+  if (count === 5) return "mosaicFive";
+  if (count === 6) return "mosaicSix";
+
+  return "mosaicSeven";
+}
+
+function ArtworkModalImages({ artwork }: { artwork: PilgrimageArtwork }) {
+  const images = getArtworkImages(artwork);
+
+  if (images.length === 0) {
+    return (
+      <div className="sculpture-modal__image">
+        <ArtworkPlaceholder />
+      </div>
+    );
+  }
+
+  if (images.length === 1) {
+    const image = images[0];
+
+    return (
+      <div className="sculpture-modal__image">
+        <Image
+          src={image.url}
+          alt={image.alt || `${artwork.title}, de ${artwork.artist}`}
+          fill
+          sizes="(max-width: 900px) 92vw, 48vw"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
+  const preset = getGalleryPreset(images.length, artwork.galleryPreset);
+
+  return (
+    <div className="sculpture-modal__image sculpture-modal__image--mosaic">
+      <div
+        className={`sculpture-modal__mosaic sculpture-modal__mosaic--${preset}`}
+        aria-label={`Galerie cu ${images.length} imagini pentru ${artwork.title}`}
+      >
+        {images.map((image, index) => (
+          <figure
+            className={`sculpture-modal__tile sculpture-modal__tile--${
+              index + 1
+            }`}
+            key={image._key || `${image.url}-${index}`}
+          >
+            <Image
+              src={image.url}
+              alt={image.alt || `${artwork.title}, de ${artwork.artist}`}
+              fill
+              sizes="(max-width: 799px) 86vw, (max-width: 1100px) 48vw, 38vw"
+              className="object-cover"
+            />
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
     </div>
   );
 }
@@ -214,22 +308,7 @@ function ArtworkGallerySection({
                   exit={{ opacity: 0, x: -18 }}
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="sculpture-modal__image">
-                    {active.image ? (
-                      <Image
-                        src={active.image}
-                        alt={
-                          active.imageAlt ||
-                          `${active.title}, de ${active.artist}`
-                        }
-                        fill
-                        sizes="(max-width: 900px) 92vw, 48vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <ArtworkPlaceholder />
-                    )}
-                  </div>
+                  <ArtworkModalImages artwork={active} />
                   <div className="sculpture-modal__copy">
                     <p>
                       {artworkTypeLabel(active.type)} · {active.artist}

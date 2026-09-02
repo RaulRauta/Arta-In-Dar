@@ -72,7 +72,7 @@ export const pilgrimageArtwork = defineType({
       title: "Galerie suplimentară pentru detaliu",
       type: "array",
       description:
-        "Adaugă până la 6 poze suplimentare. Împreună cu poza principală pot forma un colaj de până la 7 imagini în modal.",
+        "Adaugă până la 7 poze pentru modal. Poza principală rămâne separată pentru card și nu intră automat în colaj.",
       of: [
         {
           type: "image",
@@ -96,7 +96,7 @@ export const pilgrimageArtwork = defineType({
         },
       ],
       validation: (rule) =>
-        rule.max(6).warning("Folosește maximum 6 poze suplimentare pe lucrare."),
+        rule.max(7).warning("Folosește maximum 7 poze în galeria de detaliu."),
     }),
     defineField({
       name: "description",

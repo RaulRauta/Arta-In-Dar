@@ -39,7 +39,16 @@ function ArtworkPlaceholder() {
 }
 
 function getArtworkImages(artwork: PilgrimageArtwork) {
-  const mainImage = artwork.image
+  const galleryImages = (artwork.gallery || [])
+    .filter(
+      (image): image is PilgrimageArtworkImage & { url: string } =>
+        Boolean(image.url),
+    )
+    .slice(0, 7);
+
+  if (galleryImages.length > 0) return galleryImages;
+
+  const mainImage: Array<PilgrimageArtworkImage & { url: string }> = artwork.image
     ? [
         {
           _key: `${artwork.id}-main`,
@@ -49,12 +58,7 @@ function getArtworkImages(artwork: PilgrimageArtwork) {
       ]
     : [];
 
-  return [...mainImage, ...(artwork.gallery || [])]
-    .filter(
-      (image): image is PilgrimageArtworkImage & { url: string } =>
-        Boolean(image.url),
-    )
-    .slice(0, 7);
+  return mainImage;
 }
 
 function getGalleryPreset(

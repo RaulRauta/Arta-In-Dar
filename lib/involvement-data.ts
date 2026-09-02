@@ -27,13 +27,6 @@ export const involvementResources = [
 
 export const taxResources = [
   {
-    number: "3,5%",
-    title: "Redirecționează online",
-    description: "Completează formularul digital pentru a redirecționa 3,5% din impozitul pe venit către Arta în dar.",
-    href: "https://formular230.ro/arta-in-dar",
-    action: "Completează online",
-  },
-  {
     number: "230",
     title: "Formular pregătit",
     description: "Deschide varianta PDF a Formularului 230, completată cu datele asociației.",

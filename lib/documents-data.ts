@@ -22,13 +22,6 @@ export const documentSections = [
     note: "Un gest fiscal simplu, pus într-o formă clară.",
     documents: [
       {
-        title: "Completează formularul 230",
-        description: "Platforma online pentru redirecționarea a 3,5% din impozitul pe venit către Arta în dar.",
-        href: "https://formular230.ro/arta-in-dar",
-        action: "Completează online",
-        type: "Online",
-      },
-      {
         title: "Formular 230 pregătit",
         description: "Varianta PDF pregătită cu datele asociației, gata pentru descărcare.",
         href: "/documents/formular-230-arta-in-dar-2025.pdf",

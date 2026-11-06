@@ -47,7 +47,7 @@ export const beginnings = [
     alt: "Mese și băncuțe colorate realizate din paleți recuperați.",
   },
   {
-    title: "Și locul a început să cânte.",
+    title: "Primele voci, aceeași bucurie.",
     note: "Muzică corală · Muzicor, Ploiești",
     text: "De la mese și băncuțe fără fițe, drumul ne-a dus spre muzica corală. Muzicor din Ploiești a adus vocile sale în această poveste construită prin voluntariat. Lucrurile simple pe care le pregătiserăm căpătau un rost nou: îi primeau pe artiști și pe cei veniți să-i asculte. Arta începea să ne adune în jurul ei.",
     alt: "Ansamblul coral Muzicor din Ploiești, fotografiat în fața unei biserici.",

@@ -4264,6 +4264,18 @@ main :is(h1,h2,h3,h4) span{
   color:#2d241f;
 }
 
+/* Începuturi · un mic atelier de creion în preview-ul navigației. */
+.art-preview--sketch{background:#f7f1e8;color:#2d241f}
+.art-preview--sketch .art-preview__scene{background:repeating-linear-gradient(0deg,transparent 0 17px,#81715d14 17px 18px),#e4d9c6}
+.art-preview--sketch .art-piece--one{left:1.5rem;top:1rem;width:8rem;height:8.5rem;background:#fcf8ef;border:1px solid #81715d44;box-shadow:4px 6px 12px #30271d22;transform:rotate(-8deg)}
+.art-preview--sketch .art-piece--one::after{content:"";position:absolute;left:2rem;top:2rem;width:4rem;height:4rem;border:1px solid #66594b;border-radius:48% 52% 46% 54%;box-shadow:2px -2px 0 -1px #fcf8ef,3px -3px 0 -1px #81715d66}
+.art-preview--sketch .art-piece--two{left:4.5rem;top:4rem;width:4.6rem;height:3rem;background:repeating-linear-gradient(135deg,transparent 0 5px,#66594b55 5px 6px);transform:rotate(-8deg);clip-path:polygon(0 100%,50% 0,100% 100%)}
+.art-preview--sketch .art-piece--three{right:1.8rem;top:1.7rem;width:.45rem;height:7.5rem;background:linear-gradient(90deg,#423b34,#a2937e 45%,#51473c);transform:rotate(28deg);clip-path:polygon(0 0,100% 0,100% 86%,50% 100%,0 86%)}
+.art-preview--sketch .art-piece--four{left:2.5rem;top:1rem;width:3rem;height:1rem;background:#d8c7a7aa;transform:rotate(-16deg)}
+.art-preview--sketch .art-preview__copy strong{font-style:italic}
+.menu-item--sketch:hover .menu-item__label,.menu-item--sketch:focus-visible .menu-item__label{color:#66594b;text-shadow:1px 1px 0 #81715d33}
+.menu-item--sketch .menu-item__dot{background:#81715d}
+
 /* Documente · politica de confidențialitate */
 .archive-privacy{
   position:relative;

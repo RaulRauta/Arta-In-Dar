@@ -5,6 +5,7 @@ import { getSiteUrl } from "@/lib/site-url";
 const routes = [
   { path: "", priority: 1, changeFrequency: "monthly" },
   { path: "/despre-noi", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/inceputuri", priority: 0.7, changeFrequency: "monthly" },
   { path: "/pelerinaj-7-capele", priority: 0.9, changeFrequency: "monthly" },
   { path: "/doneaza-fii-voluntar", priority: 0.85, changeFrequency: "monthly" },
   { path: "/noutati", priority: 0.8, changeFrequency: "weekly" },

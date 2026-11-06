@@ -1,6 +1,7 @@
 export const navigation = [
   { label: "Acasă", href: "/", art: "collage", kicker: "Expoziție vie", story: "Fragmente de artă, oameni și locuri puse împreună." },
   { label: "Despre noi", href: "/despre-noi", art: "sculpture", kicker: "Formă și materie", story: "O poveste cioplită în timp, gest cu gest." },
+  { label: "Începuturi", href: "/inceputuri", art: "sketch", kicker: "Caiet de schițe", story: "Primele linii ale unei povești deschise." },
   { label: "7 Capele, muzeu în aer liber", href: "/pelerinaj-7-capele", art: "manuscript", kicker: "Jurnal de călătorie", story: "Șapte opriri, un drum desenat de mână." },
   { label: "Donează / Fii voluntar", href: "/doneaza-fii-voluntar", art: "theatre", kicker: "Scena comunității", story: "Intră în lumină. Povestea are nevoie și de tine." },
   { label: "Noutăți", href: "/noutati", art: "music", kicker: "Partitură vie", story: "Vești, evenimente și oameni care dau ritm comunității." },

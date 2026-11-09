@@ -224,7 +224,16 @@ export const newsPost = defineType({
               validation: (Rule) => Rule.max(60),
             }),
             defineField({ name: "title", title: "Titlu", type: "string", validation: (Rule) => Rule.max(100) }),
-            defineField({ name: "text", title: "Text", type: "text", rows: 4, validation: (Rule) => Rule.max(520) }),
+            defineField({
+              name: "text",
+              title: "Text",
+              type: "text",
+              rows: 4,
+              validation: (Rule) => Rule.custom((text, { document }) => {
+                const limit = document?.postTemplate === "twoPhotoAnnouncement" ? 1000 : 520;
+                return !text || text.length <= limit || `Textul poate avea maximum ${limit} de caractere.`;
+              }),
+            }),
             defineField({
               name: "background",
               title: "Fundal text",

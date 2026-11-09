@@ -139,7 +139,7 @@ export const newsPost = defineType({
       title: "⬛ Etichetă mică",
       type: "string",
       description: "Etichetă discretă deasupra titlului. Nu apare ca zonă mare în preview.",
-      hidden: ({ document }) => !document?.postTemplate || document.postTemplate === "free",
+      hidden: ({ document }) => !document?.postTemplate || ["free", "twoPhotoAnnouncement"].includes(String(document.postTemplate)),
       validation: (Rule) => Rule.max(60),
     }),
     defineField({
@@ -216,7 +216,13 @@ export const newsPost = defineType({
           title: "Rând",
           type: "object",
           fields: [
-            defineField({ name: "label", title: "Etichetă", type: "string", validation: (Rule) => Rule.max(60) }),
+            defineField({
+              name: "label",
+              title: "Etichetă",
+              type: "string",
+              hidden: ({ document }) => document?.postTemplate === "twoPhotoAnnouncement",
+              validation: (Rule) => Rule.max(60),
+            }),
             defineField({ name: "title", title: "Titlu", type: "string", validation: (Rule) => Rule.max(100) }),
             defineField({ name: "text", title: "Text", type: "text", rows: 4, validation: (Rule) => Rule.max(520) }),
             defineField({

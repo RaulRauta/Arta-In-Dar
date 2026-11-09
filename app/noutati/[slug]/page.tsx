@@ -226,7 +226,8 @@ function StructuredPostImages({ images, template }: { images?: NewsPortableImage
 }
 
 function StructuredRows({ rows, template }: { rows?: NewsTemplateBlock["items"]; template?: string }) {
-  const usableRows = (rows || []).filter((row) => row.title || row.text || row.label);
+  const showLabels = template !== "twoPhotoAnnouncement";
+  const usableRows = (rows || []).filter((row) => row.title || row.text || (showLabels && row.label));
 
   if (!usableRows.length) {
     return null;
@@ -241,7 +242,7 @@ function StructuredRows({ rows, template }: { rows?: NewsTemplateBlock["items"];
           className={`news-structured__row-card news-structured__row-card--${row.background || "auto"}`}
           key={row._key || `${row.title}-${index}`}
         >
-          <small>{row.label || String(index + 1).padStart(2, "0")}</small>
+          {showLabels ? <small>{row.label || String(index + 1).padStart(2, "0")}</small> : null}
           {row.title ? <h3>{row.title}</h3> : null}
           {row.text ? <p>{row.text}</p> : null}
         </article>
@@ -290,7 +291,7 @@ function NewsStructuredPost({ post }: { post: NewsPost }) {
   return (
     <section className={`news-structured news-structured--${template}`}>
       <div className="news-structured__intro">
-        {post.templateEyebrow ? <p className="news-template__eyebrow">{post.templateEyebrow}</p> : null}
+        {template !== "twoPhotoAnnouncement" && post.templateEyebrow ? <p className="news-template__eyebrow">{post.templateEyebrow}</p> : null}
         <h2>{post.templateTitle || post.title}</h2>
         {post.templateIntro ? <TextLines text={post.templateIntro} /> : null}
       </div>

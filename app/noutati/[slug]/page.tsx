@@ -210,7 +210,7 @@ function StructuredPostImages({ images, template }: { images?: NewsPortableImage
 
   const limitedImages =
     template === "threePhotosFiveRows" ? usableImages.slice(0, 3) :
-    template === "beforeAfter" ? usableImages.slice(0, 2) :
+    (template === "beforeAfter" || template === "twoPhotoAnnouncement") ? usableImages.slice(0, 2) :
     usableImages;
 
   return (

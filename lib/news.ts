@@ -90,6 +90,7 @@ export type NewsPostTemplate =
   | "threePhotosFiveRows"
   | "photoReport"
   | "shortAnnouncement"
+  | "twoPhotoAnnouncement"
   | "interview"
   | "eventRecap"
   | "beforeAfter"

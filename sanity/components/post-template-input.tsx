@@ -63,6 +63,7 @@ export function PostTemplateInput(props: StringInputProps) {
         .post-template-wire--three .wire-img-a{grid-column:1/5;grid-row:3/8}.post-template-wire--three .wire-img-b{grid-column:5/7;grid-row:3/5}.post-template-wire--three .wire-img-c{grid-column:5/7;grid-row:5/8}.post-template-wire--three .wire-row-a,.post-template-wire--three .wire-row-b,.post-template-wire--three .wire-row-c,.post-template-wire--three .wire-row-d,.post-template-wire--three .wire-row-e{grid-column:1/7}
         .post-template-wire--report .wire-img-a{grid-column:1/5;grid-row:3/8}.post-template-wire--report .wire-img-b{grid-column:5/7;grid-row:3/5}.post-template-wire--report .wire-img-c{grid-column:5/7;grid-row:5/8}.post-template-wire--report .wire-row-a{grid-column:1/4}.post-template-wire--report .wire-row-b{grid-column:4/7}
         .post-template-wire--announcement .wire-title{grid-column:1/6;grid-row:2}.post-template-wire--announcement .wire-lead{grid-column:1/7;grid-row:4/6}.post-template-wire--announcement .wire-button{grid-column:1/4;grid-row:8}
+        .post-template-wire--announcementTwo .wire-img-a{grid-column:1/4;grid-row:3/7}.post-template-wire--announcementTwo .wire-img-b{grid-column:4/7;grid-row:3/7}.post-template-wire--announcementTwo .wire-button{grid-column:1/4;grid-row:8}.post-template-wire--announcementTwo :is(.wire-img-c,.wire-row,.wire-quote){display:none}
         .post-template-wire--qa .wire-img-a{grid-column:1/3;grid-row:3/7}.post-template-wire--qa .wire-row-a,.post-template-wire--qa .wire-row-b,.post-template-wire--qa .wire-row-c,.post-template-wire--qa .wire-row-d{grid-column:3/7}
         .post-template-wire--timeline .wire-img-a{grid-column:1/7;grid-row:3/6}.post-template-wire--timeline .wire-row-a,.post-template-wire--timeline .wire-row-b,.post-template-wire--timeline .wire-row-c,.post-template-wire--timeline .wire-row-d{grid-column:1/7}
         .post-template-wire--compare .wire-img-a{grid-column:1/4;grid-row:3/8}.post-template-wire--compare .wire-img-b{grid-column:4/7;grid-row:3/8}.post-template-wire--compare .wire-row-a{grid-column:1/4}.post-template-wire--compare .wire-row-b{grid-column:4/7}
@@ -96,7 +97,7 @@ export function PostTemplateInput(props: StringInputProps) {
                 {["quoteFeature", "profileStory"].includes(template.id) ? (
                   <LegendItem tone="quote" label="Citat" text="se completează la Citat central și Autor citat" />
                 ) : null}
-                {["shortAnnouncement", "profileStory"].includes(template.id) ? (
+                {["shortAnnouncement", "twoPhotoAnnouncement", "profileStory"].includes(template.id) ? (
                   <LegendItem tone="button" label="Buton" text="se completează la Text buton și Link buton" />
                 ) : null}
               </div>

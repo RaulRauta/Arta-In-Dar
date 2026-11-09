@@ -189,6 +189,10 @@ export const newsPost = defineType({
             return "Șablonul «3 poze + 5 rânduri» are nevoie de exact 3 imagini.";
           }
 
+          if (template === "twoPhotoAnnouncement" && count !== 2) {
+            return "Șablonul «Anunț cu două poze» are nevoie de exact 2 imagini.";
+          }
+
           if (template === "beforeAfter" && count !== 2) {
             return "Șablonul «Înainte / După» are nevoie de exact 2 imagini.";
           }
@@ -268,7 +272,7 @@ export const newsPost = defineType({
       title: "🟥 Text buton șablon",
       type: "string",
       description: "Corespunde zonei roșii din preview. Textul scurt de pe buton.",
-      hidden: ({ document }) => !["shortAnnouncement", "profileStory"].includes(String(document?.postTemplate)),
+      hidden: ({ document }) => !["shortAnnouncement", "twoPhotoAnnouncement", "profileStory"].includes(String(document?.postTemplate)),
       validation: (Rule) => Rule.max(60),
     }),
     defineField({
@@ -276,7 +280,7 @@ export const newsPost = defineType({
       title: "🟥 Link buton șablon",
       type: "string",
       description: "Destinația butonului roșu: pagină internă, formular sau link extern.",
-      hidden: ({ document }) => !["shortAnnouncement", "profileStory"].includes(String(document?.postTemplate)),
+      hidden: ({ document }) => !["shortAnnouncement", "twoPhotoAnnouncement", "profileStory"].includes(String(document?.postTemplate)),
       validation: (Rule) => Rule.custom(safeLinkValidation),
     }),
     defineField({

@@ -3,6 +3,7 @@ export type NewsPostTemplateId =
   | "threePhotosFiveRows"
   | "photoReport"
   | "shortAnnouncement"
+  | "twoPhotoAnnouncement"
   | "interview"
   | "eventRecap"
   | "beforeAfter"
@@ -19,7 +20,7 @@ export type NewsPostTemplateGuide = {
   structure: string;
   imageHint: string;
   textHint: string;
-  wireframe: "free" | "three" | "report" | "announcement" | "qa" | "timeline" | "compare" | "profile" | "quote";
+  wireframe: "free" | "three" | "report" | "announcement" | "announcementTwo" | "qa" | "timeline" | "compare" | "profile" | "quote";
 };
 
 export const newsPostTemplates: NewsPostTemplateGuide[] = [
@@ -66,6 +67,17 @@ export const newsPostTemplates: NewsPostTemplateGuide[] = [
     imageHint: "Folosește o singură imagine dacă ajută mesajul; nu aglomera.",
     textHint: "Spune ce, când, unde și ce trebuie să facă omul mai departe.",
     wireframe: "announcement",
+  },
+  {
+    id: "twoPhotoAnnouncement",
+    title: "Anunț · mesaj + 2 poze",
+    shortTitle: "Anunț cu două poze",
+    description: "Un mesaj scurt, însoțit de două imagini.",
+    bestFor: "Invitații, evenimente și apeluri la voluntariat.",
+    structure: "Titlu, mesaj, două fotografii și un buton opțional.",
+    imageHint: "Adaugă exact două fotografii în galeria șablonului.",
+    textHint: "Spune ce se întâmplă, când și unde.",
+    wireframe: "announcementTwo",
   },
   {
     id: "interview",

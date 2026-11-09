@@ -217,7 +217,13 @@ function StructuredPostImages({ images, template }: { images?: NewsPortableImage
     <div className={`news-structured__images news-structured__images--${template || "free"}`}>
       {limitedImages.map((image, index) => (
         <figure key={image._key || `${image.url}-${index}`}>
-          <Image src={image.url || ""} alt={image.alt || ""} width={1000} height={760} />
+          <Image
+            src={image.url || ""}
+            alt={image.alt || ""}
+            width={template === "twoPhotoAnnouncement" ? image.dimensions?.width || 1000 : 1000}
+            height={template === "twoPhotoAnnouncement" ? image.dimensions?.height || 760 : 760}
+            sizes={template === "twoPhotoAnnouncement" ? "(max-width: 767px) 92vw, 46vw" : undefined}
+          />
           {image.caption ? <figcaption>{image.caption}</figcaption> : null}
         </figure>
       ))}

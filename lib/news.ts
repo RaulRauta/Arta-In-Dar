@@ -33,6 +33,7 @@ export type NewsPostCard = {
 };
 
 export type NewsPortableImage = {
+  dimensions?: { width: number; height: number };
   _type: "image";
   _key?: string;
   url?: string;
@@ -207,6 +208,7 @@ const newsPostQuery = groq`
     templateImages[]{
       ...,
       "url": asset->url,
+      "dimensions": asset->metadata.dimensions{width, height},
       "alt": coalesce(alt, caption, "Imagine articol")
     },
     templateRows[],

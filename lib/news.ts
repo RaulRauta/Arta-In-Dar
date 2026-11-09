@@ -102,6 +102,7 @@ export type NewsPost = NewsPostCard & {
   lead?: string;
   heroImage?: string;
   heroImageAlt?: string;
+  articleImageDimensions?: { width: number; height: number };
   postTemplate?: NewsPostTemplate;
   templateEyebrow?: string;
   templateTitle?: string;
@@ -182,6 +183,7 @@ const newsPostQuery = groq`
     "cardImageAlt": coalesce(cardImage.alt, cardTitle, title),
     "heroImage": heroImage.asset->url,
     "heroImageAlt": coalesce(heroImage.alt, title),
+    "articleImageDimensions": coalesce(heroImage.asset->metadata.dimensions, cardImage.asset->metadata.dimensions){width, height},
     "author": author->{
       "id": _id,
       name,

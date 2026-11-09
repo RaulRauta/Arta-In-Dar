@@ -2635,7 +2635,14 @@ main :is(h1,h2,h3,h4) span{
 }
 
 .news-post-hero__image img{
-  object-fit:cover;
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.news-post-hero__image.news-post-hero__image--natural{
+  min-height:0;
+  width:100%;
 }
 
 .news-post-hero__image span{

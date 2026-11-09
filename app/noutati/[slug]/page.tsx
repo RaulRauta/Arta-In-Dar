@@ -423,12 +423,13 @@ export default async function NewsPostPage({ params }: NewsPostPageProps) {
               <h1>{post.title}</h1>
               {post.lead ? <p>{post.lead}</p> : null}
             </div>
-            <div className={`news-post-hero__image news-post-hero__image--${post.cardStyle}`}>
+            <div className={`news-post-hero__image news-post-hero__image--${post.cardStyle}${post.heroImage || post.cardImage ? " news-post-hero__image--natural" : ""}`}>
               {post.heroImage || post.cardImage ? (
                 <Image
                   src={post.heroImage || post.cardImage || ""}
                   alt={post.heroImageAlt || post.cardImageAlt || post.title}
-                  fill
+                  width={post.articleImageDimensions?.width || 1200}
+                  height={post.articleImageDimensions?.height || 900}
                   priority
                   sizes="(max-width: 767px) 92vw, 42vw"
                 />
